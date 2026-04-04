@@ -181,26 +181,26 @@ var API = "https://script.google.com/macros/s/AKfycbxV2W-VMaI9cQvIWUxW2sgHz8jis8
 var allAnimals = [];
 
 function renderCard(a) {
-  var foto = a.foto || "https://www.amoryabrigohn.org/images/slider2.jpg";
-  var estado = (a.estado || "Disponible");
+  var foto = a.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
+  var estado = a.estado || 'Disponible';
   var est = estado.toLowerCase();
-  var badgeCls = est.includes("reservado") ? "badge-reservado" : est.includes("adoptado") ? "badge-adoptado" : "badge-disponible";
-  var btnCls = est.includes("reservado") ? "reservado" : est.includes("adoptado") ? "adoptado" : "";
-  var btnTxt = est.includes("adoptado") ? "¡Ya adoptado! 🎉" : est.includes("reservado") ? "Aplicar como 2ª opción" : "Quiero adoptar a " + a.nombre;
-  return '<div class="animal-card" data-tipo="'+(a.tipo||"").toLowerCase()+'" data-estado="'+est+'">' +
+  var badgeCls = est.includes('reservado') ? 'badge-reservado' : est.includes('adoptado') ? 'badge-adoptado' : 'badge-disponible';
+  var btnCls = est.includes('reservado') ? 'reservado' : est.includes('adoptado') ? 'adoptado' : '';
+  var btnTxt = est.includes('adoptado') ? '¡Ya adoptado! 🎉' : est.includes('reservado') ? 'Aplicar como 2ª opción' : 'Quiero adoptar a ' + a.nombre;
+  var tags = '';
+  if (a.tipo) tags += '<span class="animal-tag">' + a.tipo + '</span>';
+  if (a.edad) tags += '<span class="animal-tag">' + a.edad + '</span>';
+  if (a.tamano) tags += '<span class="animal-tag">' + a.tamano + '</span>';
+  if (a.sexo) tags += '<span class="animal-tag">' + a.sexo + '</span>';
+  return '<div class="animal-card" data-tipo="' + (a.tipo||'').toLowerCase() + '" data-estado="' + est + '">' +
     '<div class="animal-img">' +
-      '<img src="' + foto + '" alt="' + a.nombre + '" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'">' +
+      '<img src="' + foto + '" alt="' + a.nombre + '" onerror="this.src=\'https://www.amoryabrigohn.org/images/slider2.jpg\'">' +
       '<span class="animal-badge ' + badgeCls + '">' + estado + '</span>' +
     '</div>' +
     '<div class="animal-body">' +
       '<div class="animal-name">' + a.nombre + '</div>' +
-      '<div class="animal-tags">' +
-        (a.tipo ? '<span class="animal-tag">' + a.tipo + '</span>' : '') +
-        (a.edad ? '<span class="animal-tag">' + a.edad + '</span>' : '') +
-        (a.tamano ? '<span class="animal-tag">' + a.tamano + '</span>' : '') +
-        (a.sexo ? '<span class="animal-tag">' + a.sexo + '</span>' : '') +
-      '</div>' +
-      '<p class="animal-desc">' + (a.descripcion || "") + '</p>' +
+      '<div class="animal-tags">' + tags + '</div>' +
+      '<p class="animal-desc">' + (a.descripcion || '') + '</p>' +
       '<a href="adopcion.html" class="animal-btn ' + btnCls + '">' + btnTxt + '</a>' +
     '</div>' +
   '</div>';
