@@ -1,0 +1,91 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/animales"
+public_folder: "/images/animales"
+
+locale: 'es'
+
+collections:
+  - name: "animales"
+    label: "🐾 Animales en Adopción"
+    folder: "_animales"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Nombre del animal"
+        name: "nombre"
+        widget: "string"
+        hint: "Ej: Max, Luna, Rocky"
+      - label: "Foto"
+        name: "foto"
+        widget: "image"
+        hint: "Sube una foto del animal"
+      - label: "Tipo"
+        name: "tipo"
+        widget: "select"
+        options: ["Perro", "Perra", "Gato", "Gata"]
+      - label: "Edad"
+        name: "edad"
+        widget: "string"
+        hint: "Ej: 2 años, 3 meses"
+      - label: "Tamaño"
+        name: "tamano"
+        widget: "select"
+        options: ["Pequeño", "Mediano", "Grande"]
+      - label: "Sexo"
+        name: "sexo"
+        widget: "select"
+        options: ["Macho", "Hembra"]
+      - label: "Estado"
+        name: "estado"
+        widget: "select"
+        options: ["Disponible", "Reservado", "Adoptado"]
+        default: "Disponible"
+      - label: "Descripción"
+        name: "descripcion"
+        widget: "text"
+        hint: "Cuéntanos sobre la personalidad del animal"
+      - label: "Publicado"
+        name: "published"
+        widget: "boolean"
+        default: true
+
+  - name: "eventos"
+    label: "📅 Eventos"
+    folder: "_eventos"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Título del evento"
+        name: "titulo"
+        widget: "string"
+      - label: "Tipo"
+        name: "tipo"
+        widget: "select"
+        options: ["Feria de adopción", "Recaudación", "Voluntariado", "Salud animal"]
+      - label: "Fecha"
+        name: "fecha"
+        widget: "string"
+        hint: "Ej: 15 de Abril, 2026"
+      - label: "Hora"
+        name: "hora"
+        widget: "string"
+        hint: "Ej: 10:00 AM - 4:00 PM"
+      - label: "Lugar"
+        name: "lugar"
+        widget: "string"
+      - label: "Descripción"
+        name: "descripcion"
+        widget: "text"
+      - label: "Publicado"
+        name: "published"
+        widget: "boolean"
+        default: true
