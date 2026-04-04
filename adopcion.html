@@ -16,14 +16,24 @@
 .form-wrap { background: var(--dark); border-radius: 24px; padding: 2.5rem; }
 .form-wrap h3 { font-family: 'Fraunces', serif; font-size: 1.75rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
 .form-wrap p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 2rem; }
-.success-msg { display: none; background: #dcfce7; color: #166534; padding: 1rem; border-radius: 12px; text-align: center; font-weight: 600; margin-top: 1rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.875rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; transition: all 0.2s; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--blue); background: rgba(30,144,255,0.1); }
+.form-group select option { background: var(--dark); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-submit { width: 100%; padding: 1rem; background: #25D366; color: var(--white); border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.form-submit:hover { background: #1da851; transform: translateY(-1px); }
+.whatsapp-note { background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3); border-radius: 12px; padding: 0.875rem 1rem; margin-top: 1rem; display: flex; align-items: center; gap: 8px; }
+.whatsapp-note p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin: 0; }
 .requirements { padding: 5rem 4rem; background: var(--light); }
 .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
 .req-card { background: var(--white); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
 .req-card h4 { font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
 .req-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
 @media (max-width: 1024px) { .adoption-section { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 3rem; } .requirements { padding: 3rem 2rem; } .req-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .req-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .req-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -75,53 +85,65 @@
   </div>
   <div class="form-wrap">
     <h3>Solicitud de adopción</h3>
-    <p>Completa el formulario y nos pondremos en contacto contigo pronto.</p>
-    <form id="adoptionForm" action="https://formspree.io/f/amoryabrigo13@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Nueva solicitud de adopción — Amor y Abrigo">
-      <input type="hidden" name="_next" value="">
+    <p>Completa el formulario y se abrirá WhatsApp con tu solicitud lista para enviar al refugio.</p>
+    <form id="adoptionForm">
       <div class="form-row">
-        <div class="form-group"><label>Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
-        <div class="form-group"><label>Edad</label><input type="number" name="edad" placeholder="Tu edad" required min="18"></div>
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Edad</label>
+          <input type="number" id="edad" placeholder="Tu edad" required min="18">
+        </div>
       </div>
-      <div class="form-group"><label>Correo electrónico</label><input type="email" name="email" placeholder="correo@ejemplo.com" required></div>
-      <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" name="telefono" placeholder="+504 ####-####" required></div>
-      <div class="form-group"><label>Animal de interés</label>
-        <select name="animal" required>
-          <option value="">Selecciona un animal...</option>
-          <option>Max (Perro, 2 años)</option>
-          <option>Luna (Gata, 1 año)</option>
-          <option>Rocky (Perro, 3 años)</option>
-          <option>Milo (Gato, 2 años)</option>
-          <option>Canela (Perra, 4 años)</option>
-          <option>Coco (Gata, 3 meses)</option>
-        </select>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" id="email" placeholder="correo@ejemplo.com" required>
       </div>
-      <div class="form-group"><label>Tipo de vivienda</label>
-        <select name="vivienda" required>
+      <div class="form-group">
+        <label>Teléfono / WhatsApp</label>
+        <input type="tel" id="telefono" placeholder="+504 ####-####" required>
+      </div>
+      <div class="form-group">
+        <label>Animal de interés</label>
+        <input type="text" id="animal" placeholder="Nombre del animal que quieres adoptar" required>
+      </div>
+      <div class="form-group">
+        <label>Tipo de vivienda</label>
+        <select id="vivienda" required>
           <option value="">Selecciona...</option>
           <option>Casa con jardín</option>
           <option>Casa sin jardín</option>
           <option>Apartamento</option>
         </select>
       </div>
-      <div class="form-group"><label>¿Tienes experiencia con mascotas?</label>
-        <select name="experiencia" required>
+      <div class="form-group">
+        <label>¿Tienes experiencia con mascotas?</label>
+        <select id="experiencia" required>
           <option value="">Selecciona...</option>
           <option>Sí, tengo o tuve mascotas</option>
           <option>No, sería mi primera mascota</option>
         </select>
       </div>
-      <div class="form-group"><label>¿Tienes niños en casa?</label>
-        <select name="ninos">
+      <div class="form-group">
+        <label>¿Tienes niños en casa?</label>
+        <select id="ninos">
           <option value="">Selecciona...</option>
           <option>Sí, menores de 5 años</option>
           <option>Sí, mayores de 5 años</option>
           <option>No</option>
         </select>
       </div>
-      <div class="form-group"><label>¿Por qué quieres adoptar?</label><textarea name="motivo" rows="3" placeholder="Cuéntanos un poco..." required></textarea></div>
-      <button type="submit" class="form-submit">Enviar solicitud de adopción ❤️</button>
-      <div class="success-msg" id="successMsg">✅ ¡Solicitud enviada! El equipo de Amor y Abrigo se pondrá en contacto contigo pronto.</div>
+      <div class="form-group">
+        <label>¿Por qué quieres adoptar?</label>
+        <textarea id="motivo" rows="3" placeholder="Cuéntanos un poco..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">💬 Enviar solicitud por WhatsApp</button>
+      <div class="whatsapp-note">
+        <span>ℹ️</span>
+        <p>Se abrirá WhatsApp con tu solicitud lista. Solo presiona "Enviar" y el refugio la recibirá.</p>
+      </div>
     </form>
   </div>
 </section>
@@ -143,41 +165,73 @@
 
 <footer>
   <div class="footer-top">
-    <div class="footer-brand"><img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'"><p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️</p><div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a><a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a><a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a><a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a><a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a></div></div>
+    <div class="footer-brand">
+      <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+      <p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a>
+        <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a>
+        <a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a>
+        <a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a>
+        <a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a>
+      </div>
+    </div>
     <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
     <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
     <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
   </div>
-  <div class="footer-bottom"><p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p><p>Hecho con ❤️ para los animales de Honduras</p></div>
+  <div class="footer-bottom">
+    <p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
+    <p>Hecho con ❤️ para los animales de Honduras</p>
+  </div>
 </footer>
+
 <script>
 document.getElementById('adoptionForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const data = new FormData(this);
-  fetch(this.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-    .then(r => {
-      document.getElementById('successMsg').style.display = 'block';
-      this.reset();
-    })
-    .catch(() => {
-      document.getElementById('successMsg').style.display = 'block';
-      this.reset();
-    });
+
+  const nombre = document.getElementById('nombre').value;
+  const edad = document.getElementById('edad').value;
+  const email = document.getElementById('email').value;
+  const telefono = document.getElementById('telefono').value;
+  const animal = document.getElementById('animal').value;
+  const vivienda = document.getElementById('vivienda').value;
+  const experiencia = document.getElementById('experiencia').value;
+  const ninos = document.getElementById('ninos').value;
+  const motivo = document.getElementById('motivo').value;
+
+  const mensaje = `🐾 *SOLICITUD DE ADOPCIÓN — Amor y Abrigo*
+
+👤 *Nombre:* ${nombre}
+🎂 *Edad:* ${edad} años
+📧 *Correo:* ${email}
+📱 *Teléfono:* ${telefono}
+
+🐶 *Animal de interés:* ${animal}
+🏠 *Tipo de vivienda:* ${vivienda}
+🐾 *Experiencia con mascotas:* ${experiencia}
+👶 *Niños en casa:* ${ninos || 'No especificado'}
+
+💬 *¿Por qué quiere adoptar?*
+${motivo}`;
+
+  const telefono_refugio = '50496153243';
+  const url = `https://wa.me/${telefono_refugio}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
 });
-</script>
-<script>
+
 function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const btn = document.getElementById("hamburger");
-  menu.classList.toggle("open");
-  btn.classList.toggle("open");
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
 }
-document.addEventListener("click", function(e) {
-  const menu = document.getElementById("mobileMenu");
-  const btn = document.getElementById("hamburger");
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
   if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-    menu.classList.remove("open");
-    btn.classList.remove("open");
+    menu.classList.remove('open');
+    btn.classList.remove('open');
   }
 });
 </script>
