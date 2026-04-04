@@ -155,3 +155,17 @@ footer { background: var(--dark); padding: 4rem 4rem 2rem; }
   .page-hero { padding: 6rem 1.5rem 3rem; }
   .page-hero h1 { font-size: 2rem; }
 }
+
+/* IMPROVED LANGUAGE BUTTON */
+.lang-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0.4rem 0.875rem; border-radius: 50px;
+  border: 2px solid var(--blue); background: transparent;
+  color: var(--blue); font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem; font-weight: 700; cursor: pointer;
+  transition: all 0.3s; letter-spacing: 0.03em;
+  margin-left: 0.5rem; white-space: nowrap;
+}
+.lang-btn:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(30,144,255,0.3); }
+.lang-flag { font-size: 1rem; line-height: 1; }
+.lang-text { font-weight: 700; }

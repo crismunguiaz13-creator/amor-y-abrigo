@@ -138,7 +138,7 @@
 <section class="hero" id="inicio">
   <div class="hero-content">
     <div class="hero-badge" data-es="Refugio Animal — San Pedro Sula, Honduras" data-en="Animal Shelter — San Pedro Sula, Honduras">Refugio Animal — San Pedro Sula, Honduras</div>
-    <h1 data-es='Ellos no tienen voz.<br><em>Nosotros sí.</em>' data-en='They have no voice.<br><em>We do.</em>'>Ellos no tienen voz.<br><em>Nosotros sí.</em></h1>
+    <h1 data-es="Ellos no tienen voz.<br><em>Nosotros sí.</em>" data-en="They have no voice.<br><em>We do.</em>">Ellos no tienen voz.<br><em>Nosotros sí.</em></h1>
     <p data-es="Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices." data-en="We rescue, care for and find homes for dogs and cats in situations of abandonment or mistreatment. With your help, we keep writing happy endings.">Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices.</p>
     <div class="hero-buttons">
       <a href="animales.html" class="btn-primary"><span data-es="🐾 Ver animales en adopción" data-en="🐾 See animals for adoption">🐾 Ver animales en adopción</span></a>
@@ -259,62 +259,7 @@
     <p data-es="© 2026 Amor y Abrigo Honduras. Todos los derechos reservados." data-en="© 2026 Amor y Abrigo Honduras. All rights reserved.">© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
     <p data-es="Hecho con ❤️ para los animales de Honduras" data-en="Made with ❤️ for the animals of Honduras">Hecho con ❤️ para los animales de Honduras</p>
   </div>
-</footer><script>
-// NAV SCROLL EFFECT
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('mainNav');
-  if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
-});
-
-// HAMBURGER MENU
-function toggleMenu() {
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.getElementById('hamburger');
-  if (menu && btn) {
-    menu.classList.toggle('open');
-    btn.classList.toggle('open');
-  }
-}
-document.addEventListener('click', function(e) {
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.getElementById('hamburger');
-  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-    menu.classList.remove('open');
-    btn.classList.remove('open');
-  }
-});
-
-// SCROLL REVEAL ANIMATION
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-// LANGUAGE TOGGLE
-let currentLang = localStorage.getItem('lang') || 'es';
-function applyLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('lang', lang);
-  document.querySelectorAll('[data-es]').forEach(el => {
-    el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
-  });
-  const btns = document.querySelectorAll('.lang-btn');
-  btns.forEach(btn => {
-    btn.innerHTML = lang === 'es' ? '<span class="flag">🇺🇸</span> EN' : '<span class="flag">🇭🇳</span> ES';
-  });
-}
-function toggleLang() {
-  applyLang(currentLang === 'es' ? 'en' : 'es');
-}
-document.addEventListener('DOMContentLoaded', () => {
-  if (currentLang === 'en') applyLang('en');
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-});
-</script>
+</footer>
 <script>
 const GITHUB_USER = 'crismunguiaz13-creator';
 const GITHUB_REPO = 'amor-y-abrigo';
@@ -374,6 +319,77 @@ async function loadHomeAnimals() {
   }
 }
 loadHomeAnimals();
+</script>
+<script>
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// HAMBURGER
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  if (menu && btn) { menu.classList.toggle('open'); btn.classList.toggle('open'); }
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open'); btn.classList.remove('open');
+  }
+});
+
+// SCROLL REVEAL
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// LANGUAGE SYSTEM - handles both text and innerHTML
+let currentLang = localStorage.getItem('lang') || 'es';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const val = lang === 'es' ? el.dataset.es : el.dataset.en;
+    if (!val) return;
+    // Use innerHTML for elements that have HTML tags in their translation
+    if (val.includes('<') || val.includes('&')) {
+      el.innerHTML = val;
+    } else {
+      el.textContent = val;
+    }
+  });
+
+  // Update all lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const flag = btn.querySelector('.lang-flag');
+    const text = btn.querySelector('.lang-text');
+    if (lang === 'es') {
+      if (flag) flag.textContent = '🇺🇸';
+      if (text) text.textContent = 'EN';
+    } else {
+      if (flag) flag.textContent = '🇭🇳';
+      if (text) text.textContent = 'ES';
+    }
+  });
+
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'es' ? 'en' : 'es');
+}
+
+// Apply saved language on load
+document.addEventListener('DOMContentLoaded', () => {
+  if (currentLang === 'en') applyLang('en');
+});
 </script>
 </body>
 </html>
