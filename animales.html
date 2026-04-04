@@ -158,21 +158,13 @@
 </footer>
 
 <script>
-const GVIZ_URL = 'https://docs.google.com/spreadsheets/d/1jkPSF6d6_t7E8T-ryJncD7eqCuY24bzOR9xMgq-0PwA/gviz/tq?tqx=out:json&sheet=Sheet1';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwfdaHxV85A_drnhIwULdHUAAyrPJzXdZz6e7FwNH882i2Wry3wBwJBbcIJN9TUcXyIJw/exec';
 
 async function loadAnimals() {
   try {
-    const res = await fetch(GVIZ_URL);
+    const res = await fetch(API_URL);
     if (!res.ok) throw new Error();
-    const text = await res.text();
-    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
-    const cols = json.table.cols.map(c => c.label.toLowerCase().trim());
-    const rows = json.table.rows;
-    const animals = rows.map(row => {
-      const obj = {};
-      cols.forEach((col, i) => { obj[col] = row.c[i] ? (row.c[i].v || '') : ''; });
-      return obj;
-    }).filter(a => a.nombre && a.nombre !== '');
+    const animals = await res.json();
 
     const grid = document.getElementById('animalsGrid');
     document.getElementById('loadingDiv').style.display = 'none';
