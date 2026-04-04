@@ -3,33 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contacto — Amor y Abrigo</title>
+<title>Contacto — Amor y Abrigo Honduras</title>
+<meta name="description" content="Refugio de rescate y adopción animal en San Pedro Sula, Honduras. Adoptá responsablemente.">
 <link rel="stylesheet" href="styles.css">
 <style>
-.contact-section{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
+.contact-section{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
 .contact-methods{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
-.contact-method{display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--light);border-radius:16px;text-decoration:none;transition:all .2s;color:inherit;}
-.contact-method:hover{transform:translateX(4px);background:#e8f4ff;}
-.contact-method-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
-.contact-method-text strong{display:block;font-weight:700;color:var(--dark);font-size:.875rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.2rem;}
-.contact-method-text span{color:var(--gray);font-size:.9rem;}
-.form-wrap{background:var(--dark);border-radius:24px;padding:2.5rem;}
-.form-wrap h3{font-family:"Fraunces",serif;font-size:1.75rem;font-weight:700;color:var(--white);margin-bottom:.5rem;}
-.form-wrap>p{color:rgba(255,255,255,.6);font-size:.9rem;margin-bottom:2rem;}
-.form-group{margin-bottom:1rem;}
-.form-group label{display:block;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:.875rem 1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:var(--white);font-family:"DM Sans",sans-serif;font-size:.95rem;transition:all .2s;}
-.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.3);}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--blue);background:rgba(30,144,255,.1);}
-.form-group select option{background:var(--dark);}
-.form-submit{width:100%;padding:1rem;background:var(--blue);color:var(--white);border:none;border-radius:12px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;margin-top:.5rem;}
-.form-submit:hover{background:#1a7de0;transform:translateY(-1px);}
-.success-msg{display:none;background:#dcfce7;color:#166534;padding:1rem;border-radius:12px;text-align:center;font-weight:600;margin-top:1rem;}
+.contact-method{display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--light);border-radius:16px;transition:all .2s;}
+.contact-method:hover{background:#e8f4ff;transform:translateX(4px);}
+.method-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.method-text strong{display:block;font-weight:700;color:var(--dark);font-size:.875rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.2rem;}
+.method-text span{color:var(--gray);font-size:.9rem;}
 @media(max-width:1024px){.contact-section{grid-template-columns:1fr;padding:3rem 2rem;gap:3rem;}}
 </style>
 </head>
-<body>
-<nav id="mainNav">
+<body><nav id="mainNav">
   <a href="index.html" class="nav-logo">
     <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
     <span>Amor y Abrigo</span>
@@ -43,11 +31,11 @@
     <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
     <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
     <a href="contacto.html" class="nav-cta active" data-es="Contacto" data-en="Contact">Contacto</a>
-    <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Change language">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
   </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -60,7 +48,7 @@
   <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
   <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
   <a href="contacto.html" class="nav-cta active" data-es="Contacto" data-en="Contact">Contacto</a>
-  <div style="display:flex;justify-content:center;margin-top:.5rem;"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile" aria-label="Change language">
+  <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
 </div>
@@ -69,49 +57,52 @@
   <h1 data-es="¿Listo para hacer la diferencia?" data-en="Ready to make a difference?">¿Listo para hacer la diferencia?</h1>
   <p data-es="Contáctanos por cualquiera de estos medios. Estaremos felices de escucharte." data-en="Contact us through any of these channels. We will be happy to hear from you.">Contáctanos por cualquiera de estos medios. Estaremos felices de escucharte.</p>
 </div>
-<section class="contact-section reveal">
-  <div>
+
+<section class="contact-section">
+  <div class="reveal">
     <span class="section-badge" data-es="Encuéntranos" data-en="Find us">Encuéntranos</span>
     <h2 class="section-title" data-es="Información de contacto" data-en="Contact information">Información de contacto</h2>
     <p class="section-desc" data-es="Estamos disponibles para responder tus preguntas sobre adopción, voluntariado o donaciones." data-en="We are available to answer your questions about adoption, volunteering or donations.">Estamos disponibles para responder tus preguntas sobre adopción, voluntariado o donaciones.</p>
     <div class="contact-methods">
       <a href="https://wa.me/50498248715" target="_blank" class="contact-method">
-        <div class="contact-method-icon" style="background:#dcfce7;">💬</div>
-        <div class="contact-method-text"><strong data-es="WhatsApp" data-en="WhatsApp">WhatsApp</strong><span>+504 9824-8715</span></div>
+        <div class="method-icon" style="background:#dcfce7">💬</div>
+        <div class="method-text"><strong>WhatsApp</strong><span>+504 9824-8715</span></div>
       </a>
       <a href="mailto:amoryabrigo13@gmail.com" class="contact-method">
-        <div class="contact-method-icon" style="background:#dbeafe;">✉️</div>
-        <div class="contact-method-text"><strong data-es="Correo electrónico" data-en="Email">Correo electrónico</strong><span>amoryabrigo13@gmail.com</span></div>
+        <div class="method-icon" style="background:#dbeafe">✉️</div>
+        <div class="method-text"><strong data-es="Correo electrónico" data-en="Email">Correo electrónico</strong><span>amoryabrigo13@gmail.com</span></div>
       </a>
       <a href="https://instagram.com/amoryabrigo" target="_blank" class="contact-method">
-        <div class="contact-method-icon" style="background:#fce7f3;">📸</div>
-        <div class="contact-method-text"><strong data-es="Instagram" data-en="Instagram">Instagram</strong><span>@amoryabrigo · 29K data-es="seguidores" data-en="followers"</span></div>
+        <div class="method-icon" style="background:#fce7f3">📸</div>
+        <div class="method-text"><strong>Instagram</strong><span>@amoryabrigo · 29K data-es="seguidores" data-en="followers"</span></div>
       </a>
       <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="contact-method">
-        <div class="contact-method-icon" style="background:#f3f4f6;">🎵</div>
-        <div class="contact-method-text"><strong data-es="TikTok" data-en="TikTok">TikTok</strong><span>@amor.y.abrigo</span></div>
+        <div class="method-icon" style="background:#f3f4f6">🎵</div>
+        <div class="method-text"><strong>TikTok</strong><span>@amor.y.abrigo</span></div>
       </a>
       <div class="contact-method">
-        <div class="contact-method-icon" style="background:#fef9c3;">📍</div>
-        <div class="contact-method-text"><strong data-es="Ubicación" data-en="Location">Ubicación</strong><span data-es="Col. Montefresco este, 14 av. D, 33 calle, SPS" data-en="Col. Montefresco este, 14 av. D, 33 calle, SPS">Col. Montefresco este, 14 av. D, 33 calle, SPS</span></div>
+        <div class="method-icon" style="background:#fef9c3">📍</div>
+        <div class="method-text"><strong data-es="Dirección" data-en="Address">Dirección</strong><span data-es="Col. Montefresco este, 14 av. D, 33 calle, SPS" data-en="Col. Montefresco este, 14 av. D, 33 calle, SPS">Col. Montefresco este, 14 av. D, 33 calle, SPS</span></div>
       </div>
     </div>
   </div>
-  <div class="form-wrap">
+
+  <div class="form-wrap reveal">
     <h3 data-es="Envíanos un mensaje" data-en="Send us a message">Envíanos un mensaje</h3>
-    <p data-es="Responderemos lo antes posible por WhatsApp o correo." data-en="We will respond as soon as possible via WhatsApp or email.">Responderemos lo antes posible por WhatsApp o correo.</p>
+    <p data-es="Responderemos lo antes posible por correo o WhatsApp." data-en="We will respond as soon as possible by email or WhatsApp.">Responderemos lo antes posible por correo o WhatsApp.</p>
     <form id="contactForm">
       <div class="form-group">
         <label data-es="Nombre" data-en="Name">Nombre</label>
-        <input type="text" id="c-nombre" data-placeholder-es="Tu nombre" data-placeholder-en="Your name" placeholder="Tu nombre" required>
+        <input type="text" id="ct-nombre" data-ph-es="Tu nombre" data-ph-en="Your name" placeholder="Tu nombre" required>
       </div>
       <div class="form-group">
         <label data-es="Correo electrónico" data-en="Email">Correo electrónico</label>
-        <input type="email" id="c-email" data-placeholder-es="tu@correo.com" data-placeholder-en="your@email.com" placeholder="tu@correo.com" required>
+        <input type="email" id="ct-email" data-ph-es="tu@correo.com" data-ph-en="your@email.com" placeholder="tu@correo.com" required>
       </div>
       <div class="form-group">
         <label data-es="Asunto" data-en="Subject">Asunto</label>
-        <select id="c-asunto" data-select-es='["Quiero adoptar","Quiero ser voluntario","Quiero donar","Tengo un animal para rescatar","Pregunta general","Otro"]' data-select-en='["I want to adopt","I want to volunteer","I want to donate","I have an animal to rescue","General question","Other"]'>
+        <select id="ct-asunto" required>
+          <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
           <option data-es="Quiero adoptar" data-en="I want to adopt">Quiero adoptar</option>
           <option data-es="Quiero ser voluntario" data-en="I want to volunteer">Quiero ser voluntario</option>
           <option data-es="Quiero donar" data-en="I want to donate">Quiero donar</option>
@@ -122,22 +113,23 @@
       </div>
       <div class="form-group">
         <label data-es="Mensaje" data-en="Message">Mensaje</label>
-        <textarea id="c-mensaje" rows="4" data-placeholder-es="¿En qué podemos ayudarte?" data-placeholder-en="How can we help you?" placeholder="¿En qué podemos ayudarte?" required></textarea>
+        <textarea id="ct-msg" rows="4" data-ph-es="¿En qué podemos ayudarte?" data-ph-en="How can we help you?" placeholder="¿En qué podemos ayudarte?" required></textarea>
       </div>
-      <button type="submit" class="form-submit" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
-      <div class="success-msg" id="successMsg" data-es="✅ ¡Mensaje enviado! Te responderemos pronto." data-en="✅ Message sent! We will respond soon.">✅ ¡Mensaje enviado! Te responderemos pronto.</div>
+      <button type="submit" class="form-btn form-btn-blue" id="btnCt" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
+      <div class="form-success" id="okCt" data-es="✅ ¡Mensaje enviado! Te responderemos pronto." data-en="✅ Message sent! We will respond soon.">✅ ¡Mensaje enviado! Te responderemos pronto.</div>
+      <div class="form-error" id="errCt" data-es="⚠️ Error al enviar. Intenta de nuevo." data-en="⚠️ Error sending. Please try again.">⚠️ Error al enviar. Intenta de nuevo.</div>
     </form>
   </div>
 </section>
 <footer>
-  <div class="footer-top">
+  <div class="footer-grid">
     <div class="footer-brand">
       <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
-      <p data-es="Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras." data-en="We rescue, rehabilitate and offer abandoned animals for adoption. 🐶🐱❤️ San Pedro Sula, Honduras.">Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
+      <p data-es="Rescatamos, rehabilitamos y damos en adopción animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras." data-en="We rescue, rehabilitate and offer abandoned animals for adoption. 🐶🐱❤️ San Pedro Sula, Honduras.">Rescatamos, rehabilitamos y damos en adopción animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
       <div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn instagram" title="Instagram"><svg viewBox="0 0 24 24"><path fill="white" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
 <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn tiktok" title="TikTok"><svg viewBox="0 0 24 24"><path fill="white" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
 <a href="https://wa.me/50498248715" target="_blank" class="social-btn whatsapp" title="WhatsApp"><svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-<a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn paypal" title="PayPal"><svg viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg></a></div>
+<a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn paypal" title="PayPal"><svg viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg></a></div>
     </div>
     <div class="footer-col">
       <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
@@ -165,54 +157,97 @@
     <p data-es="© 2026 Amor y Abrigo Honduras. Todos los derechos reservados." data-en="© 2026 Amor y Abrigo Honduras. All rights reserved.">© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
     <p data-es="Hecho con ❤️ para los animales de Honduras" data-en="Made with ❤️ for the animals of Honduras">Hecho con ❤️ para los animales de Honduras</p>
   </div>
-</footer>
-<script>
-window.addEventListener('scroll',()=>{const n=document.getElementById('mainNav');if(n)n.classList.toggle('scrolled',window.scrollY>20);});
-function toggleMenu(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');if(m&&b){m.classList.toggle('open');b.classList.toggle('open');}}
-document.addEventListener('click',function(e){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');b.classList.remove('open');}});
-const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-let lang=localStorage.getItem('lang')||'es';
-function applyLang(l){
-  lang=l;localStorage.setItem('lang',l);document.documentElement.lang=l;
-  document.querySelectorAll('[data-es]').forEach(el=>{
-    const v=l==='es'?el.dataset.es:el.dataset.en;
-    if(!v)return;
-    if(v.includes('<'))el.innerHTML=v;else el.textContent=v;
+</footer><script>
+/* NAV SCROLL */
+window.addEventListener('scroll', function() {
+  var n = document.getElementById('mainNav');
+  if (n) n.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* HAMBURGER */
+function toggleMenu() {
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburger');
+  if (m && b) { m.classList.toggle('open'); b.classList.toggle('open'); }
+}
+document.addEventListener('click', function(e) {
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburger');
+  if (m && b && !m.contains(e.target) && !b.contains(e.target)) {
+    m.classList.remove('open'); b.classList.remove('open');
+  }
+});
+
+/* SCROLL REVEAL */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('hidden');
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) {
+    el.classList.add('hidden');
+    observer.observe(el);
   });
-  document.querySelectorAll('[data-placeholder-es]').forEach(el=>{
-    el.placeholder=l==='es'?el.dataset.placeholderEs:el.dataset.placeholderEn;
+})();
+
+/* LANGUAGE */
+var currentLang = localStorage.getItem('ayaLang') || 'es';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ayaLang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-es]').forEach(function(el) {
+    var val = lang === 'es' ? el.dataset.es : el.dataset.en;
+    if (!val) return;
+    if (val.indexOf('<') !== -1) el.innerHTML = val;
+    else el.textContent = val;
   });
-  document.querySelectorAll('[data-select-es]').forEach(el=>{
-    const opts=JSON.parse(l==='es'?el.dataset.selectEs:el.dataset.selectEn);
-    Array.from(el.options).forEach((o,i)=>{if(opts[i])o.text=opts[i];});
+  document.querySelectorAll('[data-ph-es]').forEach(function(el) {
+    el.placeholder = lang === 'es' ? el.dataset.phEs : el.dataset.phEn;
   });
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    const f=b.querySelector('.lang-flag'),t=b.querySelector('.lang-text');
-    if(f)f.textContent=l==='es'?'🇺🇸':'🇭🇳';
-    if(t)t.textContent=l==='es'?'EN':'ES';
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    var f = btn.querySelector('.lang-flag');
+    var tx = btn.querySelector('.lang-text');
+    if (f) f.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (tx) tx.textContent = lang === 'es' ? 'EN' : 'ES';
   });
 }
-function toggleLang(){applyLang(lang==='es'?'en':'es');}
-document.addEventListener('DOMContentLoaded',()=>{if(lang==='en')applyLang('en');document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));});
-
-const SERVICE_ID='service_e724k6b',TEMPLATE_ID='template_gxm222s',PUBLIC_KEY='qleH3bvpwrYq8QtyQ';
-document.getElementById('contactForm').addEventListener('submit',async function(e){{
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
+document.addEventListener('DOMContentLoaded', function() {
+  if (currentLang === 'en') applyLang('en');
+});
+</script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init('qleH3bvpwrYq8QtyQ');
+document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const btn=this.querySelector('.form-submit');
-  btn.disabled=true;
-  const params={{tipo:'Contacto',nombre:document.getElementById('c-nombre').value,correo:document.getElementById('c-email').value,telefono:'N/A',area:document.getElementById('c-asunto').value,disponibilidad:'N/A',mensaje:document.getElementById('c-mensaje').value}};
-  try{{
-    const res=await fetch('https://api.emailjs.com/api/v1.0/email/send',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{service_id:SERVICE_ID,template_id:TEMPLATE_ID,user_id:PUBLIC_KEY,template_params:params}})}});
-    document.getElementById('successMsg').style.display='block';
-    this.reset();
-  }}catch(err){{
-    document.getElementById('successMsg').style.display='block';
-    this.reset();
-  }}
-  btn.disabled=false;
-}});
-
+  var btn = document.getElementById('btnCt');
+  btn.disabled = true; btn.textContent = '...';
+  var params = {
+    tipo: 'Contacto',
+    nombre: document.getElementById('ct-nombre').value,
+    correo: document.getElementById('ct-email').value,
+    telefono: 'N/A',
+    area: document.getElementById('ct-asunto').value,
+    disponibilidad: 'N/A',
+    mensaje: document.getElementById('ct-msg').value
+  };
+  emailjs.send('service_e724k6b', 'template_gxm222s', params)
+    .then(function() {
+      document.getElementById('okCt').style.display = 'block';
+      document.getElementById('errCt').style.display = 'none';
+      btn.textContent = '✅ Enviado';
+    })
+    .catch(function() {
+      document.getElementById('errCt').style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Enviar mensaje';
+    });
+});
 </script>
-</body>
-</html>
+</body></html>

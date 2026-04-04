@@ -3,45 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voluntariado — Amor y Abrigo</title>
+<title>Voluntariado — Amor y Abrigo Honduras</title>
+<meta name="description" content="Refugio de rescate y adopción animal en San Pedro Sula, Honduras. Adoptá responsablemente.">
 <link rel="stylesheet" href="styles.css">
 <style>
-.vol-section { padding: 5rem 4rem; }
-.tabs { display: flex; gap: 0; margin-bottom: 3rem; border-radius: 16px; overflow: hidden; border: 2px solid var(--border); width: fit-content; }
-.tab-btn { padding: 0.875rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; background: var(--white); color: var(--gray); transition: all 0.2s; border-right: 2px solid var(--border); }
-.tab-btn:last-child { border-right: none; }
-.tab-btn.active { background: var(--blue); color: var(--white); }
-.tab-btn:hover:not(.active) { background: var(--light); color: var(--blue); }
-.tab-content { display: none; }
-.tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-.tab-info h2 { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 900; color: var(--dark); margin-bottom: 1rem; }
-.tab-info p { color: var(--gray); line-height: 1.8; margin-bottom: 1.5rem; }
-.benefits { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-.benefit { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: var(--light); border-radius: 12px; }
-.benefit-icon { font-size: 1.5rem; flex-shrink: 0; }
-.benefit-text strong { display: block; font-weight: 600; color: var(--dark); margin-bottom: 0.2rem; }
-.benefit-text span { font-size: 0.875rem; color: var(--gray); }
-.form-wrap { background: var(--dark); border-radius: 24px; padding: 2.5rem; }
-.form-wrap h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
-.form-wrap p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 2rem; }
-.form-group { margin-bottom: 1rem; }
-.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.875rem 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; transition: all 0.2s; }
-.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--blue); background: rgba(30,144,255,0.1); }
-.form-group select option { background: var(--dark); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-submit { width: 100%; padding: 1rem; background: var(--blue); color: var(--white); border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
-.form-submit:hover { background: #1a7de0; transform: translateY(-1px); }
-.form-submit:disabled { background: var(--gray); cursor: not-allowed; transform: none; }
-.success-msg { display: none; background: #dcfce7; color: #166534; padding: 1rem; border-radius: 12px; text-align: center; font-weight: 600; margin-top: 1rem; border: 1px solid #86efac; }
-.error-msg-form { display: none; background: #fef2f2; color: #dc2626; padding: 1rem; border-radius: 12px; text-align: center; font-weight: 600; margin-top: 1rem; }
-@media (max-width: 1024px) { .vol-section { padding: 3rem 2rem; } .tab-content.active { grid-template-columns: 1fr; gap: 3rem; } .tabs { width: 100%; } .tab-btn { flex: 1; text-align: center; font-size: 0.8rem; padding: 0.75rem 1rem; } }
-@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+.vol-section{padding:5rem 4rem;}
+.tabs{display:flex;border-radius:16px;overflow:hidden;border:2px solid var(--border);width:fit-content;margin-bottom:3rem;}
+.tab-btn{padding:.875rem 2rem;font-family:"DM Sans",sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;border:none;background:var(--white);color:var(--gray);transition:all .2s;border-right:2px solid var(--border);}
+.tab-btn:last-child{border-right:none;}
+.tab-btn.active{background:var(--blue);color:var(--white);}
+.tab-btn:hover:not(.active){background:var(--light);color:var(--blue);}
+.tab-pane{display:none;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.tab-pane.active{display:grid;}
+.tab-info h2{font-family:"Fraunces",serif;font-size:2rem;font-weight:900;color:var(--dark);margin-bottom:1rem;}
+.tab-info p{color:var(--gray);line-height:1.8;margin-bottom:1.5rem;}
+.benefits{display:flex;flex-direction:column;gap:1rem;margin-top:1rem;}
+.benefit{display:flex;align-items:flex-start;gap:1rem;padding:1rem;background:var(--light);border-radius:12px;}
+.benefit-icon{font-size:1.5rem;flex-shrink:0;}
+.benefit-text strong{display:block;font-weight:600;color:var(--dark);margin-bottom:.2rem;font-size:.9rem;}
+.benefit-text span{font-size:.85rem;color:var(--gray);}
+.form-success{display:none;}
+.form-error{display:none;}
+@media(max-width:1024px){.vol-section{padding:3rem 2rem;}.tab-pane.active{grid-template-columns:1fr;gap:3rem;}.tabs{width:100%;}.tab-btn{flex:1;text-align:center;font-size:.8rem;padding:.75rem .5rem;}}
 </style>
 </head>
-<body>
-<nav id="mainNav">
+<body><nav id="mainNav">
   <a href="index.html" class="nav-logo">
     <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
     <span>Amor y Abrigo</span>
@@ -55,11 +41,11 @@
     <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
     <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
     <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-    <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Change language">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
   </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -72,42 +58,9 @@
   <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
   <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
   <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-  <div style="display:flex;justify-content:center;margin-top:.5rem;"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile" aria-label="Change language">
+  <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
-</div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-  <a href="nosotros.html" data-es="Nosotros" data-en="About Us">Nosotros</a>
-  <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
-  <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
-  <a href="voluntariado.html" class="active" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
-  <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
-  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
-  <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-  <div style="display:flex;justify-content:center;margin-top:0.5rem;"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile" aria-label="Change language">
-  <span class="lang-flag">🇺🇸</span>
-  <span class="lang-text">EN</span>
-</button></div>
-</div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-  <a href="nosotros.html" data-es="Nosotros" data-en="About Us">Nosotros</a>
-  <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
-  <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
-  <a href="voluntariado.html" class="active" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
-  <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
-  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
-  <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-  <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
 </div>
 <div class="page-hero">
   <span class="badge" data-es="Únete a la causa" data-en="Join the cause">Únete a la causa</span>
@@ -115,165 +68,162 @@
   <p data-es="Hay muchas formas de apoyar a Amor y Abrigo. Encuentra la que mejor se adapte a ti." data-en="There are many ways to support Amor y Abrigo. Find the one that best suits you.">Hay muchas formas de apoyar a Amor y Abrigo. Encuentra la que mejor se adapte a ti.</p>
 </div>
 
-<section class="reveal vol-section">
+<section class="vol-section">
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('voluntario', this)" data-es="🤝 Voluntariado" data-en="🤝 Volunteering">🤝 Voluntariado</button>
-    <button class="tab-btn" onclick="switchTab('sponsor', this)">💛 Sponsor</button>
-    <button class="tab-btn" onclick="switchTab('convenio', this)" data-es="🤝 Convenio" data-en="🤝 Partnership">🤝 Convenio</button>
+    <button class="tab-btn active" onclick="switchTab('vol',this)" data-es="🤝 Voluntariado" data-en="🤝 Volunteering">🤝 Voluntariado</button>
+    <button class="tab-btn" onclick="switchTab('spon',this)" data-es="💛 Sponsor" data-en="💛 Sponsor">💛 Sponsor</button>
+    <button class="tab-btn" onclick="switchTab('conv',this)" data-es="🏢 Convenio" data-en="🏢 Partnership">🏢 Convenio</button>
   </div>
 
   <!-- VOLUNTARIADO -->
-  <div class="tab-content active" id="tab-voluntario">
+  <div class="tab-pane active" id="tab-vol">
     <div class="tab-info">
-      <span class="section-badge">Voluntariado</span>
+      <span class="section-badge" data-es="Voluntariado" data-en="Volunteering">Voluntariado</span>
       <h2 data-es="Tu tiempo vale más de lo que imaginas" data-en="Your time is worth more than you think">Tu tiempo vale más de lo que imaginas</h2>
-      <p>Como voluntario de Amor y Abrigo puedes marcar una diferencia real en la vida de los animales que rescatamos. No importa cuánto tiempo tengas disponible — cada hora cuenta.</p>
+      <p data-es="Como voluntario de Amor y Abrigo puedes marcar una diferencia real en la vida de los animales. No importa cuánto tiempo tengas — cada hora cuenta." data-en="As a volunteer at Amor y Abrigo you can make a real difference in the lives of animals. No matter how much time you have — every hour counts.">Como voluntario de Amor y Abrigo puedes marcar una diferencia real en la vida de los animales. No importa cuánto tiempo tengas — cada hora cuenta.</p>
       <div class="benefits">
-        <div class="benefit"><div class="benefit-icon">🏠</div><div class="benefit-text"><strong>Hogar temporal</strong><span>Cuida un animal en tu casa mientras encuentra su familia definitiva.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">📸</div><div class="benefit-text"><strong>Fotografía</strong><span>Toma fotos profesionales para los perfiles de adopción de los animales.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">🚗</div><div class="benefit-text"><strong>Transporte</strong><span>Lleva animales a citas veterinarias o eventos de adopción.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">📢</div><div class="benefit-text"><strong>Difusión en redes</strong><span>Comparte nuestro contenido y ayuda a encontrar hogares para los animales.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">🧹</div><div class="benefit-text"><strong>Limpieza y cuidado</strong><span>Ayuda en el refugio con limpieza, baño de animales y mantenimiento.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">🏠</div><div class="benefit-text"><strong data-es="Hogar temporal" data-en="Foster home">Hogar temporal</strong><span data-es="Cuida un animal en tu casa mientras encuentra su familia definitiva." data-en="Care for an animal in your home while they find their forever family.">Cuida un animal en tu casa mientras encuentra su familia definitiva.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">📸</div><div class="benefit-text"><strong data-es="Fotografía" data-en="Photography">Fotografía</strong><span data-es="Toma fotos para los perfiles de adopción de los animales." data-en="Take photos for the animals' adoption profiles.">Toma fotos para los perfiles de adopción de los animales.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">🚗</div><div class="benefit-text"><strong data-es="Transporte" data-en="Transport">Transporte</strong><span data-es="Lleva animales a citas veterinarias o eventos de adopción." data-en="Take animals to vet appointments or adoption events.">Lleva animales a citas veterinarias o eventos de adopción.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">📢</div><div class="benefit-text"><strong data-es="Difusión en redes" data-en="Social media outreach">Difusión en redes</strong><span data-es="Comparte nuestro contenido y ayuda a encontrar hogares." data-en="Share our content and help find homes.">Comparte nuestro contenido y ayuda a encontrar hogares.</span></div></div>
       </div>
     </div>
     <div class="form-wrap">
       <h3 data-es="Quiero ser voluntario" data-en="I want to volunteer">Quiero ser voluntario</h3>
       <p data-es="Llena el formulario y nos pondremos en contacto contigo pronto." data-en="Fill out the form and we will contact you soon.">Llena el formulario y nos pondremos en contacto contigo pronto.</p>
-      <form id="formVoluntario">
+      <form id="formVol">
         <div class="form-row">
-          <div class="form-group"><label data-es="Nombre completo" data-en="Full name">Nombre completo</label><input type="text" id="v-nombre" placeholder="Tu nombre" data-placeholder-es="Tu nombre" data-placeholder-en="Your name" required></div>
-          <div class="form-group"><label data-es="Edad" data-en="Age">Edad</label><input type="number" id="v-edad" placeholder="Tu edad" data-placeholder-es="Tu edad" data-placeholder-en="Your age" required min="16"></div>
+          <div class="form-group"><label data-es="Nombre" data-en="Name">Nombre</label><input type="text" id="v-nombre" data-ph-es="Tu nombre" data-ph-en="Your name" placeholder="Tu nombre" required></div>
+          <div class="form-group"><label data-es="Edad" data-en="Age">Edad</label><input type="number" id="v-edad" placeholder="16+" min="16" required></div>
         </div>
-        <div class="form-group"><label data-es="Correo electrónico" data-en="Email address">Correo electrónico</label><input type="email" id="v-correo" placeholder="correo@ejemplo.com" required></div>
-        <div class="form-group"><label data-es="Teléfono / WhatsApp" data-en="Phone / WhatsApp">Teléfono / WhatsApp</label><input type="tel" id="v-telefono" placeholder="+504 ####-####" required></div>
+        <div class="form-group"><label data-es="Correo" data-en="Email">Correo</label><input type="email" id="v-correo" data-ph-es="tu@correo.com" data-ph-en="your@email.com" placeholder="tu@correo.com" required></div>
+        <div class="form-group"><label data-es="Teléfono" data-en="Phone">Teléfono</label><input type="tel" id="v-tel" placeholder="+504 ####-####" required></div>
         <div class="form-group">
-          <label>Área de interés</label>
+          <label data-es="Área de interés" data-en="Area of interest">Área de interés</label>
           <select id="v-area" required>
-            <option value="">Selecciona...</option>
-            <option>Hogar temporal</option>
-            <option>Fotografía</option>
-            <option>Transporte</option>
-            <option>Difusión en redes sociales</option>
-            <option>Limpieza y cuidado en refugio</option>
-            <option>Eventos de adopción</option>
-            <option>Otro</option>
+            <option value="">data-es="Selecciona..." data-en="Select..."</option>
+            <option data-es="Hogar temporal" data-en="Foster home">Hogar temporal</option>
+            <option data-es="Fotografía" data-en="Photography">Fotografía</option>
+            <option data-es="Transporte" data-en="Transport">Transporte</option>
+            <option data-es="Difusión en redes" data-en="Social media">Difusión en redes</option>
+            <option data-es="Limpieza y cuidado" data-en="Cleaning and care">Limpieza y cuidado</option>
+            <option data-es="Eventos de adopción" data-en="Adoption events">Eventos de adopción</option>
+            <option data-es="Otro" data-en="Other">Otro</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Disponibilidad</label>
-          <select id="v-disponibilidad" required>
-            <option value="">Selecciona...</option>
-            <option>Fines de semana</option>
-            <option>Entre semana</option>
-            <option>Ambos</option>
-            <option>Solo para eventos especiales</option>
+          <label data-es="Disponibilidad" data-en="Availability">Disponibilidad</label>
+          <select id="v-disp" required>
+            <option value="">data-es="Selecciona..." data-en="Select..."</option>
+            <option data-es="Fines de semana" data-en="Weekends">Fines de semana</option>
+            <option data-es="Entre semana" data-en="Weekdays">Entre semana</option>
+            <option data-es="Ambos" data-en="Both">Ambos</option>
+            <option data-es="Solo eventos especiales" data-en="Special events only">Solo eventos especiales</option>
           </select>
         </div>
-        <div class="form-group"><label>¿Por qué quieres ser voluntario?</label><textarea id="v-mensaje" rows="3" placeholder="Cuéntanos un poco sobre ti..." required></textarea></div>
-        <button type="submit" class="form-submit" id="btn-voluntario" data-es="Enviar solicitud" data-en="Submit application">Enviar solicitud</button>
-        <div class="success-msg" id="success-voluntario">✅ ¡Solicitud enviada! Te contactaremos pronto.</div>
-        <div class="error-msg-form" id="error-voluntario">⚠️ Hubo un error. Por favor intenta de nuevo.</div>
+        <div class="form-group"><label data-es="¿Por qué quieres ser voluntario?" data-en="Why do you want to volunteer?">¿Por qué quieres ser voluntario?</label><textarea id="v-msg" rows="3" data-ph-es="Cuéntanos sobre ti..." data-ph-en="Tell us about yourself..." placeholder="Cuéntanos sobre ti..." required></textarea></div>
+        <button type="submit" class="form-btn form-btn-blue" id="btnVol" data-es="Enviar solicitud" data-en="Submit application">Enviar solicitud</button>
+        <div class="form-success" id="okVol" data-es="✅ ¡Solicitud enviada! Te contactaremos pronto." data-en="✅ Application sent! We will contact you soon.">✅ ¡Solicitud enviada! Te contactaremos pronto.</div>
+        <div class="form-error" id="errVol" data-es="⚠️ Error al enviar. Intenta de nuevo." data-en="⚠️ Error sending. Please try again.">⚠️ Error al enviar. Intenta de nuevo.</div>
       </form>
     </div>
   </div>
 
   <!-- SPONSOR -->
-  <div class="tab-content" id="tab-sponsor">
+  <div class="tab-pane" id="tab-spon">
     <div class="tab-info">
-      <span class="section-badge">Sponsor</span>
-      <h2>Tu marca apoya una causa que importa</h2>
-      <p>Al convertirte en sponsor de Amor y Abrigo, tu empresa o negocio contribuye directamente al bienestar animal en Honduras y recibe visibilidad en nuestra comunidad de más de 29,000 seguidores.</p>
+      <span class="section-badge" data-es="Sponsor" data-en="Sponsor">Sponsor</span>
+      <h2 data-es="Tu marca apoya una causa que importa" data-en="Your brand supports a cause that matters">Tu marca apoya una causa que importa</h2>
+      <p data-es="Al convertirte en sponsor de Amor y Abrigo, tu empresa contribuye al bienestar animal en Honduras y recibe visibilidad en nuestra comunidad de más de 29,000 seguidores." data-en="By becoming a sponsor of Amor y Abrigo, your company contributes to animal welfare in Honduras and gains visibility in our community of over 29,000 followers.">Al convertirte en sponsor de Amor y Abrigo, tu empresa contribuye al bienestar animal en Honduras y recibe visibilidad en nuestra comunidad de más de 29,000 seguidores.</p>
       <div class="benefits">
-        <div class="benefit"><div class="benefit-icon">📣</div><div class="benefit-text"><strong>Visibilidad en redes</strong><span>Tu marca aparece en nuestras publicaciones de Instagram, TikTok y Facebook.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">🌐</div><div class="benefit-text"><strong>Mención en el sitio web</strong><span>Tu logo aparece en nuestra sección de colaboradores.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">❤️</div><div class="benefit-text"><strong>Impacto real</strong><span>Tu apoyo se traduce directamente en alimento, medicamentos y cuidado animal.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">🏆</div><div class="benefit-text"><strong>Reconocimiento</strong><span>Certificado de colaboración y mención especial en eventos.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">📣</div><div class="benefit-text"><strong data-es="Visibilidad en redes" data-en="Social media visibility">Visibilidad en redes</strong><span data-es="Tu marca aparece en nuestras publicaciones de Instagram y TikTok." data-en="Your brand appears in our Instagram and TikTok posts.">Tu marca aparece en nuestras publicaciones de Instagram y TikTok.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">🌐</div><div class="benefit-text"><strong data-es="Mención en el sitio web" data-en="Website mention">Mención en el sitio web</strong><span data-es="Tu logo aparece en nuestra sección de colaboradores." data-en="Your logo appears in our collaborators section.">Tu logo aparece en nuestra sección de colaboradores.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">❤️</div><div class="benefit-text"><strong data-es="Impacto real" data-en="Real impact">Impacto real</strong><span data-es="Tu apoyo se traduce directamente en alimento y cuidado animal." data-en="Your support translates directly into food and animal care.">Tu apoyo se traduce directamente en alimento y cuidado animal.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">🏆</div><div class="benefit-text"><strong data-es="Reconocimiento" data-en="Recognition">Reconocimiento</strong><span data-es="Certificado de colaboración y mención en eventos." data-en="Collaboration certificate and mention at events.">Certificado de colaboración y mención en eventos.</span></div></div>
       </div>
     </div>
     <div class="form-wrap">
-      <h3>Quiero ser sponsor</h3>
-      <p>Cuéntanos sobre tu empresa y cómo te gustaría apoyarnos.</p>
-      <form id="formSponsor">
-        <div class="form-group"><label>Nombre de la empresa</label><input type="text" id="s-empresa" placeholder="Nombre de tu empresa" required></div>
+      <h3 data-es="Quiero ser sponsor" data-en="I want to be a sponsor">Quiero ser sponsor</h3>
+      <p data-es="Cuéntanos sobre tu empresa y cómo te gustaría apoyarnos." data-en="Tell us about your company and how you would like to support us.">Cuéntanos sobre tu empresa y cómo te gustaría apoyarnos.</p>
+      <form id="formSpon">
+        <div class="form-group"><label data-es="Nombre de la empresa" data-en="Company name">Nombre de la empresa</label><input type="text" id="s-empresa" data-ph-es="Nombre de tu empresa" data-ph-en="Your company name" placeholder="Nombre de tu empresa" required></div>
         <div class="form-row">
-          <div class="form-group"><label>Nombre del contacto</label><input type="text" id="s-nombre" placeholder="Tu nombre" required></div>
-          <div class="form-group"><label>Cargo</label><input type="text" id="s-cargo" placeholder="Tu cargo" required></div>
+          <div class="form-group"><label data-es="Contacto" data-en="Contact">Contacto</label><input type="text" id="s-nombre" data-ph-es="Tu nombre" data-ph-en="Your name" placeholder="Tu nombre" required></div>
+          <div class="form-group"><label data-es="Cargo" data-en="Position">Cargo</label><input type="text" id="s-cargo" data-ph-es="Tu cargo" data-ph-en="Your position" placeholder="Tu cargo" required></div>
         </div>
-        <div class="form-group"><label>Correo electrónico</label><input type="email" id="s-correo" placeholder="correo@empresa.com" required></div>
-        <div class="form-group"><label>Teléfono</label><input type="tel" id="s-telefono" placeholder="+504 ####-####" required></div>
+        <div class="form-group"><label data-es="Correo" data-en="Email">Correo</label><input type="email" id="s-correo" data-ph-es="correo@empresa.com" data-ph-en="email@company.com" placeholder="correo@empresa.com" required></div>
+        <div class="form-group"><label data-es="Teléfono" data-en="Phone">Teléfono</label><input type="tel" id="s-tel" placeholder="+504 ####-####" required></div>
         <div class="form-group">
-          <label>Tipo de apoyo</label>
+          <label data-es="Tipo de apoyo" data-en="Type of support">Tipo de apoyo</label>
           <select id="s-tipo" required>
-            <option value="">Selecciona...</option>
-            <option>Donación económica mensual</option>
-            <option>Donación de productos o insumos</option>
-            <option>Patrocinio de eventos</option>
-            <option>Servicios veterinarios</option>
-            <option>Otro</option>
+            <option value="">data-es="Selecciona..." data-en="Select..."</option>
+            <option data-es="Donación económica mensual" data-en="Monthly monetary donation">Donación económica mensual</option>
+            <option data-es="Donación de productos" data-en="Product donation">Donación de productos</option>
+            <option data-es="Patrocinio de eventos" data-en="Event sponsorship">Patrocinio de eventos</option>
+            <option data-es="Servicios veterinarios" data-en="Veterinary services">Servicios veterinarios</option>
+            <option data-es="Otro" data-en="Other">Otro</option>
           </select>
         </div>
-        <div class="form-group"><label>Mensaje adicional</label><textarea id="s-mensaje" rows="3" placeholder="Cuéntanos más sobre cómo quieres apoyarnos..."></textarea></div>
-        <button type="submit" class="form-submit" id="btn-sponsor">Enviar solicitud</button>
-        <div class="success-msg" id="success-sponsor">✅ ¡Solicitud enviada! Te contactaremos pronto.</div>
-        <div class="error-msg-form" id="error-sponsor">⚠️ Hubo un error. Por favor intenta de nuevo.</div>
+        <div class="form-group"><label data-es="Mensaje adicional" data-en="Additional message">Mensaje adicional</label><textarea id="s-msg" rows="3" data-ph-es="Cuéntanos más..." data-ph-en="Tell us more..." placeholder="Cuéntanos más..."></textarea></div>
+        <button type="submit" class="form-btn form-btn-blue" id="btnSpon" data-es="Enviar solicitud" data-en="Submit application">Enviar solicitud</button>
+        <div class="form-success" id="okSpon" data-es="✅ ¡Solicitud enviada! Te contactaremos pronto." data-en="✅ Application sent! We will contact you soon.">✅ ¡Solicitud enviada! Te contactaremos pronto.</div>
+        <div class="form-error" id="errSpon" data-es="⚠️ Error al enviar. Intenta de nuevo." data-en="⚠️ Error sending. Please try again.">⚠️ Error al enviar. Intenta de nuevo.</div>
       </form>
     </div>
   </div>
 
   <!-- CONVENIO -->
-  <div class="tab-content" id="tab-convenio">
+  <div class="tab-pane" id="tab-conv">
     <div class="tab-info">
-      <span class="section-badge">Convenio</span>
-      <h2>Construyamos juntos una alianza por los animales</h2>
-      <p>Establecer un convenio con Amor y Abrigo permite a organizaciones, clínicas veterinarias, universidades y fundaciones trabajar de forma coordinada por el bienestar animal en Honduras.</p>
+      <span class="section-badge" data-es="Convenio" data-en="Partnership">Convenio</span>
+      <h2 data-es="Construyamos juntos una alianza por los animales" data-en="Let's build together an alliance for animals">Construyamos juntos una alianza por los animales</h2>
+      <p data-es="Establecer un convenio con Amor y Abrigo permite a organizaciones, clínicas veterinarias y universidades trabajar coordinadamente por el bienestar animal." data-en="Establishing a partnership with Amor y Abrigo allows organizations, veterinary clinics and universities to work coordinately for animal welfare.">Establecer un convenio con Amor y Abrigo permite a organizaciones, clínicas veterinarias y universidades trabajar coordinadamente por el bienestar animal.</p>
       <div class="benefits">
-        <div class="benefit"><div class="benefit-icon">🏥</div><div class="benefit-text"><strong>Clínicas veterinarias</strong><span>Convenios para atención médica a precios especiales para nuestros rescatados.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">🎓</div><div class="benefit-text"><strong>Universidades</strong><span>Prácticas profesionales y proyectos de extensión universitaria.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">🤝</div><div class="benefit-text"><strong>Fundaciones</strong><span>Alianzas estratégicas con otras organizaciones de bienestar animal.</span></div></div>
-        <div class="benefit"><div class="benefit-icon">🏢</div><div class="benefit-text"><strong>Empresas</strong><span>Programas de responsabilidad social empresarial.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">🏥</div><div class="benefit-text"><strong data-es="Clínicas veterinarias" data-en="Veterinary clinics">Clínicas veterinarias</strong><span data-es="Atención médica a precios especiales para nuestros rescatados." data-en="Medical care at special prices for our rescued animals.">Atención médica a precios especiales para nuestros rescatados.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">🎓</div><div class="benefit-text"><strong data-es="Universidades" data-en="Universities">Universidades</strong><span data-es="Prácticas profesionales y proyectos de extensión universitaria." data-en="Professional internships and university extension projects.">Prácticas profesionales y proyectos de extensión universitaria.</span></div></div>
+        <div class="benefit"><div class="benefit-icon">🤝</div><div class="benefit-text"><strong data-es="Fundaciones" data-en="Foundations">Fundaciones</strong><span data-es="Alianzas estratégicas con otras organizaciones de bienestar animal." data-en="Strategic alliances with other animal welfare organizations.">Alianzas estratégicas con otras organizaciones de bienestar animal.</span></div></div>
       </div>
     </div>
     <div class="form-wrap">
-      <h3>Propuesta de convenio</h3>
-      <p>Cuéntanos sobre tu organización y qué tipo de convenio te interesa.</p>
-      <form id="formConvenio">
-        <div class="form-group"><label>Nombre de la organización</label><input type="text" id="c-organizacion" placeholder="Nombre de tu organización" required></div>
+      <h3 data-es="Propuesta de convenio" data-en="Partnership proposal">Propuesta de convenio</h3>
+      <p data-es="Cuéntanos sobre tu organización y qué tipo de convenio te interesa." data-en="Tell us about your organization and what type of partnership interests you.">Cuéntanos sobre tu organización y qué tipo de convenio te interesa.</p>
+      <form id="formConv">
+        <div class="form-group"><label data-es="Nombre de la organización" data-en="Organization name">Nombre de la organización</label><input type="text" id="c-org" data-ph-es="Nombre de tu organización" data-ph-en="Your organization's name" placeholder="Nombre de tu organización" required></div>
         <div class="form-group">
-          <label>Tipo de organización</label>
-          <select id="c-tipo-org" required>
-            <option value="">Selecciona...</option>
-            <option>Clínica veterinaria</option>
-            <option>Universidad</option>
-            <option>Fundación / ONG</option>
-            <option>Empresa privada</option>
-            <option>Institución gubernamental</option>
-            <option>Otro</option>
+          <label data-es="Tipo de organización" data-en="Organization type">Tipo de organización</label>
+          <select id="c-tipo" required>
+            <option value="">data-es="Selecciona..." data-en="Select..."</option>
+            <option data-es="Clínica veterinaria" data-en="Veterinary clinic">Clínica veterinaria</option>
+            <option data-es="Universidad" data-en="University">Universidad</option>
+            <option data-es="Fundación / ONG" data-en="Foundation / NGO">Fundación / ONG</option>
+            <option data-es="Empresa privada" data-en="Private company">Empresa privada</option>
+            <option data-es="Institución gubernamental" data-en="Government institution">Institución gubernamental</option>
+            <option data-es="Otro" data-en="Other">Otro</option>
           </select>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Nombre del contacto</label><input type="text" id="c-nombre" placeholder="Tu nombre" required></div>
-          <div class="form-group"><label>Cargo</label><input type="text" id="c-cargo" placeholder="Tu cargo" required></div>
+          <div class="form-group"><label data-es="Contacto" data-en="Contact">Contacto</label><input type="text" id="c-nombre" data-ph-es="Tu nombre" data-ph-en="Your name" placeholder="Tu nombre" required></div>
+          <div class="form-group"><label data-es="Cargo" data-en="Position">Cargo</label><input type="text" id="c-cargo" data-ph-es="Tu cargo" data-ph-en="Your position" placeholder="Tu cargo" required></div>
         </div>
-        <div class="form-group"><label>Correo electrónico</label><input type="email" id="c-correo" placeholder="correo@organizacion.com" required></div>
-        <div class="form-group"><label>Teléfono</label><input type="tel" id="c-telefono" placeholder="+504 ####-####" required></div>
-        <div class="form-group"><label>Descripción del convenio propuesto</label><textarea id="c-mensaje" rows="4" placeholder="Describe brevemente qué tipo de convenio o alianza te interesa establecer..." required></textarea></div>
-        <button type="submit" class="form-submit" id="btn-convenio">Enviar propuesta</button>
-        <div class="success-msg" id="success-convenio">✅ ¡Propuesta enviada! Te contactaremos pronto.</div>
-        <div class="error-msg-form" id="error-convenio">⚠️ Hubo un error. Por favor intenta de nuevo.</div>
+        <div class="form-group"><label data-es="Correo" data-en="Email">Correo</label><input type="email" id="c-correo" data-ph-es="correo@org.com" data-ph-en="email@org.com" placeholder="correo@org.com" required></div>
+        <div class="form-group"><label data-es="Teléfono" data-en="Phone">Teléfono</label><input type="tel" id="c-tel" placeholder="+504 ####-####" required></div>
+        <div class="form-group"><label data-es="Descripción del convenio propuesto" data-en="Description of proposed partnership">Descripción del convenio propuesto</label><textarea id="c-msg" rows="4" data-ph-es="Describe brevemente qué tipo de convenio te interesa..." data-ph-en="Briefly describe what type of partnership interests you..." placeholder="Describe brevemente qué tipo de convenio te interesa..." required></textarea></div>
+        <button type="submit" class="form-btn form-btn-blue" id="btnConv" data-es="Enviar propuesta" data-en="Submit proposal">Enviar propuesta</button>
+        <div class="form-success" id="okConv" data-es="✅ ¡Propuesta enviada! Te contactaremos pronto." data-en="✅ Proposal sent! We will contact you soon.">✅ ¡Propuesta enviada! Te contactaremos pronto.</div>
+        <div class="form-error" id="errConv" data-es="⚠️ Error al enviar. Intenta de nuevo." data-en="⚠️ Error sending. Please try again.">⚠️ Error al enviar. Intenta de nuevo.</div>
       </form>
     </div>
   </div>
 </section>
-
 <footer>
-  <div class="footer-top">
+  <div class="footer-grid">
     <div class="footer-brand">
       <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
-      <p data-es="Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras." data-en="We rescue, rehabilitate and offer abandoned animals for adoption. 🐶🐱❤️ San Pedro Sula, Honduras.">Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
+      <p data-es="Rescatamos, rehabilitamos y damos en adopción animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras." data-en="We rescue, rehabilitate and offer abandoned animals for adoption. 🐶🐱❤️ San Pedro Sula, Honduras.">Rescatamos, rehabilitamos y damos en adopción animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
       <div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn instagram" title="Instagram"><svg viewBox="0 0 24 24"><path fill="white" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
 <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn tiktok" title="TikTok"><svg viewBox="0 0 24 24"><path fill="white" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
 <a href="https://wa.me/50498248715" target="_blank" class="social-btn whatsapp" title="WhatsApp"><svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-<a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn paypal" title="PayPal"><svg viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg></a></div>
+<a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn paypal" title="PayPal"><svg viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg></a></div>
     </div>
     <div class="footer-col">
       <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
@@ -301,127 +251,109 @@
     <p data-es="© 2026 Amor y Abrigo Honduras. Todos los derechos reservados." data-en="© 2026 Amor y Abrigo Honduras. All rights reserved.">© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
     <p data-es="Hecho con ❤️ para los animales de Honduras" data-en="Made with ❤️ for the animals of Honduras">Hecho con ❤️ para los animales de Honduras</p>
   </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-emailjs.init('qleH3bvpwrYq8QtyQ');
-
-const SERVICE_ID = 'service_e724k6b';
-const TEMPLATE_ID = 'template_gxm222s';
-
-function switchTab(tab, btn) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-' + tab).classList.add('active');
-}
-
-async function sendEmail(params, btnId, successId, errorId) {
-  const btn = document.getElementById(btnId);
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-  try {
-    await emailjs.send(SERVICE_ID, TEMPLATE_ID, params);
-    document.getElementById(successId).style.display = 'block';
-    document.getElementById(errorId).style.display = 'none';
-    btn.textContent = '✅ Enviado';
-  } catch (err) {
-    document.getElementById(errorId).style.display = 'block';
-    document.getElementById(successId).style.display = 'none';
-    btn.disabled = false;
-    btn.textContent = 'Enviar solicitud';
-    console.error(err);
-  }
-}
-
-document.getElementById('formVoluntario').addEventListener('submit', function(e) {
-  e.preventDefault();
-  sendEmail({
-    tipo: 'Voluntariado',
-    nombre: document.getElementById('v-nombre').value,
-    correo: document.getElementById('v-correo').value,
-    telefono: document.getElementById('v-telefono').value,
-    area: document.getElementById('v-area').value,
-    disponibilidad: document.getElementById('v-disponibilidad').value,
-    mensaje: `Edad: ${document.getElementById('v-edad').value} años\n\n${document.getElementById('v-mensaje').value}`
-  }, 'btn-voluntario', 'success-voluntario', 'error-voluntario');
+</footer><script>
+/* NAV SCROLL */
+window.addEventListener('scroll', function() {
+  var n = document.getElementById('mainNav');
+  if (n) n.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-document.getElementById('formSponsor').addEventListener('submit', function(e) {
-  e.preventDefault();
-  sendEmail({
-    tipo: 'Sponsor',
-    nombre: `${document.getElementById('s-nombre').value} — ${document.getElementById('s-empresa').value}`,
-    correo: document.getElementById('s-correo').value,
-    telefono: document.getElementById('s-telefono').value,
-    area: document.getElementById('s-tipo').value,
-    disponibilidad: document.getElementById('s-cargo').value,
-    mensaje: document.getElementById('s-mensaje').value || 'Sin mensaje adicional'
-  }, 'btn-sponsor', 'success-sponsor', 'error-sponsor');
-});
-
-document.getElementById('formConvenio').addEventListener('submit', function(e) {
-  e.preventDefault();
-  sendEmail({
-    tipo: 'Convenio',
-    nombre: `${document.getElementById('c-nombre').value} — ${document.getElementById('c-organizacion').value}`,
-    correo: document.getElementById('c-correo').value,
-    telefono: document.getElementById('c-telefono').value,
-    area: document.getElementById('c-tipo-org').value,
-    disponibilidad: document.getElementById('c-cargo').value,
-    mensaje: document.getElementById('c-mensaje').value
-  }, 'btn-convenio', 'success-convenio', 'error-convenio');
-});
-
+/* HAMBURGER */
 function toggleMenu() {
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.getElementById('hamburger');
-  menu.classList.toggle('open');
-  btn.classList.toggle('open');
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburger');
+  if (m && b) { m.classList.toggle('open'); b.classList.toggle('open'); }
 }
 document.addEventListener('click', function(e) {
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.getElementById('hamburger');
-  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-    menu.classList.remove('open');
-    btn.classList.remove('open');
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburger');
+  if (m && b && !m.contains(e.target) && !b.contains(e.target)) {
+    m.classList.remove('open'); b.classList.remove('open');
   }
 });
-</script>
 
+/* SCROLL REVEAL */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('hidden');
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) {
+    el.classList.add('hidden');
+    observer.observe(el);
+  });
+})();
 
+/* LANGUAGE */
+var currentLang = localStorage.getItem('ayaLang') || 'es';
 
-<script>
-window.addEventListener('scroll',()=>{const n=document.getElementById('mainNav');if(n)n.classList.toggle('scrolled',window.scrollY>20);});
-function toggleMenu(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');if(m&&b){m.classList.toggle('open');b.classList.toggle('open');}}
-document.addEventListener('click',function(e){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');b.classList.remove('open');}});
-const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-let lang=localStorage.getItem('lang')||'es';
-function applyLang(l){
-  lang=l;localStorage.setItem('lang',l);document.documentElement.lang=l;
-  document.querySelectorAll('[data-es]').forEach(el=>{
-    const v=l==='es'?el.dataset.es:el.dataset.en;
-    if(!v)return;
-    if(v.includes('<'))el.innerHTML=v;else el.textContent=v;
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ayaLang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-es]').forEach(function(el) {
+    var val = lang === 'es' ? el.dataset.es : el.dataset.en;
+    if (!val) return;
+    if (val.indexOf('<') !== -1) el.innerHTML = val;
+    else el.textContent = val;
   });
-  document.querySelectorAll('[data-placeholder-es]').forEach(el=>{
-    el.placeholder=l==='es'?el.dataset.placeholderEs:el.dataset.placeholderEn;
+  document.querySelectorAll('[data-ph-es]').forEach(function(el) {
+    el.placeholder = lang === 'es' ? el.dataset.phEs : el.dataset.phEn;
   });
-  document.querySelectorAll('[data-select-es]').forEach(el=>{
-    const opts=JSON.parse(l==='es'?el.dataset.selectEs:el.dataset.selectEn);
-    Array.from(el.options).forEach((o,i)=>{if(opts[i])o.text=opts[i];});
-  });
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    const f=b.querySelector('.lang-flag'),t=b.querySelector('.lang-text');
-    if(f)f.textContent=l==='es'?'🇺🇸':'🇭🇳';
-    if(t)t.textContent=l==='es'?'EN':'ES';
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    var f = btn.querySelector('.lang-flag');
+    var tx = btn.querySelector('.lang-text');
+    if (f) f.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (tx) tx.textContent = lang === 'es' ? 'EN' : 'ES';
   });
 }
-function toggleLang(){applyLang(lang==='es'?'en':'es');}
-document.addEventListener('DOMContentLoaded',()=>{if(lang==='en')applyLang('en');document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));});
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
+document.addEventListener('DOMContentLoaded', function() {
+  if (currentLang === 'en') applyLang('en');
+});
+</script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init('qleH3bvpwrYq8QtyQ');
+var SVC = 'service_e724k6b', TPL = 'template_gxm222s';
 
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-pane').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+function sendEmail(params, btnId, okId, errId) {
+  var btn = document.getElementById(btnId);
+  btn.disabled = true; btn.textContent = '...';
+  emailjs.send(SVC, TPL, params)
+    .then(function() {
+      document.getElementById(okId).style.display = 'block';
+      document.getElementById(errId).style.display = 'none';
+      btn.textContent = '✅ Enviado';
+    })
+    .catch(function() {
+      document.getElementById(errId).style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Enviar solicitud';
+    });
+}
+
+document.getElementById('formVol').addEventListener('submit', function(e) {
+  e.preventDefault();
+  sendEmail({ tipo:'Voluntariado', nombre:document.getElementById('v-nombre').value, correo:document.getElementById('v-correo').value, telefono:document.getElementById('v-tel').value, area:document.getElementById('v-area').value, disponibilidad:document.getElementById('v-disp').value, mensaje:'Edad: '+document.getElementById('v-edad').value+'\n\n'+document.getElementById('v-msg').value }, 'btnVol','okVol','errVol');
+});
+document.getElementById('formSpon').addEventListener('submit', function(e) {
+  e.preventDefault();
+  sendEmail({ tipo:'Sponsor', nombre:document.getElementById('s-nombre').value+' — '+document.getElementById('s-empresa').value, correo:document.getElementById('s-correo').value, telefono:document.getElementById('s-tel').value, area:document.getElementById('s-tipo').value, disponibilidad:document.getElementById('s-cargo').value, mensaje:document.getElementById('s-msg').value||'Sin mensaje adicional' }, 'btnSpon','okSpon','errSpon');
+});
+document.getElementById('formConv').addEventListener('submit', function(e) {
+  e.preventDefault();
+  sendEmail({ tipo:'Convenio', nombre:document.getElementById('c-nombre').value+' — '+document.getElementById('c-org').value, correo:document.getElementById('c-correo').value, telefono:document.getElementById('c-tel').value, area:document.getElementById('c-tipo').value, disponibilidad:document.getElementById('c-cargo').value, mensaje:document.getElementById('c-msg').value }, 'btnConv','okConv','errConv');
+});
 </script>
-</body>
-</html>
+</body></html>

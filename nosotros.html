@@ -3,36 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nosotros — Amor y Abrigo</title>
+<title>Nosotros — Amor y Abrigo Honduras</title>
+<meta name="description" content="Refugio de rescate y adopción animal en San Pedro Sula, Honduras. Adoptá responsablemente.">
 <link rel="stylesheet" href="styles.css">
 <style>
-.about-section { padding: 5rem 4rem; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 5rem; }
-.about-img { width: 100%; height: 420px; object-fit: cover; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
-.values { padding: 5rem 4rem; background: var(--light); }
-.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-.value-card { background: var(--white); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 15px rgba(0,0,0,0.06); border-top: 4px solid var(--blue); }
-.value-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
-.value-card h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; }
-.value-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
-.mission-vision { padding: 5rem 4rem; }
-.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
-.mv-card { padding: 2.5rem; border-radius: 20px; }
-.mv-card.mission { background: var(--dark); }
-.mv-card.vision { background: var(--blue); }
-.mv-card h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
-.mv-card p { color: rgba(255,255,255,0.8); line-height: 1.8; }
-.cta-section { padding: 5rem 4rem; background: var(--red); text-align: center; }
-.cta-section h2 { font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 900; color: var(--white); margin-bottom: 1rem; }
-.cta-section p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; }
-.btn-white { background: var(--white); color: var(--red); padding: 0.875rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
-.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
-@media (max-width: 1024px) { .about-section, .values, .mission-vision, .cta-section { padding: 3rem 2rem; } .about-grid, .mv-grid { grid-template-columns: 1fr; gap: 2rem; } .values-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .values-grid { grid-template-columns: 1fr; } }
+.about-section{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-img{position:relative;}
+.about-img img{width:100%;height:420px;object-fit:cover;border-radius:24px;box-shadow:0 20px 50px rgba(0,0,0,.12);}
+.about-year{position:absolute;top:20px;left:-20px;background:var(--yellow);border-radius:16px;padding:1.25rem;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.1);}
+.about-year strong{display:block;font-family:"Fraunces",serif;font-size:2.5rem;font-weight:900;color:var(--dark);line-height:1;}
+.about-year span{font-size:.75rem;font-weight:600;color:#5a4500;text-transform:uppercase;letter-spacing:.05em;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2rem 0;padding:2rem;background:var(--dark);border-radius:20px;}
+.stat-box{text-align:center;}
+.stat-box .num{font-family:"Fraunces",serif;font-size:2rem;font-weight:900;color:var(--red);display:block;}
+.stat-box .lbl{font-size:.8rem;color:rgba(255,255,255,.6);}
+.values-section{padding:5rem 4rem;background:var(--light);}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.value-card{background:var(--white);border-radius:16px;padding:1.75rem;box-shadow:var(--shadow);transition:all .3s;}
+.value-card:hover{transform:translateY(-4px);}
+.value-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+.value-card h3{font-family:"Fraunces",serif;font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;}
+.value-card p{font-size:.875rem;color:var(--gray);line-height:1.6;}
+.mv-section{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.mv-card{background:var(--light);border-radius:20px;padding:2rem;}
+.mv-card h3{font-family:"Fraunces",serif;font-size:1.5rem;font-weight:700;color:var(--dark);margin-bottom:1rem;}
+.mv-card p{color:var(--gray);line-height:1.8;}
+.collabs-section{padding:5rem 4rem;background:var(--light);}
+.cta-section{padding:5rem 4rem;background:var(--blue);text-align:center;}
+.cta-section .section-title{color:var(--white);}
+.cta-section p{color:rgba(255,255,255,.85);margin-bottom:2rem;font-size:1.05rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:var(--white);color:var(--blue);padding:.875rem 2rem;border-radius:50px;font-weight:600;font-size:.95rem;transition:all .3s;display:inline-flex;align-items:center;gap:8px;}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.2);}
+@media(max-width:1024px){.about-section,.mv-section{grid-template-columns:1fr;padding:3rem 2rem;gap:3rem;}.values-section,.collabs-section,.cta-section{padding:3rem 2rem;}.values-grid{grid-template-columns:1fr 1fr;}.stats-row{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.values-grid{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
-<body>
-<nav id="mainNav">
+<body><nav id="mainNav">
   <a href="index.html" class="nav-logo">
     <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
     <span>Amor y Abrigo</span>
@@ -46,11 +53,11 @@
     <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
     <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
     <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-    <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Change language">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
   </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -63,44 +70,10 @@
   <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
   <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
   <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-  <div style="display:flex;justify-content:center;margin-top:.5rem;"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile" aria-label="Change language">
+  <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
 </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-  <a href="nosotros.html" class="active" data-es="Nosotros" data-en="About Us">Nosotros</a>
-  <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
-  <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
-  <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
-  <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
-  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
-  <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-  <div style="display:flex;justify-content:center;margin-top:0.5rem;"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile" aria-label="Change language">
-  <span class="lang-flag">🇺🇸</span>
-  <span class="lang-text">EN</span>
-</button></div>
-</div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-  <a href="nosotros.html" class="active" data-es="Nosotros" data-en="About Us">Nosotros</a>
-  <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
-  <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
-  <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
-  <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
-  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
-  <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
-  <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
-</div>
-
 <div class="page-hero">
   <span class="badge" data-es="Nuestra historia" data-en="Our story">Nuestra historia</span>
   <h1 data-es="Más de 13 años de amor animal" data-en="More than 13 years of animal love">Más de 13 años de amor animal</h1>
@@ -108,95 +81,87 @@
 </div>
 
 <section class="about-section reveal">
-  <div class="about-grid">
-    <div>
-      <span class="section-badge" data-es="Rescatando vidas, creando esperanza" data-en="Rescuing lives, creating hope">Rescatando vidas, creando esperanza</span>
-      <h2 class="section-title" data-es="Somos el hogar de los que no tienen voz" data-en="We are the home of those who have no voice">Somos el hogar de los que no tienen voz</h2>
-      <p class="section-desc" style="margin-bottom:1rem;">En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a los animales en situación de calle, abandono o maltrato en Honduras.</p>
-      <p class="section-desc" style="margin-bottom:1rem;">Nuestro refugio nace del compromiso de proteger la vida, ofrecer alimento, atención médica y un espacio seguro a perros y gatos que necesitan un hogar.</p>
-      <p class="section-desc">Creemos en la adopción responsable como la mejor forma de transformar realidades y construir una sociedad más compasiva. Cada rescate, cada historia de recuperación y cada adopción nos inspira a seguir adelante.</p>
-    </div>
-    <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Refugio Amor y Abrigo" class="about-img">
+  <div class="about-img">
+    <img src="https://www.amoryabrigohn.org/images/about.png" alt="Refugio Amor y Abrigo">
+    <div class="about-year"><strong>13+</strong><span data-es="Años" data-en="Years">Años</span></div>
   </div>
-  <div class="about-grid" style="margin-bottom:0;">
-    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&h=420&fit=crop" alt="Animales del refugio" class="about-img">
-    <div>
-      <span class="section-badge">Nuestra historia</span>
-      <h2 class="section-title">Desde hace más de 13 años rescatando vidas</h2>
-      <p class="section-desc" style="margin-bottom:1rem;">La fundación Amor y Abrigo nació del deseo de ayudar a los animales abandonados. Fue iniciada por un grupo de amantes de los animales que decidieron hacer la diferencia en su comunidad de San Pedro Sula.</p>
-      <p class="section-desc">Hemos servido a más de 300 animales, brindándoles atención médica, alimentación y un entorno seguro. Muchos de nuestros rescatados han encontrado familias que los aman incondicionalmente.</p>
+  <div>
+    <span class="section-badge" data-es="Rescatando vidas, creando esperanza" data-en="Rescuing lives, creating hope">Rescatando vidas, creando esperanza</span>
+    <h2 class="section-title" data-es="Somos el hogar de los que no tienen voz" data-en="We are the home of those who have no voice">Somos el hogar de los que no tienen voz</h2>
+    <p class="section-desc" data-es="En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a los animales en situación de calle, abandono o maltrato en Honduras. Nuestro refugio nace del compromiso de proteger la vida, ofrecer alimento, atención médica y un espacio seguro a perros y gatos que necesitan un hogar." data-en="At Amor y Abrigo we work with heart to give a second chance to animals living on the streets, abandoned or mistreated in Honduras. Our shelter was born from the commitment to protect life, offer food, medical care and a safe space to dogs and cats who need a home.">En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a los animales en situación de calle, abandono o maltrato en Honduras. Nuestro refugio nace del compromiso de proteger la vida, ofrecer alimento, atención médica y un espacio seguro a perros y gatos que necesitan un hogar.</p>
+    <div class="stats-row" style="margin-top:2rem;">
+      <div class="stat-box"><span class="num">13+</span><span class="lbl" data-es="Años de labor" data-en="Years of work">Años de labor</span></div>
+      <div class="stat-box"><span class="num">20K+</span><span class="lbl" data-es="Animales albergados" data-en="Animals sheltered">Animales albergados</span></div>
+      <div class="stat-box"><span class="num">10K+</span><span class="lbl" data-es="Adopciones" data-en="Adoptions">Adopciones</span></div>
+      <div class="stat-box"><span class="num">20K+</span><span class="lbl" data-es="Esterilizaciones" data-en="Sterilizations">Esterilizaciones</span></div>
     </div>
   </div>
 </section>
 
-<section class="values reveal">
-  <div style="text-align:center;">
-    <span class="section-badge" data-es="Lo que nos mueve" data-en="What drives us">Lo que nos mueve</span>
-    <h2 class="section-title" data-es="Nuestros valores" data-en="Our values">Nuestros valores</h2>
+<section class="values-section reveal">
+  <div style="text-align:center">
+    <span class="section-badge" data-es="Nuestros valores" data-en="Our values">Nuestros valores</span>
+    <h2 class="section-title" data-es="Lo que nos mueve" data-en="What drives us">Lo que nos mueve</h2>
   </div>
   <div class="values-grid">
-    <div class="value-card"><span class="value-icon">❤️</span><h3 data-es="Amor y compasión" data-en="Love and compassion">Amor y compasión</h3><p data-es="Cada animal merece ser tratado con amor y dignidad, sin importar su historia." data-en="Every animal deserves to be treated with love and dignity, regardless of their history.">Cada animal merece ser tratado con amor y dignidad, sin importar su historia.</p></div>
-    <div class="value-card"><span class="value-icon">🏥</span><h3 data-es="Atención médica" data-en="Medical care">Atención médica</h3><p data-es="Brindamos vacunaciones, esterilizaciones y tratamiento integral antes de cada adopción." data-en="We provide vaccinations, sterilizations and comprehensive treatment before each adoption.">Brindamos vacunaciones, esterilizaciones y tratamiento integral antes de cada adopción.</p></div>
-    <div class="value-card"><span class="value-icon">🤝</span><h3 data-es="Adopción responsable" data-en="Responsible adoption">Adopción responsable</h3><p data-es="Evaluamos cuidadosamente a cada adoptante para garantizar hogares amorosos y seguros." data-en="We carefully evaluate each adopter to guarantee loving and safe homes.">Evaluamos cuidadosamente a cada adoptante para garantizar hogares amorosos y seguros.</p></div>
-    <div class="value-card"><span class="value-icon">🌱</span><h3 data-es="Comunidad" data-en="Community">Comunidad</h3><p data-es="Fomentamos una cultura de respeto, compasión y responsabilidad hacia los animales." data-en="We promote a culture of respect, compassion and responsibility towards animals.">Fomentamos una cultura de respeto, compasión y responsabilidad hacia los animales.</p></div>
-    <div class="value-card"><span class="value-icon">🔍</span><h3 data-es="Transparencia" data-en="Transparency">Transparencia</h3><p data-es="Comunicación abierta con adoptantes y donantes sobre el progreso de nuestros rescatados." data-en="Open communication with adopters and donors about the progress of our rescued animals.">Comunicación abierta con adoptantes y donantes sobre el progreso de nuestros rescatados.</p></div>
-    <div class="value-card"><span class="value-icon">💪</span><h3 data-es="Perseverancia" data-en="Perseverance">Perseverancia</h3><p data-es="Más de 13 años de labor continua, sin importar los desafíos del camino." data-en="More than 13 years of continuous work, regardless of the challenges along the way.">Más de 13 años de labor continua, sin importar los desafíos del camino.</p></div>
+    <div class="value-card reveal delay-1"><span class="value-icon">❤️</span><h3 data-es="Amor y compasión" data-en="Love and compassion">Amor y compasión</h3><p data-es="Cada animal merece ser tratado con amor y dignidad, sin importar su historia." data-en="Every animal deserves to be treated with love and dignity, regardless of their history.">Cada animal merece ser tratado con amor y dignidad, sin importar su historia.</p></div>
+    <div class="value-card reveal delay-2"><span class="value-icon">🏥</span><h3 data-es="Atención médica" data-en="Medical care">Atención médica</h3><p data-es="Brindamos vacunaciones, esterilizaciones y tratamiento integral antes de cada adopción." data-en="We provide vaccinations, sterilizations and comprehensive treatment before each adoption.">Brindamos vacunaciones, esterilizaciones y tratamiento integral antes de cada adopción.</p></div>
+    <div class="value-card reveal delay-3"><span class="value-icon">🏠</span><h3 data-es="Adopción responsable" data-en="Responsible adoption">Adopción responsable</h3><p data-es="Evaluamos cuidadosamente a cada adoptante para garantizar hogares amorosos y seguros." data-en="We carefully evaluate each adopter to guarantee loving and safe homes.">Evaluamos cuidadosamente a cada adoptante para garantizar hogares amorosos y seguros.</p></div>
+    <div class="value-card reveal delay-1"><span class="value-icon">🤝</span><h3 data-es="Comunidad" data-en="Community">Comunidad</h3><p data-es="Fomentamos una cultura de respeto y responsabilidad hacia los animales." data-en="We foster a culture of respect and responsibility towards animals.">Fomentamos una cultura de respeto y responsabilidad hacia los animales.</p></div>
+    <div class="value-card reveal delay-2"><span class="value-icon">🔍</span><h3 data-es="Transparencia" data-en="Transparency">Transparencia</h3><p data-es="Comunicación abierta con adoptantes y donantes sobre el progreso de nuestros rescatados." data-en="Open communication with adopters and donors about our rescued animals' progress.">Comunicación abierta con adoptantes y donantes sobre el progreso de nuestros rescatados.</p></div>
+    <div class="value-card reveal delay-3"><span class="value-icon">💪</span><h3 data-es="Perseverancia" data-en="Perseverance">Perseverancia</h3><p data-es="Más de 13 años de labor continua, sin importar los desafíos del camino." data-en="More than 13 years of continuous work, regardless of the challenges along the way.">Más de 13 años de labor continua, sin importar los desafíos del camino.</p></div>
   </div>
 </section>
 
-<section class="mission-vision reveal">
-  <div style="text-align:center;">
-    <span class="section-badge" data-es="Nuestro norte" data-en="Our direction">Nuestro norte</span>
-    <h2 class="section-title" data-es="Misión y visión" data-en="Mission and vision">Misión y visión</h2>
+<section class="mv-section reveal">
+  <div class="mv-card">
+    <h3 data-es="Nuestra Misión" data-en="Our Mission">Nuestra Misión</h3>
+    <p data-es="Brindar refugio, cuidado médico, alimentación y amor a animales en situación de abandono, promoviendo la adopción responsable y fomentando en la sociedad una cultura de respeto, compasión y responsabilidad." data-en="Provide shelter, medical care, food and love to abandoned animals, promoting responsible adoption and fostering in society a culture of respect, compassion and responsibility.">Brindar refugio, cuidado médico, alimentación y amor a animales en situación de abandono, promoviendo la adopción responsable y fomentando en la sociedad una cultura de respeto, compasión y responsabilidad.</p>
   </div>
-  <div class="mv-grid">
-    <div class="mv-card mission">
-      <h3>🎯 Misión</h3>
-      <p>Brindar refugio, cuidado médico, alimentación y amor a animales en situación de abandono, promoviendo la adopción responsable y fomentando en la sociedad una cultura de respeto, compasión y responsabilidad.</p>
-    </div>
-    <div class="mv-card vision">
-      <h3>🌟 Visión</h3>
-      <p>Ser un referente en Honduras en la protección y bienestar animal, construyendo un país donde cada perro y gato tenga un hogar digno y donde la comunidad valore la vida animal como parte esencial de una sociedad justa, solidaria y humana.</p>
-    </div>
+  <div class="mv-card">
+    <h3 data-es="Nuestra Visión" data-en="Our Vision">Nuestra Visión</h3>
+    <p data-es="Ser un referente en Honduras en la protección y bienestar animal, construyendo un país donde cada perro y gato tenga un hogar digno y donde la comunidad valore la vida animal como parte esencial de una sociedad justa y humana." data-en="Be a benchmark in Honduras in animal protection and welfare, building a country where every dog and cat has a dignified home and where the community values animal life as an essential part of a just and humane society.">Ser un referente en Honduras en la protección y bienestar animal, construyendo un país donde cada perro y gato tenga un hogar digno y donde la comunidad valore la vida animal como parte esencial de una sociedad justa y humana.</p>
   </div>
 </section>
 
-
-<section style="padding: 5rem 4rem; background: var(--light);" class="reveal">
-  <div style="text-align:center; margin-bottom:3rem;">
+<section class="collabs-section reveal">
+  <div style="text-align:center;margin-bottom:3rem;">
     <span class="section-badge" data-es="Quienes nos apoyan" data-en="Our supporters">Quienes nos apoyan</span>
     <h2 class="section-title" data-es="Agradecemos a los que creen en nuestra misión" data-en="We thank those who believe in our mission">Agradecemos a los que creen en nuestra misión</h2>
-    <p class="section-desc" style="max-width:600px; margin:0 auto;" data-es="Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras." data-en="Companies and organizations that have made our animal rescue and adoption work possible in Honduras." data-es="Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras." data-en="Companies and organizations that have made our animal rescue and adoption work possible in Honduras.">Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras.</p>
+    <p class="section-desc" style="max-width:600px;margin:0 auto" data-es="Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras." data-en="Companies and organizations that have made our animal rescue and adoption work possible in Honduras.">Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras.</p>
   </div>
   <div class="collab-grid">
-    <div class="collab-item reveal reveal-delay-1"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/funo.png" alt="Funo Vet-Pecuaria"></div><span class="collab-name">Funo Vet-Pecuaria</span></div>
-    <div class="collab-item reveal reveal-delay-2"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/china.png" alt="China Wok"></div><span class="collab-name">China Wok</span></div>
-    <div class="collab-item reveal reveal-delay-3"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/pizzahut.png" alt="Pizza Hut"></div><span class="collab-name">Pizza Hut</span></div>
-    <div class="collab-item reveal reveal-delay-1"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/economascotas.png" alt="Econo Mascotas"></div><span class="collab-name">Econo Mascotas</span></div>
-    <div class="collab-item reveal reveal-delay-2"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/ads.png" alt="Adopt Don't Shop HN"></div><span class="collab-name">Adopt Don't Shop HN</span></div>
-    <div class="collab-item reveal reveal-delay-3"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/ihop.png" alt="IHOP"></div><span class="collab-name">IHOP</span></div>
-    <div class="collab-item reveal reveal-delay-1"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/gallomasgallo.png" alt="El Gallo Más Gallo"></div><span class="collab-name">El Gallo Más Gallo</span></div>
-    <div class="collab-item reveal reveal-delay-2"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/mamanina.png" alt="Mama Nina's"></div><span class="collab-name">Mama Nina's</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/funo.png" alt="Funo Vet-Pecuaria"></div><span class="collab-name">Funo Vet-Pecuaria</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/china.png" alt="China Wok"></div><span class="collab-name">China Wok</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/pizzahut.png" alt="Pizza Hut"></div><span class="collab-name">Pizza Hut</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/economascotas.png" alt="Econo Mascotas"></div><span class="collab-name">Econo Mascotas</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/ads.png" alt="Adopt Don't Shop HN"></div><span class="collab-name">Adopt Don't Shop HN</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/ihop.png" alt="IHOP"></div><span class="collab-name">IHOP</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/gallomasgallo.png" alt="El Gallo Más Gallo"></div><span class="collab-name">El Gallo Más Gallo</span></div>
+    <div class="collab-item"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/mamanina.png" alt="Mama Nina's"></div><span class="collab-name">Mama Nina's</span></div>
   </div>
-  <div style="text-align:center; margin-top:3rem;">
+  <div style="text-align:center;margin-top:3rem;">
     <a href="voluntariado.html" class="btn-primary" data-es="¿Quieres ser colaborador? →" data-en="Want to be a collaborator? →">¿Quieres ser colaborador? →</a>
   </div>
 </section>
-<section class="cta-section">
-  <h2 data-es="Haz la diferencia hoy" data-en="Make a difference today">Haz la diferencia hoy</h2>
-  <p data-es="Únete a nuestra misión adoptando, donando o siendo voluntario." data-en="Join our mission by adopting, donating or volunteering.">Únete a nuestra misión adoptando, donando o siendo voluntario.</p>
-  <a href="animales.html" class="btn-white" data-es="Ver animales en adopción →" data-en="See animals for adoption →">Ver animales en adopción →</a>
-</section>
 
+<section class="cta-section">
+  <h2 class="section-title" data-es="Haz la diferencia hoy" data-en="Make a difference today">Haz la diferencia hoy</h2>
+  <p data-es="Únete a nuestra misión adoptando, donando o siendo voluntario." data-en="Join our mission by adopting, donating or volunteering.">Únete a nuestra misión adoptando, donando o siendo voluntario.</p>
+  <div class="cta-btns">
+    <a href="animales.html" class="btn-white" data-es="Ver animales en adopción →" data-en="See animals for adoption →">Ver animales en adopción →</a>
+    <a href="voluntariado.html" class="btn-primary" data-es="Ser voluntario →" data-en="Volunteer →">Ser voluntario →</a>
+  </div>
+</section>
 <footer>
-  <div class="footer-top">
+  <div class="footer-grid">
     <div class="footer-brand">
       <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
-      <p data-es="Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras." data-en="We rescue, rehabilitate and offer abandoned animals for adoption. 🐶🐱❤️ San Pedro Sula, Honduras.">Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
+      <p data-es="Rescatamos, rehabilitamos y damos en adopción animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras." data-en="We rescue, rehabilitate and offer abandoned animals for adoption. 🐶🐱❤️ San Pedro Sula, Honduras.">Rescatamos, rehabilitamos y damos en adopción animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
       <div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn instagram" title="Instagram"><svg viewBox="0 0 24 24"><path fill="white" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
 <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn tiktok" title="TikTok"><svg viewBox="0 0 24 24"><path fill="white" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
 <a href="https://wa.me/50498248715" target="_blank" class="social-btn whatsapp" title="WhatsApp"><svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-<a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn paypal" title="PayPal"><svg viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg></a></div>
+<a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn paypal" title="PayPal"><svg viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg></a></div>
     </div>
     <div class="footer-col">
       <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
@@ -224,41 +189,70 @@
     <p data-es="© 2026 Amor y Abrigo Honduras. Todos los derechos reservados." data-en="© 2026 Amor y Abrigo Honduras. All rights reserved.">© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
     <p data-es="Hecho con ❤️ para los animales de Honduras" data-en="Made with ❤️ for the animals of Honduras">Hecho con ❤️ para los animales de Honduras</p>
   </div>
-</footer>
+</footer><script>
+/* NAV SCROLL */
+window.addEventListener('scroll', function() {
+  var n = document.getElementById('mainNav');
+  if (n) n.classList.toggle('scrolled', window.scrollY > 20);
+});
 
+/* HAMBURGER */
+function toggleMenu() {
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburger');
+  if (m && b) { m.classList.toggle('open'); b.classList.toggle('open'); }
+}
+document.addEventListener('click', function(e) {
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburger');
+  if (m && b && !m.contains(e.target) && !b.contains(e.target)) {
+    m.classList.remove('open'); b.classList.remove('open');
+  }
+});
 
-
-
-<script>
-window.addEventListener('scroll',()=>{const n=document.getElementById('mainNav');if(n)n.classList.toggle('scrolled',window.scrollY>20);});
-function toggleMenu(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');if(m&&b){m.classList.toggle('open');b.classList.toggle('open');}}
-document.addEventListener('click',function(e){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');if(m&&b&&!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove('open');b.classList.remove('open');}});
-const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-let lang=localStorage.getItem('lang')||'es';
-function applyLang(l){
-  lang=l;localStorage.setItem('lang',l);document.documentElement.lang=l;
-  document.querySelectorAll('[data-es]').forEach(el=>{
-    const v=l==='es'?el.dataset.es:el.dataset.en;
-    if(!v)return;
-    if(v.includes('<'))el.innerHTML=v;else el.textContent=v;
+/* SCROLL REVEAL */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('hidden');
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) {
+    el.classList.add('hidden');
+    observer.observe(el);
   });
-  document.querySelectorAll('[data-placeholder-es]').forEach(el=>{
-    el.placeholder=l==='es'?el.dataset.placeholderEs:el.dataset.placeholderEn;
+})();
+
+/* LANGUAGE */
+var currentLang = localStorage.getItem('ayaLang') || 'es';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ayaLang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-es]').forEach(function(el) {
+    var val = lang === 'es' ? el.dataset.es : el.dataset.en;
+    if (!val) return;
+    if (val.indexOf('<') !== -1) el.innerHTML = val;
+    else el.textContent = val;
   });
-  document.querySelectorAll('[data-select-es]').forEach(el=>{
-    const opts=JSON.parse(l==='es'?el.dataset.selectEs:el.dataset.selectEn);
-    Array.from(el.options).forEach((o,i)=>{if(opts[i])o.text=opts[i];});
+  document.querySelectorAll('[data-ph-es]').forEach(function(el) {
+    el.placeholder = lang === 'es' ? el.dataset.phEs : el.dataset.phEn;
   });
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    const f=b.querySelector('.lang-flag'),t=b.querySelector('.lang-text');
-    if(f)f.textContent=l==='es'?'🇺🇸':'🇭🇳';
-    if(t)t.textContent=l==='es'?'EN':'ES';
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    var f = btn.querySelector('.lang-flag');
+    var tx = btn.querySelector('.lang-text');
+    if (f) f.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (tx) tx.textContent = lang === 'es' ? 'EN' : 'ES';
   });
 }
-function toggleLang(){applyLang(lang==='es'?'en':'es');}
-document.addEventListener('DOMContentLoaded',()=>{if(lang==='en')applyLang('en');document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));});
-
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
+document.addEventListener('DOMContentLoaded', function() {
+  if (currentLang === 'en') applyLang('en');
+});
 </script>
-</body>
-</html>
+</body></html>
