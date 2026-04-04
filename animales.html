@@ -17,9 +17,9 @@
 .animal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
 .animal-card:hover .animal-img img { transform: scale(1.05); }
 .animal-status { position: absolute; top: 12px; left: 12px; padding: 0.3rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
-.status-available { background: #dcfce7; color: #166534; }
-.status-reserved { background: #fef9c3; color: #854d0e; }
-.status-adopted { background: #dbeafe; color: #1e40af; }
+.status-disponible { background: #dcfce7; color: #166534; }
+.status-reservado { background: #fef9c3; color: #854d0e; }
+.status-adoptado { background: #dbeafe; color: #1e40af; }
 .animal-info { padding: 1.5rem; }
 .animal-name { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
 .animal-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
@@ -27,18 +27,13 @@
 .animal-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.6; margin-bottom: 1.25rem; }
 .animal-btn { display: block; text-align: center; padding: 0.875rem; background: var(--red); color: var(--white); border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
 .animal-btn:hover { background: #c73530; }
-.animal-btn.reserved { background: var(--gray); }
-.animal-btn.adopted { background: #1e40af; }
+.animal-btn.reservado { background: var(--gray); }
+.animal-btn.adoptado { background: #1e40af; pointer-events: none; }
 .loading { text-align: center; padding: 4rem; }
 .loading-spinner { width: 48px; height: 48px; border: 4px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading p { color: var(--gray); font-size: 1rem; }
 .no-results { text-align: center; padding: 3rem; color: var(--gray); font-size: 1.1rem; display: none; }
-.error-msg { text-align: center; padding: 3rem; background: #fef2f2; border-radius: 16px; color: var(--red); }
-.how-to-add { background: var(--white); border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 2rem; border: 2px dashed var(--blue); display: flex; align-items: center; gap: 1rem; }
-.how-to-add span { font-size: 1.5rem; }
-.how-to-add p { font-size: 0.9rem; color: var(--gray); margin: 0; }
-.how-to-add strong { color: var(--dark); }
 @media (max-width: 1024px) { .animals-section { padding: 3rem 2rem; } .animals-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .animals-grid { grid-template-columns: 1fr; } }
 </style>
@@ -79,7 +74,6 @@
 </div>
 
 <section class="animals-section">
-
   <div class="filters">
     <button class="filter-btn active" onclick="filterAnimals('todos', this)">Todos</button>
     <button class="filter-btn" onclick="filterAnimals('perro', this)">Perros</button>
@@ -87,17 +81,12 @@
     <button class="filter-btn" onclick="filterAnimals('disponible', this)">Disponibles</button>
     <button class="filter-btn" onclick="filterAnimals('reservado', this)">Reservados</button>
   </div>
-
   <div id="loadingDiv" class="loading">
     <div class="loading-spinner"></div>
     <p>Cargando animales...</p>
   </div>
-
   <div class="animals-grid" id="animalsGrid" style="display:none;"></div>
   <div class="no-results" id="noResults">No hay animales en esta categoría por el momento.</div>
-  <div id="errorDiv" class="error-msg" style="display:none;">
-    <p>⚠️ No se pudieron cargar los animales. Por favor intenta de nuevo más tarde.</p>
-  </div>
 </section>
 
 <footer>
@@ -124,42 +113,43 @@
 </footer>
 
 <script>
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
+// Lee los archivos markdown del CMS desde GitHub
+const GITHUB_USER = 'crismunguiaz13-creator';
+const GITHUB_REPO = 'amor-y-abrigo';
+const GITHUB_BRANCH = 'main';
+const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/_animales?ref=${GITHUB_BRANCH}`;
 
 let allAnimals = [];
-let currentFilter = 'todos';
 
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
-  return lines.slice(1).map(line => {
-    const values = [];
-    let current = '';
-    let inQuotes = false;
-    for (let i = 0; i < line.length; i++) {
-      if (line[i] === '"') { inQuotes = !inQuotes; }
-      else if (line[i] === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
-      else { current += line[i]; }
-    }
-    values.push(current.trim());
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = (values[i] || '').replace(/"/g, '').trim());
-    return obj;
-  }).filter(a => a.nombre && a.nombre !== '');
+function parseFrontmatter(text) {
+  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return {};
+  const yaml = match[1];
+  const obj = {};
+  yaml.split('\n').forEach(line => {
+    const colonIdx = line.indexOf(':');
+    if (colonIdx === -1) return;
+    const key = line.substring(0, colonIdx).trim();
+    let val = line.substring(colonIdx + 1).trim();
+    if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
+    if (val.startsWith("'") && val.endsWith("'")) val = val.slice(1, -1);
+    obj[key] = val;
+  });
+  return obj;
 }
 
 function getStatusClass(estado) {
   const e = (estado || '').toLowerCase();
-  if (e.includes('disponible')) return 'status-available';
-  if (e.includes('reservado')) return 'status-reserved';
-  if (e.includes('adoptado')) return 'status-adopted';
-  return 'status-available';
+  if (e.includes('disponible')) return 'status-disponible';
+  if (e.includes('reservado')) return 'status-reservado';
+  if (e.includes('adoptado')) return 'status-adoptado';
+  return 'status-disponible';
 }
 
 function getBtnClass(estado) {
   const e = (estado || '').toLowerCase();
-  if (e.includes('reservado')) return 'reserved';
-  if (e.includes('adoptado')) return 'adopted';
+  if (e.includes('reservado')) return 'reservado';
+  if (e.includes('adoptado')) return 'adoptado';
   return '';
 }
 
@@ -170,8 +160,15 @@ function getBtnText(animal) {
   return `Quiero adoptar a ${animal.nombre}`;
 }
 
+function getFotoUrl(foto) {
+  if (!foto) return 'https://www.amoryabrigohn.org/images/slider2.jpg';
+  if (foto.startsWith('http')) return foto;
+  // Archivo subido al repo
+  return `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${foto.replace(/^\//, '')}`;
+}
+
 function renderAnimal(animal) {
-  const foto = animal.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
+  const foto = getFotoUrl(animal.foto);
   const statusClass = getStatusClass(animal.estado);
   const btnClass = getBtnClass(animal.estado);
   const btnText = getBtnText(animal);
@@ -193,7 +190,7 @@ function renderAnimal(animal) {
         </div>
         <p class="animal-desc">${animal.descripcion || ''}</p>
         ${isAdopted
-          ? `<div class="animal-btn adopted">${btnText}</div>`
+          ? `<div class="animal-btn adoptado">${btnText}</div>`
           : `<a href="adopcion.html" class="animal-btn ${btnClass}">${btnText}</a>`
         }
       </div>
@@ -205,12 +202,11 @@ function filterAnimals(type, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   }
-  currentFilter = type;
   const grid = document.getElementById('animalsGrid');
   let visible = 0;
   grid.querySelectorAll('.animal-card').forEach(card => {
-    const tipo = card.dataset.tipo || '';
-    const estado = card.dataset.estado || '';
+    const tipo = (card.dataset.tipo || '').toLowerCase();
+    const estado = (card.dataset.estado || '').toLowerCase();
     let show = false;
     if (type === 'todos') show = true;
     else if (type === 'perro') show = tipo.includes('perro') || tipo.includes('perra');
@@ -225,27 +221,37 @@ function filterAnimals(type, btn) {
 
 async function loadAnimals() {
   try {
-    const res = await fetch(SHEET_URL);
-    if (!res.ok) throw new Error('Error al cargar');
-    const text = await res.text();
-    allAnimals = parseCSV(text);
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error('Error cargando lista');
+    const files = await res.json();
+    const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+    const animals = await Promise.all(mdFiles.map(async file => {
+      const r = await fetch(file.download_url);
+      const text = await r.text();
+      const data = parseFrontmatter(text);
+      return data;
+    }));
+
+    allAnimals = animals.filter(a => a.nombre && a.published !== 'false');
 
     const grid = document.getElementById('animalsGrid');
     document.getElementById('loadingDiv').style.display = 'none';
 
     if (allAnimals.length === 0) {
-      grid.style.display = 'none';
       document.getElementById('noResults').style.display = 'block';
-      document.getElementById('noResults').textContent = 'No hay animales en el catálogo todavía. ¡Pronto agregaremos nuevos!';
+      document.getElementById('noResults').textContent = '¡Pronto agregaremos nuevos animales!';
       return;
     }
 
     grid.innerHTML = allAnimals.map(renderAnimal).join('');
     grid.style.display = 'grid';
-    filterAnimals(currentFilter, null);
+    filterAnimals('todos', null);
+
   } catch (err) {
     document.getElementById('loadingDiv').style.display = 'none';
-    document.getElementById('errorDiv').style.display = 'block';
+    document.getElementById('noResults').style.display = 'block';
+    document.getElementById('noResults').textContent = 'No se pudieron cargar los animales. Intenta de nuevo más tarde.';
     console.error(err);
   }
 }
