@@ -291,9 +291,67 @@ function applyLang(l){
 function toggleLang(){applyLang(lang==='es'?'en':'es');}
 document.addEventListener('DOMContentLoaded',()=>{if(lang==='en')applyLang('en');document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));});
 
-const SHEET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
-function parseCSV(text){{const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim().replace(/"/g,'').toLowerCase());return lines.slice(1).map(line=>{{const values=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){{if(line[i]==='"'){{inQ=!inQ;}}else if(line[i]===','&&!inQ){{values.push(cur.trim());cur='';}}else{{cur+=line[i];}}}}values.push(cur.trim());const obj={{}};headers.forEach((h,i)=>obj[h]=(values[i]||'').replace(/"/g,'').trim());return obj;}}).filter(a=>a.nombre&&a.nombre!=='');}}
-async function loadHomeAnimals(){{try{{const res=await fetch(SHEET_URL);if(!res.ok)throw new Error();const text=await res.text();const animals=parseCSV(text);const avail=animals.filter(a=>!(a.estado||'').toLowerCase().includes('adoptado'));const latest=avail.slice(-3).reverse();const grid=document.getElementById('homeAnimalsGrid');if(!latest.length){{grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">Pronto agregaremos animales disponibles.</div>';return;}}grid.innerHTML=latest.map(a=>{{const foto=a.foto||'https://www.amoryabrigohn.org/images/slider2.jpg';const res2=(a.estado||'').toLowerCase().includes('reservado');const sc=res2?'status-reserved':'status-available';const bt=res2?'Aplicar como 2ª opción':`Quiero adoptar a ${{a.nombre}}`;return`<div class="animal-card"><div class="animal-img"><img src="${{foto}}" alt="${{a.nombre}}" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'"><span class="animal-status ${{sc}}">${{a.estado||'Disponible'}}</span></div><div class="animal-info"><div class="animal-name">${{a.nombre}}</div><div class="animal-tags">${{a.tipo?`<span class="animal-tag">${{a.tipo}}</span>`:''}}${{a.edad?`<span class="animal-tag">${{a.edad}}</span>`:''}}${{a.sexo?`<span class="animal-tag">${{a.sexo}}</span>`:''}}</div><p class="animal-desc">${{(a.descripcion||'').substring(0,100)}}...</p><a href="animales.html" class="animal-btn" style="${{res2?'background:var(--gray)':''}}">${{bt}}</a></div></div>`;}}).join('');}}catch(e){{document.getElementById('homeAnimalsGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales.</div>';}}}}
+
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
+
+function parseCSV(text) {
+  const lines = text.trim().split('
+');
+  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+  return lines.slice(1).map(line => {
+    const values = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] === '"') { inQ = !inQ; }
+      else if (line[i] === ',' && !inQ) { values.push(cur.trim()); cur = ''; }
+      else { cur += line[i]; }
+    }
+    values.push(cur.trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (values[i] || '').replace(/"/g, '').trim());
+    return obj;
+  }).filter(a => a.nombre && a.nombre !== '');
+}
+
+async function loadHomeAnimals() {
+  try {
+    const res = await fetch(SHEET_URL);
+    if (!res.ok) throw new Error();
+    const text = await res.text();
+    const animals = parseCSV(text);
+    const avail = animals.filter(a => !(a.estado || '').toLowerCase().includes('adoptado'));
+    const latest = avail.slice(-3).reverse();
+    const grid = document.getElementById('homeAnimalsGrid');
+    if (!latest.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">Pronto agregaremos animales disponibles.</div>';
+      return;
+    }
+    grid.innerHTML = latest.map(a => {
+      const foto = a.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
+      const isReserved = (a.estado || '').toLowerCase().includes('reservado');
+      const sc = isReserved ? 'status-reserved' : 'status-available';
+      const bt = isReserved ? 'Aplicar como 2ª opción' : `Quiero adoptar a ${a.nombre}`;
+      return `<div class="animal-card">
+        <div class="animal-img">
+          <img src="${foto}" alt="${a.nombre}" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'">
+          <span class="animal-status ${sc}">${a.estado || 'Disponible'}</span>
+        </div>
+        <div class="animal-info">
+          <div class="animal-name">${a.nombre}</div>
+          <div class="animal-tags">
+            ${a.tipo ? `<span class="animal-tag">${a.tipo}</span>` : ''}
+            ${a.edad ? `<span class="animal-tag">${a.edad}</span>` : ''}
+            ${a.sexo ? `<span class="animal-tag">${a.sexo}</span>` : ''}
+          </div>
+          <p class="animal-desc">${(a.descripcion || '').substring(0, 100)}...</p>
+          <a href="animales.html" class="animal-btn" style="${isReserved ? 'background:var(--gray)' : ''}">${bt}</a>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    document.getElementById('homeAnimalsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales.</div>';
+  }
+}
 loadHomeAnimals();
 
 </script>
