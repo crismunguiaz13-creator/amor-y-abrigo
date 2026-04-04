@@ -1,22 +1,239 @@
 <!DOCTYPE html>
-<html>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración — Amor y Abrigo</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amor y Abrigo — Refugio Animal Honduras</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.hero { min-height: 100vh; padding-top: 72px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; background: var(--white); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; right: 0; top: 0; width: 50%; height: 100%; background: var(--light); z-index: 0; }
+.hero-content { padding: 4rem 3rem 4rem 5rem; position: relative; z-index: 1; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: #fff3cd; color: #856404; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero-badge::before { content: '●'; color: var(--yellow); font-size: 0.6rem; }
+.hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; color: var(--dark); margin-bottom: 1rem; }
+.hero h1 em { font-style: italic; color: var(--red); }
+.hero p { font-size: 1.1rem; color: var(--gray); line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px; }
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.hero-stats { display: flex; gap: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.stat-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; color: var(--red); display: block; }
+.stat-label { font-size: 0.8rem; color: var(--gray); font-weight: 500; }
+.hero-image { position: relative; z-index: 1; padding: 4rem 4rem 4rem 2rem; display: flex; align-items: center; justify-content: center; }
+.hero-img-wrap { position: relative; width: 100%; max-width: 500px; }
+.hero-img-wrap img { width: 100%; height: 500px; object-fit: cover; border-radius: 24px 24px 80px 24px; box-shadow: 0 24px 60px rgba(0,0,0,0.15); }
+.hero-tag { position: absolute; bottom: -20px; left: -20px; background: var(--white); border-radius: 16px; padding: 1rem 1.5rem; box-shadow: 0 8px 30px rgba(0,0,0,0.12); display: flex; align-items: center; gap: 12px; }
+.hero-tag-icon { width: 44px; height: 44px; background: var(--red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+.hero-tag-text strong { display: block; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+.hero-tag-text span { font-size: 0.8rem; color: var(--gray); }
+
+.mission { padding: 6rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.mission-images { position: relative; }
+.mission-img-main { width: 100%; height: 420px; object-fit: cover; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+.mission-img-sub { position: absolute; bottom: -30px; right: -30px; width: 200px; height: 200px; object-fit: cover; border-radius: 16px; border: 6px solid var(--white); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+.mission-years { position: absolute; top: 20px; left: -20px; background: var(--yellow); border-radius: 16px; padding: 1.25rem; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.mission-years strong { display: block; font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 900; color: var(--dark); line-height: 1; }
+.mission-years span { font-size: 0.75rem; font-weight: 600; color: #5a4500; text-transform: uppercase; letter-spacing: 0.05em; }
+.feature-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+.feature-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem; background: var(--light); border-radius: 16px; border-left: 4px solid var(--blue); }
+.feature-icon { width: 40px; height: 40px; background: var(--blue); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.feature-text strong { display: block; font-weight: 600; color: var(--dark); margin-bottom: 0.25rem; }
+.feature-text span { font-size: 0.9rem; color: var(--gray); }
+
+.animals-preview { padding: 6rem 5rem; background: var(--light); }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.animals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+.animal-card { background: var(--white); border-radius: 20px; overflow: hidden; transition: all 0.3s; box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
+.animal-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+.animal-img { position: relative; height: 220px; overflow: hidden; }
+.animal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.animal-card:hover .animal-img img { transform: scale(1.05); }
+.animal-status { position: absolute; top: 12px; left: 12px; padding: 0.3rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+.status-available { background: #dcfce7; color: #166534; }
+.status-reserved { background: #fef9c3; color: #854d0e; }
+.animal-info { padding: 1.25rem; }
+.animal-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+.animal-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.animal-tag { padding: 0.2rem 0.6rem; background: var(--light); border-radius: 50px; font-size: 0.75rem; font-weight: 500; color: var(--gray); text-transform: uppercase; letter-spacing: 0.03em; }
+.animal-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.6; margin-bottom: 1rem; }
+.animal-btn { display: block; text-align: center; padding: 0.75rem; background: var(--red); color: var(--white); border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+.animal-btn:hover { background: #c73530; }
+.see-all { text-align: center; }
+
+.help-section { padding: 6rem 5rem; background: var(--dark); }
+.help-section .section-badge { color: var(--yellow); }
+.help-section .section-title { color: var(--white); }
+.help-subtitle { color: rgba(255,255,255,0.6); text-align: center; margin-top: 0.5rem; }
+.help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.help-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem; transition: all 0.3s; }
+.help-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+.help-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.help-card h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+.help-card p { color: rgba(255,255,255,0.6); line-height: 1.7; font-size: 0.9rem; margin-bottom: 1.5rem; }
+.help-link { color: var(--yellow); font-weight: 600; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
+.help-link:hover { gap: 10px; }
+
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero::before { display: none; }
+  .hero-content { padding: 4rem 2rem 2rem; }
+  .hero-image { padding: 2rem; }
+  .mission { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+  .animals-preview, .help-section { padding: 4rem 2rem; }
+  .animals-grid, .help-grid { grid-template-columns: repeat(2, 1fr); }
+  .mission-img-sub { display: none; }
+}
+@media (max-width: 768px) {
+  .animals-grid, .help-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+}
+</style>
 </head>
-<body></body>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+    <span>Amor y Abrigo</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="animales.html">Animales</a>
+    <a href="adopcion.html">Adopción</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="donaciones.html">Donaciones</a>
+    <a href="contacto.html" class="nav-cta">Contacto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" class="active">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="animales.html">Animales</a>
+  <a href="adopcion.html">Adopción</a>
+  <a href="eventos.html">Eventos</a>
+  <a href="donaciones.html">Donaciones</a>
+  <a href="contacto.html" class="nav-cta">Contacto</a>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Refugio Animal — San Pedro Sula, Honduras</div>
+    <h1>Ellos no tienen voz.<br><em>Nosotros sí.</em></h1>
+    <p>Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices.</p>
+    <div class="hero-buttons">
+      <a href="animales.html" class="btn-primary">🐾 Ver animales en adopción</a>
+      <a href="adopcion.html" class="btn-secondary">¿Cómo adoptar?</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Rescatados</span></div>
+      <div class="stat-item"><span class="stat-num">150+</span><span class="stat-label">Adoptados</span></div>
+      <div class="stat-item"><span class="stat-num">13+</span><span class="stat-label">Años activos</span></div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-img-wrap">
+      <img src="https://www.amoryabrigohn.org/images/slider2.jpg" alt="Perros en el refugio">
+      <div class="hero-tag">
+        <div class="hero-tag-icon">❤️</div>
+        <div class="hero-tag-text"><strong>Adopción gratuita</strong><span>Proceso responsable</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="mission-images">
+    <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Refugio" class="mission-img-main">
+    <img src="https://www.amoryabrigohn.org/images/about2.jpg" alt="Gato" class="mission-img-sub">
+    <div class="mission-years"><strong>13+</strong><span>Años de labor</span></div>
+  </div>
+  <div class="mission-content">
+    <span class="section-badge">Nuestra misión</span>
+    <h2 class="section-title">Somos el hogar de los que no tienen voz</h2>
+    <p class="section-desc">En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras.</p>
+    <div class="feature-list">
+      <div class="feature-item"><div class="feature-icon">🏥</div><div class="feature-text"><strong>Rescate y atención médica</strong><span>Vacunaciones, esterilizaciones y cuidado veterinario integral.</span></div></div>
+      <div class="feature-item"><div class="feature-icon">🏠</div><div class="feature-text"><strong>Adopción responsable</strong><span>Proceso completamente gratuito que garantiza el bienestar del animal.</span></div></div>
+      <div class="feature-item"><div class="feature-icon">🤝</div><div class="feature-text"><strong>Comunidad de voluntarios</strong><span>Un equipo comprometido que trabaja cada día por los animales.</span></div></div>
+    </div>
+    <br><a href="nosotros.html" class="btn-secondary" style="width:fit-content">Conocer más →</a>
+  </div>
+</section>
+
+<section class="animals-preview">
+  <div class="section-header">
+    <span class="section-badge">Encuentra tu compañero</span>
+    <h2 class="section-title">Animales en adopción</h2>
+  </div>
+  <div class="animals-grid">
+    <div class="animal-card">
+      <div class="animal-img"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=300&fit=crop" alt="Max"><span class="animal-status status-available">Disponible</span></div>
+      <div class="animal-info"><div class="animal-name">Max</div><div class="animal-tags"><span class="animal-tag">Perro</span><span class="animal-tag">2 años</span><span class="animal-tag">Macho</span></div><p class="animal-desc">Max es muy juguetón y cariñoso. Le encanta correr y es muy bueno con niños.</p><a href="adopcion.html" class="animal-btn">Quiero adoptar a Max</a></div>
+    </div>
+    <div class="animal-card">
+      <div class="animal-img"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=300&fit=crop" alt="Luna"><span class="animal-status status-reserved">Reservado</span></div>
+      <div class="animal-info"><div class="animal-name">Luna</div><div class="animal-tags"><span class="animal-tag">Gata</span><span class="animal-tag">1 año</span><span class="animal-tag">Hembra</span></div><p class="animal-desc">Luna es tranquila y muy dulce. Perfecta para apartamento.</p><a href="adopcion.html" class="animal-btn" style="background:var(--gray)">Aplicar como 2ª opción</a></div>
+    </div>
+    <div class="animal-card">
+      <div class="animal-img"><img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?w=400&h=300&fit=crop" alt="Rocky"><span class="animal-status status-available">Disponible</span></div>
+      <div class="animal-info"><div class="animal-name">Rocky</div><div class="animal-tags"><span class="animal-tag">Perro</span><span class="animal-tag">3 años</span><span class="animal-tag">Macho</span></div><p class="animal-desc">Rocky fue rescatado de la calle. Ya superó su miedo y ahora es muy afectuoso.</p><a href="adopcion.html" class="animal-btn">Quiero adoptar a Rocky</a></div>
+    </div>
+  </div>
+  <div class="see-all"><a href="animales.html" class="btn-primary">Ver todos los animales →</a></div>
+</section>
+
+<section class="help-section">
+  <div class="section-header">
+    <span class="section-badge">Únete a la causa</span>
+    <h2 class="section-title">¿Cómo puedes ayudar?</h2>
+    <p class="help-subtitle">Cada acción, grande o pequeña, cambia una vida.</p>
+  </div>
+  <div class="help-grid">
+    <div class="help-card"><span class="help-icon">🏠</span><h3>Adoptar</h3><p>Dale a un animal una familia para siempre. La adopción es completamente gratuita.</p><a href="animales.html" class="help-link">Ver animales →</a></div>
+    <div class="help-card"><span class="help-icon">💝</span><h3>Donar</h3><p>Tu aporte ayuda con alimentos, medicamentos y el mantenimiento del refugio.</p><a href="donaciones.html" class="help-link">Hacer una donación →</a></div>
+    <div class="help-card"><span class="help-icon">🤝</span><h3>Ser voluntario</h3><p>Tu tiempo vale mucho. Ayuda en el refugio, en eventos o difundiendo la misión.</p><a href="contacto.html" class="help-link">Contactar →</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+      <p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a>
+        <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a>
+        <a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a>
+        <a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a>
+        <a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
+    <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
+    <p>Hecho con ❤️ para los animales de Honduras</p>
+  </div>
+</footer>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  menu.classList.toggle("open");
+  btn.classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove("open");
+    btn.classList.remove("open");
+  }
+});
+</script>
+</body>
 </html>
