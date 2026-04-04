@@ -169,3 +169,30 @@ footer { background: var(--dark); padding: 4rem 4rem 2rem; }
 .lang-btn:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(30,144,255,0.3); }
 .lang-flag { font-size: 1rem; line-height: 1; }
 .lang-text { font-weight: 700; }
+
+/* NEW LANGUAGE BUTTON DESIGN */
+.lang-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 50px !important;
+  border: none !important;
+  background: linear-gradient(135deg, var(--blue), #0066cc) !important;
+  color: white !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s !important;
+  letter-spacing: 0.05em !important;
+  margin-left: 0.5rem !important;
+  box-shadow: 0 3px 10px rgba(30,144,255,0.3) !important;
+}
+.lang-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(30,144,255,0.4) !important;
+  background: linear-gradient(135deg, #0066cc, var(--blue)) !important;
+}
+.lang-flag { font-size: 1.1rem; line-height: 1; }
+.lang-text { font-weight: 800; letter-spacing: 0.08em; }

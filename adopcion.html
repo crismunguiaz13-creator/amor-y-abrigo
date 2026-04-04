@@ -91,51 +91,51 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
 </div>
 <div class="page-hero">
-  <span class="badge">Proceso de adopción</span>
-  <h1>Adoptar es fácil y responsable</h1>
-  <p>Llenamos un formulario sencillo para conocerte mejor y garantizar el bienestar del animal. Sin costo alguno.</p>
+  <span class="badge" data-es="Proceso de adopción" data-en="Adoption process">Proceso de adopción</span>
+  <h1 data-es="Adoptar es fácil y responsable" data-en="Adopting is easy and responsible">Adoptar es fácil y responsable</h1>
+  <p data-es="Llenamos un formulario sencillo para conocerte mejor y garantizar el bienestar del animal. Sin costo alguno." data-en="We fill out a simple form to get to know you better and guarantee the animal's wellbeing. No cost at all.">Llenamos un formulario sencillo para conocerte mejor y garantizar el bienestar del animal. Sin costo alguno.</p>
 </div>
 
 <section class="reveal adoption-section">
   <div>
-    <span class="section-badge">Pasos a seguir</span>
-    <h2 class="section-title">¿Cómo funciona el proceso?</h2>
-    <p class="section-desc">En solo 4 pasos puedes darle un hogar para siempre a un animal que lo necesita.</p>
+    <span class="section-badge" data-es="Pasos a seguir" data-en="Steps to follow">Pasos a seguir</span>
+    <h2 class="section-title" data-es="¿Cómo funciona el proceso?" data-en="How does the process work?">¿Cómo funciona el proceso?</h2>
+    <p class="section-desc" data-es="En solo 4 pasos puedes darle un hogar para siempre a un animal que lo necesita." data-en="In just 4 steps you can give a forever home to an animal in need.">En solo 4 pasos puedes darle un hogar para siempre a un animal que lo necesita.</p>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Elige tu compañero</strong><span>Revisa el catálogo de animales disponibles y encuentra al que quieres adoptar.</span></div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Llena el formulario</strong><span>Completa tus datos y cuéntanos sobre tu hogar y estilo de vida.</span></div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Te contactamos</strong><span>El equipo de voluntarios revisará tu solicitud y te responderá por WhatsApp pronto.</span></div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>¡Bienvenido a casa!</strong><span>Se coordinará la entrega del animal con toda la documentación necesaria.</span></div></div>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong data-es="Elige tu compañero" data-en="Choose your companion">Elige tu compañero</strong><span data-es="Revisa el catálogo de animales disponibles y encuentra al que quieres adoptar." data-en="Browse the catalog of available animals and find the one you want to adopt.">Revisa el catálogo de animales disponibles y encuentra al que quieres adoptar.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong data-es="Llena el formulario" data-en="Fill out the form">Llena el formulario</strong><span data-es="Completa tus datos y cuéntanos sobre tu hogar y estilo de vida." data-en="Complete your details and tell us about your home and lifestyle.">Completa tus datos y cuéntanos sobre tu hogar y estilo de vida.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong data-es="Te contactamos" data-en="We contact you">Te contactamos</strong><span data-es="El equipo de voluntarios revisará tu solicitud y te responderá por WhatsApp pronto." data-en="The volunteer team will review your application and respond via WhatsApp soon.">El equipo de voluntarios revisará tu solicitud y te responderá por WhatsApp pronto.</span></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong data-es="¡Bienvenido a casa!" data-en="Welcome home!">¡Bienvenido a casa!</strong><span data-es="Se coordinará la entrega del animal con toda la documentación necesaria." data-en="The animal's handover will be coordinated with all necessary documentation.">Se coordinará la entrega del animal con toda la documentación necesaria.</span></div></div>
     </div>
   </div>
   <div class="form-wrap">
-    <h3>Solicitud de adopción</h3>
-    <p>Completa el formulario y se abrirá WhatsApp con tu solicitud lista para enviar al refugio.</p>
+    <h3 data-es="Solicitud de adopción" data-en="Adoption application">Solicitud de adopción</h3>
+    <p data-es="Completa el formulario y se abrirá WhatsApp con tu solicitud lista para enviar al refugio." data-en="Fill out the form and WhatsApp will open with your application ready to send to the shelter.">Completa el formulario y se abrirá WhatsApp con tu solicitud lista para enviar al refugio.</p>
     <form id="adoptionForm">
       <div class="form-row">
         <div class="form-group">
-          <label>Nombre completo</label>
-          <input type="text" id="nombre" placeholder="Tu nombre" required>
+          <label data-es="Nombre completo" data-en="Full name">Nombre completo</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" data-placeholder-es="Tu nombre" data-placeholder-en="Your name" required>
         </div>
         <div class="form-group">
-          <label>Edad</label>
-          <input type="number" id="edad" placeholder="Tu edad" required min="18">
+          <label data-es="Edad" data-en="Age">Edad</label>
+          <input type="number" id="edad" placeholder="Tu edad" data-placeholder-es="Tu edad" data-placeholder-en="Your age" required min="18">
         </div>
       </div>
       <div class="form-group">
-        <label>Correo electrónico</label>
+        <label data-es="Correo electrónico" data-en="Email address">Correo electrónico</label>
         <input type="email" id="email" placeholder="correo@ejemplo.com" required>
       </div>
       <div class="form-group">
-        <label>Teléfono / WhatsApp</label>
+        <label data-es="Teléfono / WhatsApp" data-en="Phone / WhatsApp">Teléfono / WhatsApp</label>
         <input type="tel" id="telefono" placeholder="+504 ####-####" required>
       </div>
       <div class="form-group">
-        <label>Animal de interés</label>
-        <input type="text" id="animal" placeholder="Nombre del animal que quieres adoptar" required>
+        <label data-es="Animal de interés" data-en="Animal of interest">Animal de interés</label>
+        <input type="text" id="animal" placeholder="Nombre del animal que quieres adoptar" data-placeholder-es="Nombre del animal que quieres adoptar" data-placeholder-en="Name of the animal you want to adopt" required>
       </div>
       <div class="form-group">
-        <label>Tipo de vivienda</label>
+        <label data-es="Tipo de vivienda" data-en="Type of housing">Tipo de vivienda</label>
         <select id="vivienda" required>
           <option value="">Selecciona...</option>
           <option>Casa con jardín</option>
@@ -144,7 +144,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>¿Tienes experiencia con mascotas?</label>
+        <label data-es="¿Tienes experiencia con mascotas?" data-en="Do you have experience with pets?">¿Tienes experiencia con mascotas?</label>
         <select id="experiencia" required>
           <option value="">Selecciona...</option>
           <option>Sí, tengo o tuve mascotas</option>
@@ -152,7 +152,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>¿Tienes niños en casa?</label>
+        <label data-es="¿Tienes niños en casa?" data-en="Do you have children at home?">¿Tienes niños en casa?</label>
         <select id="ninos">
           <option value="">Selecciona...</option>
           <option>Sí, menores de 5 años</option>
@@ -161,13 +161,13 @@
         </select>
       </div>
       <div class="form-group">
-        <label>¿Por qué quieres adoptar?</label>
-        <textarea id="motivo" rows="3" placeholder="Cuéntanos un poco..." required></textarea>
+        <label data-es="¿Por qué quieres adoptar?" data-en="Why do you want to adopt?">¿Por qué quieres adoptar?</label>
+        <textarea id="motivo" rows="3" placeholder="Cuéntanos un poco..." data-placeholder-es="Cuéntanos un poco..." data-placeholder-en="Tell us a little..." required></textarea>
       </div>
-      <button type="submit" class="form-submit">💬 Enviar solicitud por WhatsApp</button>
+      <button type="submit" class="form-submit" data-es="💬 Enviar solicitud por WhatsApp" data-en="💬 Send application via WhatsApp">💬 Enviar solicitud por WhatsApp</button>
       <div class="whatsapp-note">
         <span>ℹ️</span>
-        <p>Se abrirá WhatsApp con tu solicitud lista. Solo presiona "Enviar" y el refugio la recibirá.</p>
+        <p data-es="Se abrirá WhatsApp con tu solicitud lista. Solo presiona "Enviar" y el refugio la recibirá." data-en="WhatsApp will open with your application ready. Just press "Send" and the shelter will receive it.">Se abrirá WhatsApp con tu solicitud lista. Solo presiona "Enviar" y el refugio la recibirá.</p>
       </div>
     </form>
   </div>
@@ -175,8 +175,8 @@
 
 <section class="reveal requirements">
   <div style="text-align:center;">
-    <span class="section-badge">Lo que necesitas saber</span>
-    <h2 class="section-title">Requisitos para adoptar</h2>
+    <span class="section-badge" data-es="Lo que necesitas saber" data-en="What you need to know">Lo que necesitas saber</span>
+    <h2 class="section-title" data-es="Requisitos para adoptar" data-en="Requirements to adopt">Requisitos para adoptar</h2>
   </div>
   <div class="req-grid">
     <div class="req-card"><h4>✅ Ser mayor de edad</h4><p>Debes tener 18 años o más para poder adoptar un animal.</p></div>
@@ -287,14 +287,13 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+
 <script>
-// NAV SCROLL
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// HAMBURGER
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const btn = document.getElementById('hamburger');
@@ -308,54 +307,45 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// SCROLL REVEAL
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// LANGUAGE SYSTEM - handles both text and innerHTML
 let currentLang = localStorage.getItem('lang') || 'es';
 
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
-  
+  document.documentElement.lang = lang;
+
+  // Translate text content
   document.querySelectorAll('[data-es]').forEach(el => {
     const val = lang === 'es' ? el.dataset.es : el.dataset.en;
     if (!val) return;
-    // Use innerHTML for elements that have HTML tags in their translation
-    if (val.includes('<') || val.includes('&')) {
-      el.innerHTML = val;
-    } else {
-      el.textContent = val;
-    }
+    if (val.includes('<')) el.innerHTML = val;
+    else el.textContent = val;
   });
 
-  // Update all lang buttons
+  // Translate placeholders
+  document.querySelectorAll('[data-placeholder-es]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
+  });
+
+  // Update lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const flag = btn.querySelector('.lang-flag');
     const text = btn.querySelector('.lang-text');
-    if (lang === 'es') {
-      if (flag) flag.textContent = '🇺🇸';
-      if (text) text.textContent = 'EN';
-    } else {
-      if (flag) flag.textContent = '🇭🇳';
-      if (text) text.textContent = 'ES';
-    }
+    if (flag) flag.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (text) text.textContent = lang === 'es' ? 'EN' : 'ES';
   });
-
-  // Update html lang attribute
-  document.documentElement.lang = lang;
 }
 
-function toggleLang() {
-  applyLang(currentLang === 'es' ? 'en' : 'es');
-}
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 
-// Apply saved language on load
 document.addEventListener('DOMContentLoaded', () => {
   if (currentLang === 'en') applyLang('en');
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 </script>
 </body>

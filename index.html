@@ -140,7 +140,7 @@
   <div class="hero-content">
     <div class="hero-badge" data-es="Refugio Animal — San Pedro Sula, Honduras" data-en="Animal Shelter — San Pedro Sula, Honduras">Refugio Animal — San Pedro Sula, Honduras</div>
     <h1 data-es="Ellos no tienen voz.<br><em>Nosotros sí.</em>" data-en="They have no voice.<br><em>We do.</em>">Ellos no tienen voz.<br><em>Nosotros sí.</em></h1>
-    <p data-es="Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices." data-en="We rescue, care for and find homes for dogs and cats in situations of abandonment or mistreatment. With your help, we keep writing happy endings.">Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices.</p>
+    <p data-es="Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices." data-en="We rescue, care for and find homes for dogs and cats in situations of abandonment or mistreatment. With your help, we keep writing happy endings." data-es="Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices." data-en="We rescue, care for and find homes for dogs and cats in situations of abandonment or mistreatment. With your help, we keep writing happy endings.">Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono o maltrato. Con tu ayuda, seguimos escribiendo finales felices.</p>
     <div class="hero-buttons">
       <a href="animales.html" class="btn-primary"><span data-es="🐾 Ver animales en adopción" data-en="🐾 See animals for adoption">🐾 Ver animales en adopción</span></a>
       <a href="adopcion.html" class="btn-secondary"><span data-es="¿Cómo adoptar?" data-en="How to adopt?">¿Cómo adoptar?</span></a>
@@ -174,7 +174,7 @@
   <div class="mission-content">
     <span class="section-badge" data-es="Nuestra misión" data-en="Our mission">Nuestra misión</span>
     <h2 class="section-title" data-es="Somos el hogar de los que no tienen voz" data-en="We are the home of those who have no voice">Somos el hogar de los que no tienen voz</h2>
-    <p class="section-desc" data-es="En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras." data-en="At Amor y Abrigo we work with heart to give a second chance to animals living on the streets, abandoned or mistreated in Honduras.">En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras.</p>
+    <p class="section-desc" data-es="En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras." data-en="At Amor y Abrigo we work with heart to give a second chance to animals living on the streets, abandoned or mistreated in Honduras." data-es="En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras." data-en="At Amor y Abrigo we work with heart to give a second chance to animals living on the streets, abandoned or mistreated in Honduras.">En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras.</p>
     <div class="feature-list">
       <div class="feature-item reveal reveal-delay-1"><div class="feature-icon">🏥</div><div class="feature-text"><strong data-es="Rescate y atención médica" data-en="Rescue and medical care">Rescate y atención médica</strong><span data-es="Vacunaciones, esterilizaciones y cuidado veterinario integral." data-en="Vaccinations, sterilizations and comprehensive veterinary care.">Vacunaciones, esterilizaciones y cuidado veterinario integral.</span></div></div>
       <div class="feature-item reveal reveal-delay-2"><div class="feature-icon">🏠</div><div class="feature-text"><strong data-es="Adopción responsable" data-en="Responsible adoption">Adopción responsable</strong><span data-es="Proceso completamente gratuito que garantiza el bienestar del animal." data-en="Completely free process that guarantees the animal's wellbeing.">Proceso completamente gratuito que garantiza el bienestar del animal.</span></div></div>
@@ -352,14 +352,13 @@ async function loadHomeAnimals() {
 }
 loadHomeAnimals();
 </script>
+
 <script>
-// NAV SCROLL
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// HAMBURGER
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const btn = document.getElementById('hamburger');
@@ -373,54 +372,45 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// SCROLL REVEAL
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// LANGUAGE SYSTEM - handles both text and innerHTML
 let currentLang = localStorage.getItem('lang') || 'es';
 
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
-  
+  document.documentElement.lang = lang;
+
+  // Translate text content
   document.querySelectorAll('[data-es]').forEach(el => {
     const val = lang === 'es' ? el.dataset.es : el.dataset.en;
     if (!val) return;
-    // Use innerHTML for elements that have HTML tags in their translation
-    if (val.includes('<') || val.includes('&')) {
-      el.innerHTML = val;
-    } else {
-      el.textContent = val;
-    }
+    if (val.includes('<')) el.innerHTML = val;
+    else el.textContent = val;
   });
 
-  // Update all lang buttons
+  // Translate placeholders
+  document.querySelectorAll('[data-placeholder-es]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
+  });
+
+  // Update lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const flag = btn.querySelector('.lang-flag');
     const text = btn.querySelector('.lang-text');
-    if (lang === 'es') {
-      if (flag) flag.textContent = '🇺🇸';
-      if (text) text.textContent = 'EN';
-    } else {
-      if (flag) flag.textContent = '🇭🇳';
-      if (text) text.textContent = 'ES';
-    }
+    if (flag) flag.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (text) text.textContent = lang === 'es' ? 'EN' : 'ES';
   });
-
-  // Update html lang attribute
-  document.documentElement.lang = lang;
 }
 
-function toggleLang() {
-  applyLang(currentLang === 'es' ? 'en' : 'es');
-}
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 
-// Apply saved language on load
 document.addEventListener('DOMContentLoaded', () => {
   if (currentLang === 'en') applyLang('en');
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 </script>
 </body>

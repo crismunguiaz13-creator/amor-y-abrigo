@@ -87,22 +87,22 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
 </div>
 <div class="page-hero">
-  <span class="badge">Tu apoyo salva vidas</span>
-  <h1>Haz una donación</h1>
-  <p>Cada lempira que donas va directamente al cuidado de los animales del refugio.</p>
+  <span class="badge" data-es="Tu apoyo salva vidas" data-en="Your support saves lives">Tu apoyo salva vidas</span>
+  <h1 data-es="Haz una donación" data-en="Make a donation">Haz una donación</h1>
+  <p data-es="Cada lempira que donas va directamente al cuidado de los animales del refugio." data-en="Every lempira you donate goes directly to the care of the shelter animals.">Cada lempira que donas va directamente al cuidado de los animales del refugio.</p>
 </div>
 
 <section class="reveal donations-section">
   <div>
-    <span class="section-badge">¿Cómo ayuda tu donación?</span>
-    <h2 class="section-title">Tu aporte hace la diferencia</h2>
+    <span class="section-badge" data-es="¿Cómo ayuda tu donación?" data-en="How does your donation help?">¿Cómo ayuda tu donación?</span>
+    <h2 class="section-title" data-es="Tu aporte hace la diferencia" data-en="Your contribution makes a difference">Tu aporte hace la diferencia</h2>
     <p class="section-desc" style="margin-bottom:1.5rem;">Con tu donación cubrimos veterinaria, alimento, medicamentos y el mantenimiento del refugio para los animales que lo necesitan.</p>
     <div class="amounts">
       <div class="amount-card selected" onclick="select(this)"><span class="amount-num">L.100</span><div class="amount-label">Alimento</div></div>
       <div class="amount-card" onclick="select(this)"><span class="amount-num">L.300</span><div class="amount-label">Vacuna</div></div>
       <div class="amount-card" onclick="select(this)"><span class="amount-num">L.500</span><div class="amount-label">Veterinaria</div></div>
     </div>
-    <a href="https://paypal.me/amoryabrigohn" target="_blank" class="btn-primary" style="margin-bottom:1.5rem; display:inline-flex;">💙 Donar por PayPal</a>
+    <a href="https://paypal.me/amoryabrigohn" target="_blank" class="btn-primary" style="margin-bottom:1.5rem; display:inline-flex;" data-es="💙 Donar por PayPal" data-en="💙 Donate via PayPal">💙 Donar por PayPal</a>
     <div class="methods">
       <div class="method"><div class="method-icon" style="background:#f0fdf4;">📱</div><div class="method-info"><strong>Tigo Money</strong><span>+504 9824-8715</span></div></div>
       <div class="method"><div class="method-icon" style="background:#eff6ff;">💳</div><div class="method-info"><strong>BAC Honduras</strong><span>#725894521 — Martha Guzman</span></div></div>
@@ -113,17 +113,17 @@
   <div>
     <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Animales del refugio" style="width:100%; border-radius:20px; height:300px; object-fit:cover; margin-bottom:2rem;">
     <div style="background:var(--dark); border-radius:20px; padding:2rem;">
-      <h3 style="font-family:'Fraunces',serif; color:var(--white); font-size:1.3rem; margin-bottom:1rem;">¿Tienes algo que donar?</h3>
+      <h3 style="font-family:'Fraunces',serif; color:var(--white); font-size:1.3rem; margin-bottom:1rem;" data-es="¿Tienes algo que donar?" data-en="Have something to donate?">¿Tienes algo que donar?</h3>
       <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; line-height:1.7; margin-bottom:1.5rem;">También puedes donar alimento para perro y gato, utensilios de aseo, medicamentos y más. Contáctanos para coordinar la entrega.</p>
-      <a href="https://wa.me/50498248715" target="_blank" class="btn-primary">💬 Coordinar donación</a>
+      <a href="https://wa.me/50498248715" target="_blank" class="btn-primary" data-es="💬 Coordinar donación" data-en="💬 Coordinate donation">💬 Coordinar donación</a>
     </div>
   </div>
 </section>
 
 <section class="reveal accounts-section">
   <div style="text-align:center;">
-    <span class="section-badge">Transferencias bancarias</span>
-    <h2 class="section-title">Todas las cuentas</h2>
+    <span class="section-badge" data-es="Transferencias bancarias" data-en="Bank transfers">Transferencias bancarias</span>
+    <h2 class="section-title" data-es="Todas las cuentas" data-en="All accounts">Todas las cuentas</h2>
   </div>
   <div class="accounts-grid">
     <div class="account-card"><div class="account-bank">🏦 BAC Honduras</div><div class="account-name">Martha Guzman</div><div class="account-num">#725894521</div></div>
@@ -137,8 +137,8 @@
 
 <section class="reveal impact-section">
   <div style="text-align:center;">
-    <span class="section-badge">¿A qué va tu donación?</span>
-    <h2 class="section-title">El impacto de tu apoyo</h2>
+    <span class="section-badge" data-es="¿A qué va tu donación?" data-en="Where does your donation go?">¿A qué va tu donación?</span>
+    <h2 class="section-title" data-es="El impacto de tu apoyo" data-en="The impact of your support">El impacto de tu apoyo</h2>
   </div>
   <div class="impact-grid">
     <div class="impact-card"><span class="impact-amount">L.100</span><p class="impact-desc">Cubre alimento para un animal por una semana</p></div>
@@ -204,14 +204,13 @@ function select(el) {
 </script>
 
 
+
 <script>
-// NAV SCROLL
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// HAMBURGER
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const btn = document.getElementById('hamburger');
@@ -225,54 +224,45 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// SCROLL REVEAL
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// LANGUAGE SYSTEM - handles both text and innerHTML
 let currentLang = localStorage.getItem('lang') || 'es';
 
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
-  
+  document.documentElement.lang = lang;
+
+  // Translate text content
   document.querySelectorAll('[data-es]').forEach(el => {
     const val = lang === 'es' ? el.dataset.es : el.dataset.en;
     if (!val) return;
-    // Use innerHTML for elements that have HTML tags in their translation
-    if (val.includes('<') || val.includes('&')) {
-      el.innerHTML = val;
-    } else {
-      el.textContent = val;
-    }
+    if (val.includes('<')) el.innerHTML = val;
+    else el.textContent = val;
   });
 
-  // Update all lang buttons
+  // Translate placeholders
+  document.querySelectorAll('[data-placeholder-es]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
+  });
+
+  // Update lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const flag = btn.querySelector('.lang-flag');
     const text = btn.querySelector('.lang-text');
-    if (lang === 'es') {
-      if (flag) flag.textContent = '🇺🇸';
-      if (text) text.textContent = 'EN';
-    } else {
-      if (flag) flag.textContent = '🇭🇳';
-      if (text) text.textContent = 'ES';
-    }
+    if (flag) flag.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (text) text.textContent = lang === 'es' ? 'EN' : 'ES';
   });
-
-  // Update html lang attribute
-  document.documentElement.lang = lang;
 }
 
-function toggleLang() {
-  applyLang(currentLang === 'es' ? 'en' : 'es');
-}
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 
-// Apply saved language on load
 document.addEventListener('DOMContentLoaded', () => {
   if (currentLang === 'en') applyLang('en');
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 </script>
 </body>

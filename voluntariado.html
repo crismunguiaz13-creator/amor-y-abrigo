@@ -95,23 +95,23 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
 </div>
 <div class="page-hero">
-  <span class="badge">Únete a la causa</span>
-  <h1>Sé parte del cambio</h1>
-  <p>Hay muchas formas de apoyar a Amor y Abrigo. Encuentra la que mejor se adapte a ti.</p>
+  <span class="badge" data-es="Únete a la causa" data-en="Join the cause">Únete a la causa</span>
+  <h1 data-es="Sé parte del cambio" data-en="Be part of the change">Sé parte del cambio</h1>
+  <p data-es="Hay muchas formas de apoyar a Amor y Abrigo. Encuentra la que mejor se adapte a ti." data-en="There are many ways to support Amor y Abrigo. Find the one that best suits you.">Hay muchas formas de apoyar a Amor y Abrigo. Encuentra la que mejor se adapte a ti.</p>
 </div>
 
 <section class="reveal vol-section">
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('voluntario', this)">🤝 Voluntariado</button>
+    <button class="tab-btn active" onclick="switchTab('voluntario', this)" data-es="🤝 Voluntariado" data-en="🤝 Volunteering">🤝 Voluntariado</button>
     <button class="tab-btn" onclick="switchTab('sponsor', this)">💛 Sponsor</button>
-    <button class="tab-btn" onclick="switchTab('convenio', this)">🤝 Convenio</button>
+    <button class="tab-btn" onclick="switchTab('convenio', this)" data-es="🤝 Convenio" data-en="🤝 Partnership">🤝 Convenio</button>
   </div>
 
   <!-- VOLUNTARIADO -->
   <div class="tab-content active" id="tab-voluntario">
     <div class="tab-info">
       <span class="section-badge">Voluntariado</span>
-      <h2>Tu tiempo vale más de lo que imaginas</h2>
+      <h2 data-es="Tu tiempo vale más de lo que imaginas" data-en="Your time is worth more than you think">Tu tiempo vale más de lo que imaginas</h2>
       <p>Como voluntario de Amor y Abrigo puedes marcar una diferencia real en la vida de los animales que rescatamos. No importa cuánto tiempo tengas disponible — cada hora cuenta.</p>
       <div class="benefits">
         <div class="benefit"><div class="benefit-icon">🏠</div><div class="benefit-text"><strong>Hogar temporal</strong><span>Cuida un animal en tu casa mientras encuentra su familia definitiva.</span></div></div>
@@ -122,15 +122,15 @@
       </div>
     </div>
     <div class="form-wrap">
-      <h3>Quiero ser voluntario</h3>
-      <p>Llena el formulario y nos pondremos en contacto contigo pronto.</p>
+      <h3 data-es="Quiero ser voluntario" data-en="I want to volunteer">Quiero ser voluntario</h3>
+      <p data-es="Llena el formulario y nos pondremos en contacto contigo pronto." data-en="Fill out the form and we will contact you soon.">Llena el formulario y nos pondremos en contacto contigo pronto.</p>
       <form id="formVoluntario">
         <div class="form-row">
-          <div class="form-group"><label>Nombre completo</label><input type="text" id="v-nombre" placeholder="Tu nombre" required></div>
-          <div class="form-group"><label>Edad</label><input type="number" id="v-edad" placeholder="Tu edad" required min="16"></div>
+          <div class="form-group"><label data-es="Nombre completo" data-en="Full name">Nombre completo</label><input type="text" id="v-nombre" placeholder="Tu nombre" data-placeholder-es="Tu nombre" data-placeholder-en="Your name" required></div>
+          <div class="form-group"><label data-es="Edad" data-en="Age">Edad</label><input type="number" id="v-edad" placeholder="Tu edad" data-placeholder-es="Tu edad" data-placeholder-en="Your age" required min="16"></div>
         </div>
-        <div class="form-group"><label>Correo electrónico</label><input type="email" id="v-correo" placeholder="correo@ejemplo.com" required></div>
-        <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="v-telefono" placeholder="+504 ####-####" required></div>
+        <div class="form-group"><label data-es="Correo electrónico" data-en="Email address">Correo electrónico</label><input type="email" id="v-correo" placeholder="correo@ejemplo.com" required></div>
+        <div class="form-group"><label data-es="Teléfono / WhatsApp" data-en="Phone / WhatsApp">Teléfono / WhatsApp</label><input type="tel" id="v-telefono" placeholder="+504 ####-####" required></div>
         <div class="form-group">
           <label>Área de interés</label>
           <select id="v-area" required>
@@ -155,7 +155,7 @@
           </select>
         </div>
         <div class="form-group"><label>¿Por qué quieres ser voluntario?</label><textarea id="v-mensaje" rows="3" placeholder="Cuéntanos un poco sobre ti..." required></textarea></div>
-        <button type="submit" class="form-submit" id="btn-voluntario">Enviar solicitud</button>
+        <button type="submit" class="form-submit" id="btn-voluntario" data-es="Enviar solicitud" data-en="Submit application">Enviar solicitud</button>
         <div class="success-msg" id="success-voluntario">✅ ¡Solicitud enviada! Te contactaremos pronto.</div>
         <div class="error-msg-form" id="error-voluntario">⚠️ Hubo un error. Por favor intenta de nuevo.</div>
       </form>
@@ -386,14 +386,13 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+
 <script>
-// NAV SCROLL
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// HAMBURGER
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const btn = document.getElementById('hamburger');
@@ -407,54 +406,45 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// SCROLL REVEAL
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// LANGUAGE SYSTEM - handles both text and innerHTML
 let currentLang = localStorage.getItem('lang') || 'es';
 
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
-  
+  document.documentElement.lang = lang;
+
+  // Translate text content
   document.querySelectorAll('[data-es]').forEach(el => {
     const val = lang === 'es' ? el.dataset.es : el.dataset.en;
     if (!val) return;
-    // Use innerHTML for elements that have HTML tags in their translation
-    if (val.includes('<') || val.includes('&')) {
-      el.innerHTML = val;
-    } else {
-      el.textContent = val;
-    }
+    if (val.includes('<')) el.innerHTML = val;
+    else el.textContent = val;
   });
 
-  // Update all lang buttons
+  // Translate placeholders
+  document.querySelectorAll('[data-placeholder-es]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
+  });
+
+  // Update lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const flag = btn.querySelector('.lang-flag');
     const text = btn.querySelector('.lang-text');
-    if (lang === 'es') {
-      if (flag) flag.textContent = '🇺🇸';
-      if (text) text.textContent = 'EN';
-    } else {
-      if (flag) flag.textContent = '🇭🇳';
-      if (text) text.textContent = 'ES';
-    }
+    if (flag) flag.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (text) text.textContent = lang === 'es' ? 'EN' : 'ES';
   });
-
-  // Update html lang attribute
-  document.documentElement.lang = lang;
 }
 
-function toggleLang() {
-  applyLang(currentLang === 'es' ? 'en' : 'es');
-}
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 
-// Apply saved language on load
 document.addEventListener('DOMContentLoaded', () => {
   if (currentLang === 'en') applyLang('en');
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 </script>
 </body>

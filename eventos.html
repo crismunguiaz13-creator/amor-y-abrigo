@@ -84,9 +84,9 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
 </div>
 <div class="page-hero">
-  <span class="badge">Actividades del refugio</span>
-  <h1>Próximos eventos</h1>
-  <p>Entérate de nuestras actividades y únete a la causa. ¡Todos son bienvenidos!</p>
+  <span class="badge" data-es="Actividades del refugio" data-en="Shelter activities">Actividades del refugio</span>
+  <h1 data-es="Próximos eventos" data-en="Upcoming events">Próximos eventos</h1>
+  <p data-es="Entérate de nuestras actividades y únete a la causa. ¡Todos son bienvenidos!" data-en="Find out about our activities and join the cause. Everyone is welcome!">Entérate de nuestras actividades y únete a la causa. ¡Todos son bienvenidos!</p>
 </div>
 
 <section class="reveal events-section">
@@ -94,20 +94,20 @@
     <div class="event-card">
       <div class="event-header">
         <div class="event-date-box"><div class="event-day">15</div><div class="event-month">Abr</div></div>
-        <span class="event-type type-adoption">Feria de adopción</span>
+        <span class="event-type type-adoption" data-es="Feria de adopción" data-en="Adoption fair">Feria de adopción</span>
       </div>
       <div class="event-body">
         <div class="event-title">Gran Feria de Adopción — Abril</div>
         <p class="event-desc">Trae a tu familia y conoce a los animales en persona. Habrá actividades, comida y mucho amor. ¡La entrada es libre!</p>
         <div class="event-meta">📍 Parque Central, SPS</div>
         <div class="event-meta">🕐 10:00 AM — 4:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Más información</a>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Más información" data-en="More info">Más información</a>
       </div>
     </div>
     <div class="event-card">
       <div class="event-header">
         <div class="event-date-box"><div class="event-day">22</div><div class="event-month">Abr</div></div>
-        <span class="event-type type-fundraiser">Recaudación</span>
+        <span class="event-type type-fundraiser" data-es="Recaudación" data-en="Fundraiser">Recaudación</span>
       </div>
       <div class="event-body">
         <div class="event-title">Bingo Benéfico a favor del refugio</div>
@@ -127,13 +127,13 @@
         <p class="event-desc">Únete a nuestros voluntarios para ayudar con la limpieza, baño de animales y mantenimiento del refugio.</p>
         <div class="event-meta">📍 Refugio Amor y Abrigo</div>
         <div class="event-meta">🕐 8:00 AM — 12:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Participar</a>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Participar" data-en="Participate">Participar</a>
       </div>
     </div>
     <div class="event-card">
       <div class="event-header">
         <div class="event-date-box"><div class="event-day">18</div><div class="event-month">May</div></div>
-        <span class="event-type type-health">Salud animal</span>
+        <span class="event-type type-health" data-es="Salud animal" data-en="Animal health">Salud animal</span>
       </div>
       <div class="event-body">
         <div class="event-title">Jornada de vacunación gratuita</div>
@@ -222,14 +222,13 @@
 </footer>
 
 
+
 <script>
-// NAV SCROLL
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// HAMBURGER
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const btn = document.getElementById('hamburger');
@@ -243,54 +242,45 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// SCROLL REVEAL
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// LANGUAGE SYSTEM - handles both text and innerHTML
 let currentLang = localStorage.getItem('lang') || 'es';
 
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
-  
+  document.documentElement.lang = lang;
+
+  // Translate text content
   document.querySelectorAll('[data-es]').forEach(el => {
     const val = lang === 'es' ? el.dataset.es : el.dataset.en;
     if (!val) return;
-    // Use innerHTML for elements that have HTML tags in their translation
-    if (val.includes('<') || val.includes('&')) {
-      el.innerHTML = val;
-    } else {
-      el.textContent = val;
-    }
+    if (val.includes('<')) el.innerHTML = val;
+    else el.textContent = val;
   });
 
-  // Update all lang buttons
+  // Translate placeholders
+  document.querySelectorAll('[data-placeholder-es]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
+  });
+
+  // Update lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const flag = btn.querySelector('.lang-flag');
     const text = btn.querySelector('.lang-text');
-    if (lang === 'es') {
-      if (flag) flag.textContent = '🇺🇸';
-      if (text) text.textContent = 'EN';
-    } else {
-      if (flag) flag.textContent = '🇭🇳';
-      if (text) text.textContent = 'ES';
-    }
+    if (flag) flag.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (text) text.textContent = lang === 'es' ? 'EN' : 'ES';
   });
-
-  // Update html lang attribute
-  document.documentElement.lang = lang;
 }
 
-function toggleLang() {
-  applyLang(currentLang === 'es' ? 'en' : 'es');
-}
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 
-// Apply saved language on load
 document.addEventListener('DOMContentLoaded', () => {
   if (currentLang === 'en') applyLang('en');
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 </script>
 </body>

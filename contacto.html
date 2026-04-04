@@ -75,16 +75,16 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
 </div>
 <div class="page-hero">
-  <span class="badge">Hablemos</span>
-  <h1>¿Listo para hacer la diferencia?</h1>
-  <p>Contáctanos por cualquiera de estos medios. Estaremos felices de escucharte.</p>
+  <span class="badge" data-es="Hablemos" data-en="Let's talk">Hablemos</span>
+  <h1 data-es="¿Listo para hacer la diferencia?" data-en="Ready to make a difference?">¿Listo para hacer la diferencia?</h1>
+  <p data-es="Contáctanos por cualquiera de estos medios. Estaremos felices de escucharte." data-en="Contact us through any of these channels. We will be happy to hear from you.">Contáctanos por cualquiera de estos medios. Estaremos felices de escucharte.</p>
 </div>
 
 <section class="reveal contact-section">
   <div>
-    <span class="section-badge">Encuéntranos</span>
-    <h2 class="section-title">Información de contacto</h2>
-    <p class="section-desc">Estamos disponibles para responder tus preguntas sobre adopción, voluntariado o donaciones.</p>
+    <span class="section-badge" data-es="Encuéntranos" data-en="Find us">Encuéntranos</span>
+    <h2 class="section-title" data-es="Información de contacto" data-en="Contact information">Información de contacto</h2>
+    <p class="section-desc" data-es="Estamos disponibles para responder tus preguntas sobre adopción, voluntariado o donaciones." data-en="We are available to answer your questions about adoption, volunteering or donations.">Estamos disponibles para responder tus preguntas sobre adopción, voluntariado o donaciones.</p>
     <div class="contact-methods">
       <a href="https://wa.me/50498248715" target="_blank" class="contact-method">
         <div class="contact-method-icon" style="background:#dcfce7;">💬</div>
@@ -92,7 +92,7 @@
       </a>
       <a href="mailto:amoryabrigo13@gmail.com" class="contact-method">
         <div class="contact-method-icon" style="background:#dbeafe;">✉️</div>
-        <div class="contact-method-text"><strong>Correo electrónico</strong><span>amoryabrigo13@gmail.com</span></div>
+        <div class="contact-method-text"><strong data-es="Correo electrónico" data-en="Email address">Correo electrónico</strong><span>amoryabrigo13@gmail.com</span></div>
       </a>
       <a href="https://instagram.com/amoryabrigo" target="_blank" class="contact-method">
         <div class="contact-method-icon" style="background:#fce7f3;">📸</div>
@@ -113,25 +113,25 @@
     </div>
   </div>
   <div class="form-wrap">
-    <h3>Envíanos un mensaje</h3>
-    <p>Responderemos lo antes posible por WhatsApp o correo.</p>
+    <h3 data-es="Envíanos un mensaje" data-en="Send us a message">Envíanos un mensaje</h3>
+    <p data-es="Responderemos lo antes posible por WhatsApp o correo." data-en="We will respond as soon as possible via WhatsApp or email.">Responderemos lo antes posible por WhatsApp o correo.</p>
     <form id="contactForm" action="https://formspree.io/f/amoryabrigo13@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="Mensaje de contacto — Amor y Abrigo">
-      <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+      <div class="form-group"><label data-es="Nombre" data-en="Name">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" data-placeholder-es="Tu nombre" data-placeholder-en="Your name" required></div>
       <div class="form-group"><label>Correo electrónico</label><input type="email" name="email" placeholder="tu@correo.com" required></div>
       <div class="form-group"><label>Teléfono (opcional)</label><input type="tel" name="telefono" placeholder="+504 ####-####"></div>
       <div class="form-group"><label>Asunto</label>
         <select name="asunto">
           <option>Quiero adoptar</option>
-          <option>Quiero ser voluntario</option>
+          <option data-es="Quiero ser voluntario" data-en="I want to volunteer">Quiero ser voluntario</option>
           <option>Quiero donar</option>
           <option>Tengo un animal para rescatar</option>
           <option>Pregunta general</option>
           <option>Otro</option>
         </select>
       </div>
-      <div class="form-group"><label>Mensaje</label><textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea></div>
-      <button type="submit" class="form-submit form-submit-blue">Enviar mensaje</button>
+      <div class="form-group"><label data-es="Mensaje" data-en="Message">Mensaje</label><textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" data-placeholder-es="¿En qué podemos ayudarte?" data-placeholder-en="How can we help you?" required></textarea></div>
+      <button type="submit" class="form-submit form-submit-blue" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
       <div class="success-msg" id="successMsg">✅ ¡Mensaje enviado! Te responderemos pronto.</div>
     </form>
   </div>
@@ -196,14 +196,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </script>
 
 
+
 <script>
-// NAV SCROLL
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// HAMBURGER
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const btn = document.getElementById('hamburger');
@@ -217,54 +216,45 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// SCROLL REVEAL
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// LANGUAGE SYSTEM - handles both text and innerHTML
 let currentLang = localStorage.getItem('lang') || 'es';
 
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
-  
+  document.documentElement.lang = lang;
+
+  // Translate text content
   document.querySelectorAll('[data-es]').forEach(el => {
     const val = lang === 'es' ? el.dataset.es : el.dataset.en;
     if (!val) return;
-    // Use innerHTML for elements that have HTML tags in their translation
-    if (val.includes('<') || val.includes('&')) {
-      el.innerHTML = val;
-    } else {
-      el.textContent = val;
-    }
+    if (val.includes('<')) el.innerHTML = val;
+    else el.textContent = val;
   });
 
-  // Update all lang buttons
+  // Translate placeholders
+  document.querySelectorAll('[data-placeholder-es]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
+  });
+
+  // Update lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const flag = btn.querySelector('.lang-flag');
     const text = btn.querySelector('.lang-text');
-    if (lang === 'es') {
-      if (flag) flag.textContent = '🇺🇸';
-      if (text) text.textContent = 'EN';
-    } else {
-      if (flag) flag.textContent = '🇭🇳';
-      if (text) text.textContent = 'ES';
-    }
+    if (flag) flag.textContent = lang === 'es' ? '🇺🇸' : '🇭🇳';
+    if (text) text.textContent = lang === 'es' ? 'EN' : 'ES';
   });
-
-  // Update html lang attribute
-  document.documentElement.lang = lang;
 }
 
-function toggleLang() {
-  applyLang(currentLang === 'es' ? 'en' : 'es');
-}
+function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 
-// Apply saved language on load
 document.addEventListener('DOMContentLoaded', () => {
   if (currentLang === 'en') applyLang('en');
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 </script>
 </body>
