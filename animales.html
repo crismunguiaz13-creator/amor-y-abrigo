@@ -158,108 +158,41 @@
 </footer>
 
 <script>
-const SHEET_URL = 'https://corsproxy.io/?https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
-
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
-  return lines.slice(1).map(line => {
-    const values = [];
-    let current = '', inQuotes = false;
-    for (let i = 0; i < line.length; i++) {
-      if (line[i] === '"') { inQuotes = !inQuotes; }
-      else if (line[i] === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
-      else { current += line[i]; }
-    }
-    values.push(current.trim());
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = (values[i] || '').replace(/"/g, '').trim());
-    return obj;
-  }).filter(a => a.nombre && a.nombre !== '');
-}
-
-function getStatusClass(estado) {
-  const e = (estado || '').toLowerCase();
-  if (e.includes('disponible')) return 'status-disponible';
-  if (e.includes('reservado')) return 'status-reservado';
-  if (e.includes('adoptado')) return 'status-adoptado';
-  return 'status-disponible';
-}
-
-function renderAnimal(animal) {
-  const foto = animal.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
-  const statusClass = getStatusClass(animal.estado);
-  const isAdopted = (animal.estado || '').toLowerCase().includes('adoptado');
-  const isReserved = (animal.estado || '').toLowerCase().includes('reservado');
-  const btnClass = isAdopted ? 'adoptado' : isReserved ? 'reservado' : '';
-  const btnText = isAdopted ? '¡Ya adoptado! 🎉' : isReserved ? 'Aplicar como 2ª opción' : `Quiero adoptar a ${animal.nombre}`;
-
-  return `<div class="animal-card" data-tipo="${(animal.tipo||'').toLowerCase()}" data-estado="${(animal.estado||'').toLowerCase()}">
-    <div class="animal-img">
-      <img src="${foto}" alt="${animal.nombre}" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'">
-      <span class="animal-status ${statusClass}">${animal.estado || 'Disponible'}</span>
-    </div>
-    <div class="animal-info">
-      <div class="animal-name">${animal.nombre}</div>
-      <div class="animal-tags">
-        ${animal.tipo ? `<span class="animal-tag">${animal.tipo}</span>` : ''}
-        ${animal.edad ? `<span class="animal-tag">${animal.edad}</span>` : ''}
-        ${animal.tamano ? `<span class="animal-tag">${animal.tamano}</span>` : ''}
-        ${animal.sexo ? `<span class="animal-tag">${animal.sexo}</span>` : ''}
-      </div>
-      <p class="animal-desc">${animal.descripcion || ''}</p>
-      ${isAdopted
-        ? `<div class="animal-btn adoptado">${btnText}</div>`
-        : `<a href="adopcion.html" class="animal-btn ${btnClass}">${btnText}</a>`}
-    </div>
-  </div>`;
-}
-
-function filterAnimals(type, btn) {
-  if (btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-  const grid = document.getElementById('animalsGrid');
-  let visible = 0;
-  grid.querySelectorAll('.animal-card').forEach(card => {
-    const tipo = (card.dataset.tipo || '').toLowerCase();
-    const estado = (card.dataset.estado || '').toLowerCase();
-    let show = type === 'todos' ? true
-      : type === 'perro' ? tipo.includes('perro') || tipo.includes('perra')
-      : type === 'gato' ? tipo.includes('gato') || tipo.includes('gata')
-      : type === 'disponible' ? estado.includes('disponible')
-      : type === 'reservado' ? estado.includes('reservado') : false;
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-  const noResults = document.getElementById('noResults');
-  noResults.style.display = visible === 0 ? 'block' : 'none';
-}
+const GVIZ_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/gviz/tq?tqx=out:json&sheet=Sheet1';
 
 async function loadAnimals() {
   try {
-    const res = await fetch(SHEET_URL);
-    if (!res.ok) throw new Error('Error');
+    const res = await fetch(GVIZ_URL);
+    if (!res.ok) throw new Error();
     const text = await res.text();
-    const animals = parseCSV(text);
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    const cols = json.table.cols.map(c => c.label.toLowerCase().trim());
+    const rows = json.table.rows;
+    const animals = rows.map(row => {
+      const obj = {};
+      cols.forEach((col, i) => { obj[col] = row.c[i] ? (row.c[i].v || '') : ''; });
+      return obj;
+    }).filter(a => a.nombre && a.nombre !== '');
+
     const grid = document.getElementById('animalsGrid');
     document.getElementById('loadingDiv').style.display = 'none';
-    if (animals.length === 0) {
+
+    if (!animals.length) {
       document.getElementById('noResults').style.display = 'block';
-      document.getElementById('noResults').textContent = '¡Pronto agregaremos nuevos animales!';
+      document.getElementById('noResults').textContent = 'Pronto agregaremos nuevos animales.';
       return;
     }
-    grid.innerHTML = animals.map(renderAnimal).join('');
+
+    grid.innerHTML = animals.map(animal => renderAnimal(animal)).join('');
     grid.style.display = 'grid';
     filterAnimals('todos', null);
   } catch(err) {
     document.getElementById('loadingDiv').style.display = 'none';
     document.getElementById('noResults').style.display = 'block';
     document.getElementById('noResults').textContent = 'No se pudieron cargar los animales. Intenta de nuevo más tarde.';
+    console.error(err);
   }
 }
-
 loadAnimals();
 
 // NAV + LANG

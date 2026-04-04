@@ -292,40 +292,35 @@ function toggleLang(){applyLang(lang==='es'?'en':'es');}
 document.addEventListener('DOMContentLoaded',()=>{if(lang==='en')applyLang('en');document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));});
 
 
-const SHEET_URL = 'https://corsproxy.io/?https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
-
-function parseCSV(text) {
-  const lines = text.trim().split('
-');
-  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
-  return lines.slice(1).map(line => {
-    const values = [];
-    let cur = '', inQ = false;
-    for (let i = 0; i < line.length; i++) {
-      if (line[i] === '"') { inQ = !inQ; }
-      else if (line[i] === ',' && !inQ) { values.push(cur.trim()); cur = ''; }
-      else { cur += line[i]; }
-    }
-    values.push(cur.trim());
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = (values[i] || '').replace(/"/g, '').trim());
-    return obj;
-  }).filter(a => a.nombre && a.nombre !== '');
-}
+const GVIZ_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/gviz/tq?tqx=out:json&sheet=Sheet1';
 
 async function loadHomeAnimals() {
   try {
-    const res = await fetch(SHEET_URL);
+    const res = await fetch(GVIZ_URL);
     if (!res.ok) throw new Error();
     const text = await res.text();
-    const animals = parseCSV(text);
+    // gviz returns JS with JSON inside: google.visualization.Query.setResponse({...})
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    const cols = json.table.cols.map(c => c.label.toLowerCase().trim());
+    const rows = json.table.rows;
+    
+    const animals = rows.map(row => {
+      const obj = {};
+      cols.forEach((col, i) => {
+        obj[col] = row.c[i] ? (row.c[i].v || '') : '';
+      });
+      return obj;
+    }).filter(a => a.nombre && a.nombre !== '');
+
     const avail = animals.filter(a => !(a.estado || '').toLowerCase().includes('adoptado'));
     const latest = avail.slice(-3).reverse();
     const grid = document.getElementById('homeAnimalsGrid');
+
     if (!latest.length) {
       grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">Pronto agregaremos animales disponibles.</div>';
       return;
     }
+
     grid.innerHTML = latest.map(a => {
       const foto = a.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
       const isReserved = (a.estado || '').toLowerCase().includes('reservado');
@@ -349,7 +344,8 @@ async function loadHomeAnimals() {
       </div>`;
     }).join('');
   } catch(e) {
-    document.getElementById('homeAnimalsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales.</div>';
+    console.error(e);
+    document.getElementById('homeAnimalsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales. <a href=\"animales.html\" style=\"color:var(--blue)\">Ver catálogo completo →</a></div>';
   }
 }
 loadHomeAnimals();
