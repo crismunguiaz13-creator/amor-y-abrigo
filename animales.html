@@ -157,19 +157,65 @@
 </footer>
 
 <script>
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
+
+let allAnimals = [];
+
+function parseCSV(text) {
+  const lines = text.trim().split('
+');
+  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+  return lines.slice(1).map(line => {
+    const values = [];
+    let current = '', inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] === '"') { inQuotes = !inQuotes; }
+      else if (line[i] === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
+      else { current += line[i]; }
+    }
+    values.push(current.trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (values[i] || '').replace(/"/g, '').trim());
+    return obj;
+  }).filter(a => a.nombre && a.nombre !== '');
+}
+
+function filterAnimals(type, btn) {
+  if (btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const grid = document.getElementById('animalsGrid');
+  let visible = 0;
+  grid.querySelectorAll('.animal-card').forEach(card => {
+    const tipo = (card.dataset.tipo || '').toLowerCase();
+    const estado = (card.dataset.estado || '').toLowerCase();
+    let show = type === 'todos' ? true
+      : type === 'perro' ? tipo.includes('perro') || tipo.includes('perra')
+      : type === 'gato' ? tipo.includes('gato') || tipo.includes('gata')
+      : type === 'disponible' ? estado.includes('disponible')
+      : type === 'reservado' ? estado.includes('reservado') : false;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const noResults = document.getElementById('noResults');
+  noResults.style.display = visible === 0 ? 'block' : 'none';
+}
+
 async function loadAnimals() {
   try {
-    const res = await fetch('animales.json');
-    if (!res.ok) throw new Error();
-    const animals = await res.json();
+    const res = await fetch(SHEET_URL);
+    if (!res.ok) throw new Error('Error al cargar');
+    const text = await res.text();
+    allAnimals = parseCSV(text);
     const grid = document.getElementById('animalsGrid');
     document.getElementById('loadingDiv').style.display = 'none';
-    if (!animals.length) {
+    if (!allAnimals.length) {
       document.getElementById('noResults').style.display = 'block';
       document.getElementById('noResults').textContent = 'Pronto agregaremos nuevos animales.';
       return;
     }
-    grid.innerHTML = animals.map(animal => renderAnimal(animal)).join('');
+    grid.innerHTML = allAnimals.map(animal => renderAnimal(animal)).join('');
     grid.style.display = 'grid';
     filterAnimals('todos', null);
   } catch(err) {
