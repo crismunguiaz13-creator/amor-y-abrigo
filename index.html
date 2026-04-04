@@ -311,30 +311,53 @@ function renderCard(a) {
   var foto = a.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
   var estado = a.estado || 'Disponible';
   var est = estado.toLowerCase();
-  var badgeCls = est.includes('reservado') ? 'badge-reservado' : est.includes('adoptado') ? 'badge-adoptado' : 'badge-disponible';
-  var btnCls = est.includes('reservado') ? 'reservado' : est.includes('adoptado') ? 'adoptado' : '';
-  var btnTxt = est.includes('adoptado') ? '¡Ya adoptado! 🎉' : est.includes('reservado') ? 'Aplicar como 2ª opción' : 'Quiero adoptar a ' + a.nombre;
+  var badgeCls = est.indexOf('reservado') > -1 ? 'badge-reservado' : est.indexOf('adoptado') > -1 ? 'badge-adoptado' : 'badge-disponible';
+  var btnCls = est.indexOf('reservado') > -1 ? 'reservado' : est.indexOf('adoptado') > -1 ? 'adoptado' : '';
+  var btnTxt = est.indexOf('adoptado') > -1 ? '¡Ya adoptado! 🎉' : est.indexOf('reservado') > -1 ? 'Aplicar como 2ª opción' : 'Quiero adoptar a ' + a.nombre;
   var tags = '';
   if (a.tipo) tags += '<span class="animal-tag">' + a.tipo + '</span>';
   if (a.edad) tags += '<span class="animal-tag">' + a.edad + '</span>';
   if (a.sexo) tags += '<span class="animal-tag">' + a.sexo + '</span>';
+  var desc = (a.descripcion || '');
+  if (desc.length > 100) desc = desc.substring(0, 100) + '...';
   return '<div class="animal-card">' +
     '<div class="animal-img">' +
-      '<img src="' + foto + '" alt="' + a.nombre + '" onerror="this.src=\'https://www.amoryabrigohn.org/images/slider2.jpg\'">' +
-      '<span class="animal-badge ' + badgeCls + '">' + estado + '</span>' +
+    '<img src="' + foto + '" alt="' + a.nombre + '" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'">' +
+    '<span class="animal-badge ' + badgeCls + '">' + estado + '</span>' +
     '</div>' +
     '<div class="animal-body">' +
-      '<div class="animal-name">' + a.nombre + '</div>' +
-      '<div class="animal-tags">' + tags + '</div>' +
-      '<p class="animal-desc">' + (a.descripcion || '').substring(0, 100) + ((a.descripcion||'').length > 100 ? '...' : '') + '</p>' +
-      '<a href="adopcion.html" class="animal-btn ' + btnCls + '">' + btnTxt + '</a>' +
+    '<div class="animal-name">' + a.nombre + '</div>' +
+    '<div class="animal-tags">' + tags + '</div>' +
+    '<p class="animal-desc">' + desc + '</p>' +
+    '<a href="adopcion.html" class="animal-btn ' + btnCls + '">' + btnTxt + '</a>' +
     '</div>' +
-  '</div>';
+    '</div>';
 }
 
-.catch(function() {
-    var grid = document.getElementById("homeGrid");
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);" data-es="No se pudieron cargar los animales." data-en="Could not load animals.">No se pudieron cargar los animales.</div>';
+fetch(API)
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var grid = document.getElementById('homeGrid');
+    var avail = [];
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].nombre && data[i].estado.toLowerCase().indexOf('adoptado') === -1) {
+        avail.push(data[i]);
+      }
+    }
+    var latest = avail.slice(-3).reverse();
+    if (!latest.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">Pronto agregaremos animales disponibles.</div>';
+      return;
+    }
+    var html = '';
+    for (var j = 0; j < latest.length; j++) {
+      html += renderCard(latest[j]);
+    }
+    grid.innerHTML = html;
+  })
+  .catch(function() {
+    var grid = document.getElementById('homeGrid');
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales.</div>';
   });
 </script>
 </body></html>
