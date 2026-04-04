@@ -290,30 +290,61 @@ function getFotoUrl(foto) {
 }
 
 async function loadHomeAnimals() {
+  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
+  
+  function parseCSV(text) {
+    const lines = text.trim().split('
+');
+    const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+    return lines.slice(1).map(line => {
+      const values = [];
+      let current = '', inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        if (line[i] === '"') { inQuotes = !inQuotes; }
+        else if (line[i] === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
+        else { current += line[i]; }
+      }
+      values.push(current.trim());
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = (values[i] || '').replace(/"/g, '').trim());
+      return obj;
+    }).filter(a => a.nombre && a.nombre !== '');
+  }
+
   try {
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/_animales?ref=${GITHUB_BRANCH}`);
+    const res = await fetch(SHEET_URL);
     if (!res.ok) throw new Error('Error');
-    const files = await res.json();
-    const mdFiles = files.filter(f => f.name.endsWith('.md')).slice(0, 3);
-    const animals = await Promise.all(mdFiles.map(async file => {
-      const r = await fetch(file.download_url);
-      const text = await r.text();
-      return parseFrontmatter(text);
-    }));
-    const disponibles = animals.filter(a => a.nombre && a.published !== 'false');
+    const text = await res.text();
+    const animals = parseCSV(text);
+    const disponibles = animals.filter(a => !(a.estado||'').toLowerCase().includes('adoptado'));
+    const latest = disponibles.slice(-3).reverse();
     const grid = document.getElementById('homeAnimalsGrid');
-    if (disponibles.length === 0) {
+    if (latest.length === 0) {
       grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">Pronto agregaremos animales disponibles.</div>';
       return;
     }
-    grid.innerHTML = disponibles.map(animal => {
-      const foto = getFotoUrl(animal.foto);
+    grid.innerHTML = latest.map(animal => {
+      const foto = animal.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
       const isReserved = (animal.estado||'').toLowerCase().includes('reservado');
-      const isAdopted = (animal.estado||'').toLowerCase().includes('adoptado');
-      const statusClass = isAdopted ? 'status-reserved' : isReserved ? 'status-reserved' : 'status-available';
-      const btnStyle = isReserved || isAdopted ? 'background:var(--gray)' : '';
-      const btnText = isAdopted ? '¡Ya adoptado! 🎉' : isReserved ? 'Aplicar como 2ª opción' : `Quiero adoptar a ${animal.nombre}`;
-      return `<div class="animal-card"><div class="animal-img"><img src="${foto}" alt="${animal.nombre}" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'"><span class="animal-status ${statusClass}">${animal.estado||'Disponible'}</span></div><div class="animal-info"><div class="animal-name">${animal.nombre}</div><div class="animal-tags">${animal.tipo?`<span class="animal-tag">${animal.tipo}</span>`:''} ${animal.edad?`<span class="animal-tag">${animal.edad}</span>`:''} ${animal.sexo?`<span class="animal-tag">${animal.sexo}</span>`:''}</div><p class="animal-desc">${(animal.descripcion||'').substring(0,100)}...</p><a href="adopcion.html" class="animal-btn" style="${btnStyle}">${btnText}</a></div></div>`;
+      const statusClass = isReserved ? 'status-reserved' : 'status-available';
+      const btnStyle = isReserved ? 'background:var(--gray)' : '';
+      const btnText = isReserved ? 'Aplicar como 2ª opción' : `Quiero adoptar a ${animal.nombre}`;
+      return `<div class="animal-card">
+        <div class="animal-img">
+          <img src="${foto}" alt="${animal.nombre}" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'">
+          <span class="animal-status ${statusClass}">${animal.estado || 'Disponible'}</span>
+        </div>
+        <div class="animal-info">
+          <div class="animal-name">${animal.nombre}</div>
+          <div class="animal-tags">
+            ${animal.tipo ? `<span class="animal-tag">${animal.tipo}</span>` : ''}
+            ${animal.edad ? `<span class="animal-tag">${animal.edad}</span>` : ''}
+            ${animal.sexo ? `<span class="animal-tag">${animal.sexo}</span>` : ''}
+          </div>
+          <p class="animal-desc">${(animal.descripcion||'').substring(0,100)}...</p>
+          <a href="animales.html" class="animal-btn" style="${btnStyle}">${btnText}</a>
+        </div>
+      </div>`;
     }).join('');
   } catch(err) {
     document.getElementById('homeAnimalsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales.</div>';
