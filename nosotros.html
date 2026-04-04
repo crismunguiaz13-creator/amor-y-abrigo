@@ -32,34 +32,36 @@
 </style>
 </head>
 <body>
-<nav>
+<nav id="mainNav">
   <a href="index.html" class="nav-logo">
     <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
     <span>Amor y Abrigo</span>
   </a>
   <div class="nav-links">
-    <a href="index.html">Inicio</a>
-    <a href="nosotros.html" class="active">Nosotros</a>
-    <a href="animales.html">Animales</a>
-    <a href="adopcion.html">Adopción</a>
-    <a href="voluntariado.html">Voluntariado</a>
-    <a href="eventos.html">Eventos</a>
-    <a href="donaciones.html">Donaciones</a>
-    <a href="contacto.html" class="nav-cta">Contacto</a>
+    <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="nosotros.html" class="active" data-es="Nosotros" data-en="About Us">Nosotros</a>
+    <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
+    <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
+    <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
+    <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
+    <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
+    <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn"><span class="flag">🇺🇸</span> EN</button>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Inicio</a>
-  <a href="nosotros.html" class="active">Nosotros</a>
-  <a href="animales.html">Animales</a>
-  <a href="adopcion.html">Adopción</a>
-  <a href="voluntariado.html">Voluntariado</a>
-  <a href="eventos.html">Eventos</a>
-  <a href="donaciones.html">Donaciones</a>
-  <a href="contacto.html" class="nav-cta">Contacto</a>
+  <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+  <a href="nosotros.html" class="active" data-es="Nosotros" data-en="About Us">Nosotros</a>
+  <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
+  <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
+  <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
+  <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
+  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
+  <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
+  <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnMobile"><span class="flag">🇺🇸</span> EN</button></div>
 </div>
 
 <div class="page-hero">
@@ -68,7 +70,7 @@
   <p>Conoce quiénes somos, nuestra misión y el equipo detrás del refugio.</p>
 </div>
 
-<section class="about-section">
+<section class="about-section reveal">
   <div class="about-grid">
     <div>
       <span class="section-badge">Rescatando vidas, creando esperanza</span>
@@ -90,7 +92,7 @@
   </div>
 </section>
 
-<section class="values">
+<section class="values reveal">
   <div style="text-align:center;">
     <span class="section-badge">Lo que nos mueve</span>
     <h2 class="section-title">Nuestros valores</h2>
@@ -105,7 +107,7 @@
   </div>
 </section>
 
-<section class="mission-vision">
+<section class="mission-vision reveal">
   <div style="text-align:center;">
     <span class="section-badge">Nuestro norte</span>
     <h2 class="section-title">Misión y visión</h2>
@@ -123,49 +125,24 @@
 </section>
 
 
-<section style="padding: 5rem 4rem; background: var(--light);">
+<section style="padding: 5rem 4rem; background: var(--light);" class="reveal">
   <div style="text-align:center; margin-bottom:3rem;">
-    <span class="section-badge">Quienes nos apoyan</span>
-    <h2 class="section-title">Agradecemos a los que creen en nuestra misión</h2>
-    <p class="section-desc" style="max-width:600px; margin:0 auto;">Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras.</p>
+    <span class="section-badge" data-es="Quienes nos apoyan" data-en="Our supporters">Quienes nos apoyan</span>
+    <h2 class="section-title" data-es="Agradecemos a los que creen en nuestra misión" data-en="We thank those who believe in our mission">Agradecemos a los que creen en nuestra misión</h2>
+    <p class="section-desc" style="max-width:600px; margin:0 auto;" data-es="Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras." data-en="Companies and organizations that have made our animal rescue and adoption work possible in Honduras.">Empresas y organizaciones que han hecho posible nuestro trabajo de rescate y adopción animal en Honduras.</p>
   </div>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:2rem; align-items:center; max-width:900px; margin:0 auto;">
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/funo.png" alt="Funo Vet-Pecuaria" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">Funo Vet-Pecuaria</p>
-    </div>
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/china.png" alt="China Wok" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">China Wok</p>
-    </div>
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/pizzahut.png" alt="Pizza Hut" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">Pizza Hut</p>
-    </div>
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/economascotas.png" alt="Econo Mascotas" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">Econo Mascotas</p>
-    </div>
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/ads.png" alt="Adopt Don't Shop Honduras" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">Adopt Don't Shop HN</p>
-    </div>
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/ihop.png" alt="IHOP" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">IHOP</p>
-    </div>
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/gallomasgallo.png" alt="El Gallo Más Gallo" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">El Gallo Más Gallo</p>
-    </div>
-    <div style="text-align:center;">
-      <img src="https://www.amoryabrigohn.org/images/mamanina.png" alt="Mama Nina's" style="max-height:80px; max-width:150px; object-fit:contain; filter:grayscale(30%);">
-      <p style="font-size:0.8rem; color:var(--gray); margin-top:0.5rem; font-weight:600;">Mama Nina's</p>
-    </div>
-
+  <div class="collab-grid">
+    <div class="collab-item reveal reveal-delay-1"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/funo.png" alt="Funo Vet-Pecuaria"></div><span class="collab-name">Funo Vet-Pecuaria</span></div>
+    <div class="collab-item reveal reveal-delay-2"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/china.png" alt="China Wok"></div><span class="collab-name">China Wok</span></div>
+    <div class="collab-item reveal reveal-delay-3"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/pizzahut.png" alt="Pizza Hut"></div><span class="collab-name">Pizza Hut</span></div>
+    <div class="collab-item reveal reveal-delay-1"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/economascotas.png" alt="Econo Mascotas"></div><span class="collab-name">Econo Mascotas</span></div>
+    <div class="collab-item reveal reveal-delay-2"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/ads.png" alt="Adopt Don't Shop HN"></div><span class="collab-name">Adopt Don't Shop HN</span></div>
+    <div class="collab-item reveal reveal-delay-3"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/ihop.png" alt="IHOP"></div><span class="collab-name">IHOP</span></div>
+    <div class="collab-item reveal reveal-delay-1"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/gallomasgallo.png" alt="El Gallo Más Gallo"></div><span class="collab-name">El Gallo Más Gallo</span></div>
+    <div class="collab-item reveal reveal-delay-2"><div class="collab-circle"><img src="https://www.amoryabrigohn.org/images/mamanina.png" alt="Mama Nina's"></div><span class="collab-name">Mama Nina's</span></div>
   </div>
   <div style="text-align:center; margin-top:3rem;">
-    <a href="voluntariado.html" class="btn-primary">¿Quieres ser colaborador? →</a>
+    <a href="voluntariado.html" class="btn-primary" data-es="¿Quieres ser colaborador? →" data-en="Want to be a collaborator? →">¿Quieres ser colaborador? →</a>
   </div>
 </section>
 <section class="cta-section">
@@ -176,27 +153,109 @@
 
 <footer>
   <div class="footer-top">
-    <div class="footer-brand"><img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'"><p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️</p><div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a><a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a><a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a><a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a><a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a></div></div>
-    <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
-    <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
-    <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
+    <div class="footer-brand">
+      <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+      <p data-es="Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras." data-en="We rescue, rehabilitate and offer abandoned animals for adoption. 🐶🐱❤️ San Pedro Sula, Honduras.">Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+<a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn tiktok" title="TikTok">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      </a>
+<a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+<a href="https://wa.me/50498248715" target="_blank" class="social-btn whatsapp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+<a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn paypal" title="PayPal">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z" fill="white"/><path d="M6.674 2.712l-.508 3.22a.641.641 0 01-.633.54H3.194L4.944.901C5.026.382 5.474 0 5.998 0h2.523c.524 0 .946.381 1.028.9l.508 3.22C9.57 3.566 9.076 3.2 8.52 3.066c-.387-.093-.793-.14-1.21-.14-.215 0-.427.014-.636.04z" fill="white" opacity=".7"/></svg>
+      </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
+      <ul>
+        <li><a href="index.html" data-es="Inicio" data-en="Home">Inicio</a></li>
+        <li><a href="nosotros.html" data-es="Nosotros" data-en="About Us">Nosotros</a></li>
+        <li><a href="animales.html" data-es="Animales" data-en="Animals">Animales</a></li>
+        <li><a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a></li>
+        <li><a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a></li>
+        <li><a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a></li>
+        <li><a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a></li>
+        <li><a href="contacto.html" data-es="Contacto" data-en="Contact">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-es="Contacto" data-en="Contact">Contacto</h4>
+      <p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-es="Donaciones" data-en="Donations">Donaciones</h4>
+      <p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p>
+    </div>
   </div>
-  <div class="footer-bottom"><p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p><p>Hecho con ❤️ para los animales de Honduras</p></div>
+  <div class="footer-bottom">
+    <p data-es="© 2026 Amor y Abrigo Honduras. Todos los derechos reservados." data-en="© 2026 Amor y Abrigo Honduras. All rights reserved.">© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
+    <p data-es="Hecho con ❤️ para los animales de Honduras" data-en="Made with ❤️ for the animals of Honduras">Hecho con ❤️ para los animales de Honduras</p>
+  </div>
 </footer>
+
 <script>
+// NAV SCROLL EFFECT
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// HAMBURGER MENU
 function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const btn = document.getElementById("hamburger");
-  menu.classList.toggle("open");
-  btn.classList.toggle("open");
-}
-document.addEventListener("click", function(e) {
-  const menu = document.getElementById("mobileMenu");
-  const btn = document.getElementById("hamburger");
-  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-    menu.classList.remove("open");
-    btn.classList.remove("open");
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  if (menu && btn) {
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
   }
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
+// SCROLL REVEAL ANIMATION
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// LANGUAGE TOGGLE
+let currentLang = localStorage.getItem('lang') || 'es';
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
+  });
+  const btns = document.querySelectorAll('.lang-btn');
+  btns.forEach(btn => {
+    btn.innerHTML = lang === 'es' ? '<span class="flag">🇺🇸</span> EN' : '<span class="flag">🇭🇳</span> ES';
+  });
+}
+function toggleLang() {
+  applyLang(currentLang === 'es' ? 'en' : 'es');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  if (currentLang === 'en') applyLang('en');
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 </script>
 </body>
