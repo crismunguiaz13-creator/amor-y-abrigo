@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros — Amor y Abrigo</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.about-section { padding: 5rem 4rem; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 5rem; }
+.about-img { width: 100%; height: 420px; object-fit: cover; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+.values { padding: 5rem 4rem; background: var(--light); }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.value-card { background: var(--white); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 15px rgba(0,0,0,0.06); border-top: 4px solid var(--blue); }
+.value-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.value-card h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; }
+.value-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+.mission-vision { padding: 5rem 4rem; }
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+.mv-card { padding: 2.5rem; border-radius: 20px; }
+.mv-card.mission { background: var(--dark); }
+.mv-card.vision { background: var(--blue); }
+.mv-card h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+.mv-card p { color: rgba(255,255,255,0.8); line-height: 1.8; }
+.cta-section { padding: 5rem 4rem; background: var(--red); text-align: center; }
+.cta-section h2 { font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 900; color: var(--white); margin-bottom: 1rem; }
+.cta-section p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; }
+.btn-white { background: var(--white); color: var(--red); padding: 0.875rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+@media (max-width: 1024px) { .about-section, .values, .mission-vision, .cta-section { padding: 3rem 2rem; } .about-grid, .mv-grid { grid-template-columns: 1fr; gap: 2rem; } .values-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .values-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+    <span>Amor y Abrigo</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html" class="active">Nosotros</a>
+    <a href="animales.html">Animales</a>
+    <a href="adopcion.html">Adopción</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="donaciones.html">Donaciones</a>
+    <a href="contacto.html" class="nav-cta">Contacto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html" class="active">Nosotros</a>
+  <a href="animales.html">Animales</a>
+  <a href="adopcion.html">Adopción</a>
+  <a href="eventos.html">Eventos</a>
+  <a href="donaciones.html">Donaciones</a>
+  <a href="contacto.html" class="nav-cta">Contacto</a>
+</div>
+
+<div class="page-hero">
+  <span class="badge">Nuestra historia</span>
+  <h1>Más de 13 años de amor animal</h1>
+  <p>Conoce quiénes somos, nuestra misión y el equipo detrás del refugio.</p>
+</div>
+
+<section class="about-section">
+  <div class="about-grid">
+    <div>
+      <span class="section-badge">Rescatando vidas, creando esperanza</span>
+      <h2 class="section-title">Somos el hogar de los que no tienen voz</h2>
+      <p class="section-desc" style="margin-bottom:1rem;">En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a los animales en situación de calle, abandono o maltrato en Honduras.</p>
+      <p class="section-desc" style="margin-bottom:1rem;">Nuestro refugio nace del compromiso de proteger la vida, ofrecer alimento, atención médica y un espacio seguro a perros y gatos que necesitan un hogar.</p>
+      <p class="section-desc">Creemos en la adopción responsable como la mejor forma de transformar realidades y construir una sociedad más compasiva. Cada rescate, cada historia de recuperación y cada adopción nos inspira a seguir adelante.</p>
+    </div>
+    <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Refugio Amor y Abrigo" class="about-img">
+  </div>
+  <div class="about-grid" style="margin-bottom:0;">
+    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&h=420&fit=crop" alt="Animales del refugio" class="about-img">
+    <div>
+      <span class="section-badge">Nuestra historia</span>
+      <h2 class="section-title">Desde hace más de 13 años rescatando vidas</h2>
+      <p class="section-desc" style="margin-bottom:1rem;">La fundación Amor y Abrigo nació del deseo de ayudar a los animales abandonados. Fue iniciada por un grupo de amantes de los animales que decidieron hacer la diferencia en su comunidad de San Pedro Sula.</p>
+      <p class="section-desc">Hemos servido a más de 300 animales, brindándoles atención médica, alimentación y un entorno seguro. Muchos de nuestros rescatados han encontrado familias que los aman incondicionalmente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div style="text-align:center;">
+    <span class="section-badge">Lo que nos mueve</span>
+    <h2 class="section-title">Nuestros valores</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card"><span class="value-icon">❤️</span><h3>Amor y compasión</h3><p>Cada animal merece ser tratado con amor y dignidad, sin importar su historia.</p></div>
+    <div class="value-card"><span class="value-icon">🏥</span><h3>Atención médica</h3><p>Brindamos vacunaciones, esterilizaciones y tratamiento integral antes de cada adopción.</p></div>
+    <div class="value-card"><span class="value-icon">🤝</span><h3>Adopción responsable</h3><p>Evaluamos cuidadosamente a cada adoptante para garantizar hogares amorosos y seguros.</p></div>
+    <div class="value-card"><span class="value-icon">🌱</span><h3>Comunidad</h3><p>Fomentamos una cultura de respeto, compasión y responsabilidad hacia los animales.</p></div>
+    <div class="value-card"><span class="value-icon">🔍</span><h3>Transparencia</h3><p>Comunicación abierta con adoptantes y donantes sobre el progreso de nuestros rescatados.</p></div>
+    <div class="value-card"><span class="value-icon">💪</span><h3>Perseverancia</h3><p>Más de 13 años de labor continua, sin importar los desafíos del camino.</p></div>
+  </div>
+</section>
+
+<section class="mission-vision">
+  <div style="text-align:center;">
+    <span class="section-badge">Nuestro norte</span>
+    <h2 class="section-title">Misión y visión</h2>
+  </div>
+  <div class="mv-grid">
+    <div class="mv-card mission">
+      <h3>🎯 Misión</h3>
+      <p>Brindar refugio, cuidado médico, alimentación y amor a animales en situación de abandono, promoviendo la adopción responsable y fomentando en la sociedad una cultura de respeto, compasión y responsabilidad.</p>
+    </div>
+    <div class="mv-card vision">
+      <h3>🌟 Visión</h3>
+      <p>Ser un referente en Honduras en la protección y bienestar animal, construyendo un país donde cada perro y gato tenga un hogar digno y donde la comunidad valore la vida animal como parte esencial de una sociedad justa, solidaria y humana.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Haz la diferencia hoy</h2>
+  <p>Únete a nuestra misión adoptando, donando o siendo voluntario.</p>
+  <a href="animales.html" class="btn-white">Ver animales en adopción →</a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'"><p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️</p><div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a><a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a><a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a><a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a><a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a></div></div>
+    <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
+    <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p><p>Hecho con ❤️ para los animales de Honduras</p></div>
+</footer>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  menu.classList.toggle("open");
+  btn.classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove("open");
+    btn.classList.remove("open");
+  }
+});
+</script>
+</body>
+</html>

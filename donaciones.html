@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donaciones — Amor y Abrigo</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.donations-section { padding: 5rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.amounts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+.amount-card { padding: 1.5rem; border: 2px solid var(--border); border-radius: 16px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.amount-card:hover, .amount-card.selected { border-color: var(--blue); background: #eff6ff; }
+.amount-num { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 900; color: var(--blue); display: block; }
+.amount-label { font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; }
+.methods { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
+.method { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; background: var(--light); border-radius: 14px; }
+.method-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.method-info strong { display: block; font-size: 0.875rem; font-weight: 600; color: var(--dark); }
+.method-info span { font-size: 0.85rem; color: var(--gray); }
+.accounts-section { padding: 5rem 4rem; background: var(--light); }
+.accounts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+.account-card { background: var(--white); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+.account-bank { font-weight: 700; color: var(--dark); margin-bottom: 0.25rem; font-size: 1rem; }
+.account-name { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.5rem; }
+.account-num { font-family: monospace; font-size: 0.9rem; color: var(--blue); font-weight: 600; background: var(--light); padding: 0.4rem 0.75rem; border-radius: 8px; display: inline-block; }
+.impact-section { padding: 5rem 4rem; }
+.impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.impact-card { text-align: center; padding: 2rem; background: var(--light); border-radius: 16px; }
+.impact-amount { font-family: 'Fraunces', serif; font-size: 1.75rem; font-weight: 900; color: var(--blue); display: block; margin-bottom: 0.5rem; }
+.impact-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+@media (max-width: 1024px) { .donations-section { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 3rem; } .accounts-section, .impact-section { padding: 3rem 2rem; } .accounts-grid { grid-template-columns: 1fr 1fr; } .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .accounts-grid, .impact-grid { grid-template-columns: 1fr; } .amounts { grid-template-columns: repeat(3, 1fr); } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+    <span>Amor y Abrigo</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="animales.html">Animales</a>
+    <a href="adopcion.html">Adopción</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="donaciones.html" class="active">Donaciones</a>
+    <a href="contacto.html" class="nav-cta">Contacto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="animales.html">Animales</a>
+  <a href="adopcion.html">Adopción</a>
+  <a href="eventos.html">Eventos</a>
+  <a href="donaciones.html" class="active">Donaciones</a>
+  <a href="contacto.html" class="nav-cta">Contacto</a>
+</div>
+
+<div class="page-hero">
+  <span class="badge">Tu apoyo salva vidas</span>
+  <h1>Haz una donación</h1>
+  <p>Cada lempira que donas va directamente al cuidado de los animales del refugio.</p>
+</div>
+
+<section class="donations-section">
+  <div>
+    <span class="section-badge">¿Cómo ayuda tu donación?</span>
+    <h2 class="section-title">Tu aporte hace la diferencia</h2>
+    <p class="section-desc" style="margin-bottom:1.5rem;">Con tu donación cubrimos veterinaria, alimento, medicamentos y el mantenimiento del refugio para los animales que lo necesitan.</p>
+    <div class="amounts">
+      <div class="amount-card selected" onclick="select(this)"><span class="amount-num">L.100</span><div class="amount-label">Alimento</div></div>
+      <div class="amount-card" onclick="select(this)"><span class="amount-num">L.300</span><div class="amount-label">Vacuna</div></div>
+      <div class="amount-card" onclick="select(this)"><span class="amount-num">L.500</span><div class="amount-label">Veterinaria</div></div>
+    </div>
+    <a href="https://paypal.me/amoryabrigohn" target="_blank" class="btn-primary" style="margin-bottom:1.5rem; display:inline-flex;">💙 Donar por PayPal</a>
+    <div class="methods">
+      <div class="method"><div class="method-icon" style="background:#f0fdf4;">📱</div><div class="method-info"><strong>Tigo Money</strong><span>+504 9824-8715</span></div></div>
+      <div class="method"><div class="method-icon" style="background:#eff6ff;">💳</div><div class="method-info"><strong>BAC Honduras</strong><span>#725894521 — Martha Guzman</span></div></div>
+      <div class="method"><div class="method-icon" style="background:#fef9c3;">🏦</div><div class="method-info"><strong>Ficohsa</strong><span>2000-10593777 — Alba Ruby Assaf</span></div></div>
+      <div class="method"><div class="method-icon" style="background:#fce7f3;">📦</div><div class="method-info"><strong>Donación en especie</strong><span>Alimento, medicamentos, accesorios</span></div></div>
+    </div>
+  </div>
+  <div>
+    <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Animales del refugio" style="width:100%; border-radius:20px; height:300px; object-fit:cover; margin-bottom:2rem;">
+    <div style="background:var(--dark); border-radius:20px; padding:2rem;">
+      <h3 style="font-family:'Fraunces',serif; color:var(--white); font-size:1.3rem; margin-bottom:1rem;">¿Tienes algo que donar?</h3>
+      <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; line-height:1.7; margin-bottom:1.5rem;">También puedes donar alimento para perro y gato, utensilios de aseo, medicamentos y más. Contáctanos para coordinar la entrega.</p>
+      <a href="https://wa.me/50498248715" target="_blank" class="btn-primary">💬 Coordinar donación</a>
+    </div>
+  </div>
+</section>
+
+<section class="accounts-section">
+  <div style="text-align:center;">
+    <span class="section-badge">Transferencias bancarias</span>
+    <h2 class="section-title">Todas las cuentas</h2>
+  </div>
+  <div class="accounts-grid">
+    <div class="account-card"><div class="account-bank">🏦 BAC Honduras</div><div class="account-name">Martha Guzman</div><div class="account-num">#725894521</div></div>
+    <div class="account-card"><div class="account-bank">🏦 Banco Occidente</div><div class="account-name">Martha Guzman</div><div class="account-num">#212490001366</div></div>
+    <div class="account-card"><div class="account-bank">🏦 Banpaís</div><div class="account-name">Geissel Oseguera</div><div class="account-num">#210330024388</div></div>
+    <div class="account-card"><div class="account-bank">🏦 Banco Atlántida</div><div class="account-name">Geissel Oseguera</div><div class="account-num">014720192047</div></div>
+    <div class="account-card"><div class="account-bank">🏦 Ficohsa</div><div class="account-name">Alba Ruby Assaf</div><div class="account-num">2000-10593777</div></div>
+    <div class="account-card"><div class="account-bank">📱 Tengo</div><div class="account-name">Transferencia móvil</div><div class="account-num">8978-1190</div></div>
+  </div>
+</section>
+
+<section class="impact-section">
+  <div style="text-align:center;">
+    <span class="section-badge">¿A qué va tu donación?</span>
+    <h2 class="section-title">El impacto de tu apoyo</h2>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card"><span class="impact-amount">L.100</span><p class="impact-desc">Cubre alimento para un animal por una semana</p></div>
+    <div class="impact-card"><span class="impact-amount">L.300</span><p class="impact-desc">Paga una vacuna o desparasitación</p></div>
+    <div class="impact-card"><span class="impact-amount">L.500</span><p class="impact-desc">Cubre una consulta veterinaria de emergencia</p></div>
+    <div class="impact-card"><span class="impact-amount">L.1,000</span><p class="impact-desc">Ayuda con medicamentos para un animal en recuperación</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'"><p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️</p><div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a><a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a><a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a><a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a><a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a></div></div>
+    <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
+    <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p><p>Hecho con ❤️ para los animales de Honduras</p></div>
+</footer>
+<script>
+function select(el) {
+  document.querySelectorAll('.amount-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+</script>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  menu.classList.toggle("open");
+  btn.classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove("open");
+    btn.classList.remove("open");
+  }
+});
+</script>
+</body>
+</html>

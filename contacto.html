@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Amor y Abrigo</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.contact-section { padding: 5rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.contact-methods { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.contact-method { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; background: var(--light); border-radius: 16px; text-decoration: none; transition: all 0.2s; color: inherit; }
+.contact-method:hover { transform: translateX(4px); background: #e8f4ff; }
+.contact-method-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+.contact-method-text strong { display: block; font-weight: 700; color: var(--dark); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.2rem; }
+.contact-method-text span { color: var(--gray); font-size: 0.9rem; }
+.form-wrap { background: var(--dark); border-radius: 24px; padding: 2.5rem; }
+.form-wrap h3 { font-family: 'Fraunces', serif; font-size: 1.75rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+.form-wrap p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 2rem; }
+.success-msg { display: none; background: #dcfce7; color: #166534; padding: 1rem; border-radius: 12px; text-align: center; font-weight: 600; margin-top: 1rem; }
+@media (max-width: 1024px) { .contact-section { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 3rem; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+    <span>Amor y Abrigo</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="animales.html">Animales</a>
+    <a href="adopcion.html">Adopción</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="donaciones.html">Donaciones</a>
+    <a href="contacto.html" class="nav-cta active">Contacto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="animales.html">Animales</a>
+  <a href="adopcion.html">Adopción</a>
+  <a href="eventos.html">Eventos</a>
+  <a href="donaciones.html">Donaciones</a>
+  <a href="contacto.html" class="nav-cta active">Contacto</a>
+</div>
+
+<div class="page-hero">
+  <span class="badge">Hablemos</span>
+  <h1>¿Listo para hacer la diferencia?</h1>
+  <p>Contáctanos por cualquiera de estos medios. Estaremos felices de escucharte.</p>
+</div>
+
+<section class="contact-section">
+  <div>
+    <span class="section-badge">Encuéntranos</span>
+    <h2 class="section-title">Información de contacto</h2>
+    <p class="section-desc">Estamos disponibles para responder tus preguntas sobre adopción, voluntariado o donaciones.</p>
+    <div class="contact-methods">
+      <a href="https://wa.me/50498248715" target="_blank" class="contact-method">
+        <div class="contact-method-icon" style="background:#dcfce7;">💬</div>
+        <div class="contact-method-text"><strong>WhatsApp</strong><span>+504 9824-8715</span></div>
+      </a>
+      <a href="mailto:amoryabrigo13@gmail.com" class="contact-method">
+        <div class="contact-method-icon" style="background:#dbeafe;">✉️</div>
+        <div class="contact-method-text"><strong>Correo electrónico</strong><span>amoryabrigo13@gmail.com</span></div>
+      </a>
+      <a href="https://instagram.com/amoryabrigo" target="_blank" class="contact-method">
+        <div class="contact-method-icon" style="background:#fce7f3;">📸</div>
+        <div class="contact-method-text"><strong>Instagram</strong><span>@amoryabrigo · 29K seguidores</span></div>
+      </a>
+      <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="contact-method">
+        <div class="contact-method-icon" style="background:#f3f4f6;">🎵</div>
+        <div class="contact-method-text"><strong>TikTok</strong><span>@amor.y.abrigo</span></div>
+      </a>
+      <a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="contact-method">
+        <div class="contact-method-icon" style="background:#dbeafe;">👍</div>
+        <div class="contact-method-text"><strong>Facebook</strong><span>Refugio Amor y Abrigo</span></div>
+      </a>
+      <div class="contact-method">
+        <div class="contact-method-icon" style="background:#fef9c3;">📍</div>
+        <div class="contact-method-text"><strong>Ubicación</strong><span>Col. Montefresco este, 14 av. D, 33 calle, SPS</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="form-wrap">
+    <h3>Envíanos un mensaje</h3>
+    <p>Responderemos lo antes posible por WhatsApp o correo.</p>
+    <form id="contactForm" action="https://formspree.io/f/amoryabrigo13@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Mensaje de contacto — Amor y Abrigo">
+      <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+      <div class="form-group"><label>Correo electrónico</label><input type="email" name="email" placeholder="tu@correo.com" required></div>
+      <div class="form-group"><label>Teléfono (opcional)</label><input type="tel" name="telefono" placeholder="+504 ####-####"></div>
+      <div class="form-group"><label>Asunto</label>
+        <select name="asunto">
+          <option>Quiero adoptar</option>
+          <option>Quiero ser voluntario</option>
+          <option>Quiero donar</option>
+          <option>Tengo un animal para rescatar</option>
+          <option>Pregunta general</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensaje</label><textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea></div>
+      <button type="submit" class="form-submit form-submit-blue">Enviar mensaje</button>
+      <div class="success-msg" id="successMsg">✅ ¡Mensaje enviado! Te responderemos pronto.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'"><p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️</p><div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a><a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a><a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a><a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a><a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a></div></div>
+    <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
+    <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p><p>Hecho con ❤️ para los animales de Honduras</p></div>
+</footer>
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const data = new FormData(this);
+  fetch(this.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(() => { document.getElementById('successMsg').style.display = 'block'; this.reset(); })
+    .catch(() => { document.getElementById('successMsg').style.display = 'block'; this.reset(); });
+});
+</script>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  menu.classList.toggle("open");
+  btn.classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove("open");
+    btn.classList.remove("open");
+  }
+});
+</script>
+</body>
+</html>

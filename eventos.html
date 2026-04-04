@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventos — Amor y Abrigo</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.events-section { padding: 5rem 4rem; }
+.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.event-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.06); transition: all 0.3s; border: 1px solid var(--border); }
+.event-card:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+.event-header { padding: 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--border); }
+.event-date-box { min-width: 60px; text-align: center; }
+.event-day { font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 900; line-height: 1; color: var(--dark); }
+.event-month { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+.event-type { padding: 0.3rem 0.75rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.type-adoption { background: #dbeafe; color: var(--blue); }
+.type-fundraiser { background: #fce7f3; color: #9d174d; }
+.type-volunteer { background: #dcfce7; color: #166534; }
+.type-health { background: #fef9c3; color: #854d0e; }
+.event-body { padding: 1.5rem; }
+.event-title { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; }
+.event-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.6; margin-bottom: 1rem; }
+.event-meta { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--gray); margin-bottom: 0.5rem; }
+.event-btn { display: block; text-align: center; padding: 0.75rem; background: var(--blue); color: var(--white); border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.875rem; margin-top: 1rem; transition: all 0.2s; }
+.event-btn:hover { background: #1a7de0; }
+@media (max-width: 1024px) { .events-section { padding: 3rem 2rem; } .events-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .events-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+    <span>Amor y Abrigo</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="animales.html">Animales</a>
+    <a href="adopcion.html">Adopción</a>
+    <a href="eventos.html" class="active">Eventos</a>
+    <a href="donaciones.html">Donaciones</a>
+    <a href="contacto.html" class="nav-cta">Contacto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="animales.html">Animales</a>
+  <a href="adopcion.html">Adopción</a>
+  <a href="eventos.html" class="active">Eventos</a>
+  <a href="donaciones.html">Donaciones</a>
+  <a href="contacto.html" class="nav-cta">Contacto</a>
+</div>
+
+<div class="page-hero">
+  <span class="badge">Actividades del refugio</span>
+  <h1>Próximos eventos</h1>
+  <p>Entérate de nuestras actividades y únete a la causa. ¡Todos son bienvenidos!</p>
+</div>
+
+<section class="events-section">
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-header">
+        <div class="event-date-box"><div class="event-day">15</div><div class="event-month">Abr</div></div>
+        <span class="event-type type-adoption">Feria de adopción</span>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Gran Feria de Adopción — Abril</div>
+        <p class="event-desc">Trae a tu familia y conoce a los animales en persona. Habrá actividades, comida y mucho amor. ¡La entrada es libre!</p>
+        <div class="event-meta">📍 Parque Central, SPS</div>
+        <div class="event-meta">🕐 10:00 AM — 4:00 PM</div>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Más información</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-header">
+        <div class="event-date-box"><div class="event-day">22</div><div class="event-month">Abr</div></div>
+        <span class="event-type type-fundraiser">Recaudación</span>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Bingo Benéfico a favor del refugio</div>
+        <p class="event-desc">Participa en nuestro bingo solidario. Todos los fondos van directamente al cuidado de los animales rescatados.</p>
+        <div class="event-meta">📍 Sede del refugio</div>
+        <div class="event-meta">🕐 3:00 PM</div>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Más información</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-header">
+        <div class="event-date-box"><div class="event-day">05</div><div class="event-month">May</div></div>
+        <span class="event-type type-volunteer">Voluntariado</span>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Día de limpieza y cuidado del refugio</div>
+        <p class="event-desc">Únete a nuestros voluntarios para ayudar con la limpieza, baño de animales y mantenimiento del refugio.</p>
+        <div class="event-meta">📍 Refugio Amor y Abrigo</div>
+        <div class="event-meta">🕐 8:00 AM — 12:00 PM</div>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Participar</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-header">
+        <div class="event-date-box"><div class="event-day">18</div><div class="event-month">May</div></div>
+        <span class="event-type type-health">Salud animal</span>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Jornada de vacunación gratuita</div>
+        <p class="event-desc">Vacunación y desparasitación gratuita para mascotas del sector. Trae a tu perro o gato y ayúdanos a proteger a la comunidad.</p>
+        <div class="event-meta">📍 Col. Montefresco, SPS</div>
+        <div class="event-meta">🕐 9:00 AM — 1:00 PM</div>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Más información</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-header">
+        <div class="event-date-box"><div class="event-day">01</div><div class="event-month">Jun</div></div>
+        <span class="event-type type-fundraiser">Recaudación</span>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Venta de comida a beneficio del refugio</div>
+        <p class="event-desc">Disfruta de deliciosa comida y apoya al mismo tiempo a los animales del refugio. ¡Un win-win para todos!</p>
+        <div class="event-meta">📍 Por confirmar</div>
+        <div class="event-meta">🕐 11:00 AM — 3:00 PM</div>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Más información</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-header">
+        <div class="event-date-box"><div class="event-day">15</div><div class="event-month">Jun</div></div>
+        <span class="event-type type-adoption">Feria de adopción</span>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Feria de adopción — Junio</div>
+        <p class="event-desc">Nuestra feria mensual de adopción. Ven y conoce a los animales disponibles, trae a toda la familia.</p>
+        <div class="event-meta">📍 Mall Multiplaza, SPS</div>
+        <div class="event-meta">🕐 10:00 AM — 4:00 PM</div>
+        <a href="https://wa.me/50498248715" target="_blank" class="event-btn">Más información</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'"><p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️</p><div class="footer-socials"><a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a><a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a><a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a><a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a><a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a></div></div>
+    <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
+    <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p><p>Hecho con ❤️ para los animales de Honduras</p></div>
+</footer>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  menu.classList.toggle("open");
+  btn.classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("hamburger");
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove("open");
+    btn.classList.remove("open");
+  }
+});
+</script>
+</body>
+</html>

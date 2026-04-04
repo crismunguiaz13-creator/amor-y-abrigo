@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animales en Adopción — Amor y Abrigo</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.animals-section { padding: 4rem 4rem 6rem; background: var(--light); }
+.filters { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap; }
+.filter-btn { padding: 0.5rem 1.25rem; border-radius: 50px; border: 2px solid var(--border); background: var(--white); font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; color: var(--gray); font-family: 'DM Sans', sans-serif; }
+.filter-btn.active, .filter-btn:hover { border-color: var(--blue); background: var(--blue); color: var(--white); }
+.animals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.animal-card { background: var(--white); border-radius: 20px; overflow: hidden; transition: all 0.3s; box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
+.animal-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+.animal-img { position: relative; height: 240px; overflow: hidden; }
+.animal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.animal-card:hover .animal-img img { transform: scale(1.05); }
+.animal-status { position: absolute; top: 12px; left: 12px; padding: 0.3rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+.status-available { background: #dcfce7; color: #166534; }
+.status-reserved { background: #fef9c3; color: #854d0e; }
+.status-adopted { background: #dbeafe; color: #1e40af; }
+.animal-info { padding: 1.5rem; }
+.animal-name { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+.animal-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.animal-tag { padding: 0.2rem 0.6rem; background: var(--light); border-radius: 50px; font-size: 0.75rem; font-weight: 500; color: var(--gray); text-transform: uppercase; }
+.animal-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.6; margin-bottom: 1.25rem; }
+.animal-btn { display: block; text-align: center; padding: 0.875rem; background: var(--red); color: var(--white); border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+.animal-btn:hover { background: #c73530; }
+.animal-btn.reserved { background: var(--gray); }
+.animal-btn.adopted { background: #1e40af; }
+.loading { text-align: center; padding: 4rem; }
+.loading-spinner { width: 48px; height: 48px; border: 4px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading p { color: var(--gray); font-size: 1rem; }
+.no-results { text-align: center; padding: 3rem; color: var(--gray); font-size: 1.1rem; display: none; }
+.error-msg { text-align: center; padding: 3rem; background: #fef2f2; border-radius: 16px; color: var(--red); }
+.how-to-add { background: var(--white); border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 2rem; border: 2px dashed var(--blue); display: flex; align-items: center; gap: 1rem; }
+.how-to-add span { font-size: 1.5rem; }
+.how-to-add p { font-size: 0.9rem; color: var(--gray); margin: 0; }
+.how-to-add strong { color: var(--dark); }
+@media (max-width: 1024px) { .animals-section { padding: 3rem 2rem; } .animals-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .animals-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+    <span>Amor y Abrigo</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="animales.html" class="active">Animales</a>
+    <a href="adopcion.html">Adopción</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="donaciones.html">Donaciones</a>
+    <a href="contacto.html" class="nav-cta">Contacto</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="animales.html" class="active">Animales</a>
+  <a href="adopcion.html">Adopción</a>
+  <a href="eventos.html">Eventos</a>
+  <a href="donaciones.html">Donaciones</a>
+  <a href="contacto.html" class="nav-cta">Contacto</a>
+</div>
+
+<div class="page-hero">
+  <span class="badge">Encuentra tu compañero</span>
+  <h1>Animales en adopción</h1>
+  <p>Todos esperan un hogar lleno de amor. La adopción es completamente gratuita.</p>
+</div>
+
+<section class="animals-section">
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterAnimals('todos', this)">Todos</button>
+    <button class="filter-btn" onclick="filterAnimals('perro', this)">Perros</button>
+    <button class="filter-btn" onclick="filterAnimals('gato', this)">Gatos</button>
+    <button class="filter-btn" onclick="filterAnimals('disponible', this)">Disponibles</button>
+    <button class="filter-btn" onclick="filterAnimals('reservado', this)">Reservados</button>
+  </div>
+
+  <div id="loadingDiv" class="loading">
+    <div class="loading-spinner"></div>
+    <p>Cargando animales...</p>
+  </div>
+
+  <div class="animals-grid" id="animalsGrid" style="display:none;"></div>
+  <div class="no-results" id="noResults">No hay animales en esta categoría por el momento.</div>
+  <div id="errorDiv" class="error-msg" style="display:none;">
+    <p>⚠️ No se pudieron cargar los animales. Por favor intenta de nuevo más tarde.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+      <p>Rescatamos, rehabilitamos y damos en adopción a animales abandonados. 🐶🐱❤️ San Pedro Sula, Honduras.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/amoryabrigo" target="_blank" class="social-btn">📸</a>
+        <a href="https://www.tiktok.com/@amor.y.abrigo" target="_blank" class="social-btn">🎵</a>
+        <a href="https://www.facebook.com/amoryabrigohn" target="_blank" class="social-btn">👍</a>
+        <a href="https://wa.me/50498248715" target="_blank" class="social-btn">💬</a>
+        <a href="https://paypal.me/amoryabrigohn" target="_blank" class="social-btn">💙</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Navegación</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="animales.html">Animales</a></li><li><a href="adopcion.html">Adopción</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="donaciones.html">Donaciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p></div>
+    <div class="footer-col"><h4>Donaciones</h4><p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Amor y Abrigo Honduras. Todos los derechos reservados.</p>
+    <p>Hecho con ❤️ para los animales de Honduras</p>
+  </div>
+</footer>
+
+<script>
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAJm_8TwpTEoUayx5BI3MTjqQqVWxfQb74rax7O0I1G6eyxuQR4fqSxOyi9OS6rfNF-5Hhcgcg8gNa/pub?gid=0&single=true&output=csv';
+
+let allAnimals = [];
+let currentFilter = 'todos';
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+  return lines.slice(1).map(line => {
+    const values = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] === '"') { inQuotes = !inQuotes; }
+      else if (line[i] === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
+      else { current += line[i]; }
+    }
+    values.push(current.trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (values[i] || '').replace(/"/g, '').trim());
+    return obj;
+  }).filter(a => a.nombre && a.nombre !== '');
+}
+
+function getStatusClass(estado) {
+  const e = (estado || '').toLowerCase();
+  if (e.includes('disponible')) return 'status-available';
+  if (e.includes('reservado')) return 'status-reserved';
+  if (e.includes('adoptado')) return 'status-adopted';
+  return 'status-available';
+}
+
+function getBtnClass(estado) {
+  const e = (estado || '').toLowerCase();
+  if (e.includes('reservado')) return 'reserved';
+  if (e.includes('adoptado')) return 'adopted';
+  return '';
+}
+
+function getBtnText(animal) {
+  const e = (animal.estado || '').toLowerCase();
+  if (e.includes('reservado')) return 'Aplicar como 2ª opción';
+  if (e.includes('adoptado')) return '¡Ya fue adoptado! 🎉';
+  return `Quiero adoptar a ${animal.nombre}`;
+}
+
+function renderAnimal(animal) {
+  const foto = animal.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
+  const statusClass = getStatusClass(animal.estado);
+  const btnClass = getBtnClass(animal.estado);
+  const btnText = getBtnText(animal);
+  const isAdopted = (animal.estado || '').toLowerCase().includes('adoptado');
+
+  return `
+    <div class="animal-card" data-tipo="${(animal.tipo||'').toLowerCase()}" data-estado="${(animal.estado||'').toLowerCase()}">
+      <div class="animal-img">
+        <img src="${foto}" alt="${animal.nombre}" onerror="this.src='https://www.amoryabrigohn.org/images/slider2.jpg'">
+        <span class="animal-status ${statusClass}">${animal.estado || 'Disponible'}</span>
+      </div>
+      <div class="animal-info">
+        <div class="animal-name">${animal.nombre}</div>
+        <div class="animal-tags">
+          ${animal.tipo ? `<span class="animal-tag">${animal.tipo}</span>` : ''}
+          ${animal.edad ? `<span class="animal-tag">${animal.edad}</span>` : ''}
+          ${animal.tamano ? `<span class="animal-tag">${animal.tamano}</span>` : ''}
+          ${animal.sexo ? `<span class="animal-tag">${animal.sexo}</span>` : ''}
+        </div>
+        <p class="animal-desc">${animal.descripcion || ''}</p>
+        ${isAdopted
+          ? `<div class="animal-btn adopted">${btnText}</div>`
+          : `<a href="adopcion.html" class="animal-btn ${btnClass}">${btnText}</a>`
+        }
+      </div>
+    </div>`;
+}
+
+function filterAnimals(type, btn) {
+  if (btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  currentFilter = type;
+  const grid = document.getElementById('animalsGrid');
+  let visible = 0;
+  grid.querySelectorAll('.animal-card').forEach(card => {
+    const tipo = card.dataset.tipo || '';
+    const estado = card.dataset.estado || '';
+    let show = false;
+    if (type === 'todos') show = true;
+    else if (type === 'perro') show = tipo.includes('perro') || tipo.includes('perra');
+    else if (type === 'gato') show = tipo.includes('gato') || tipo.includes('gata');
+    else if (type === 'disponible') show = estado.includes('disponible');
+    else if (type === 'reservado') show = estado.includes('reservado');
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+}
+
+async function loadAnimals() {
+  try {
+    const res = await fetch(SHEET_URL);
+    if (!res.ok) throw new Error('Error al cargar');
+    const text = await res.text();
+    allAnimals = parseCSV(text);
+
+    const grid = document.getElementById('animalsGrid');
+    document.getElementById('loadingDiv').style.display = 'none';
+
+    if (allAnimals.length === 0) {
+      grid.style.display = 'none';
+      document.getElementById('noResults').style.display = 'block';
+      document.getElementById('noResults').textContent = 'No hay animales en el catálogo todavía. ¡Pronto agregaremos nuevos!';
+      return;
+    }
+
+    grid.innerHTML = allAnimals.map(renderAnimal).join('');
+    grid.style.display = 'grid';
+    filterAnimals(currentFilter, null);
+  } catch (err) {
+    document.getElementById('loadingDiv').style.display = 'none';
+    document.getElementById('errorDiv').style.display = 'block';
+    console.error(err);
+  }
+}
+
+loadAnimals();
+
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
