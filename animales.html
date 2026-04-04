@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<base href="/amor-y-abrigo/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Animales en Adopción — Amor y Abrigo</title>
@@ -158,30 +157,25 @@
 </footer>
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbwfdaHxV85A_drnhIwULdHUAAyrPJzXdZz6e7FwNH882i2Wry3wBwJBbcIJN9TUcXyIJw/exec';
-
 async function loadAnimals() {
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch('animales.json');
     if (!res.ok) throw new Error();
     const animals = await res.json();
-
     const grid = document.getElementById('animalsGrid');
     document.getElementById('loadingDiv').style.display = 'none';
-
     if (!animals.length) {
       document.getElementById('noResults').style.display = 'block';
       document.getElementById('noResults').textContent = 'Pronto agregaremos nuevos animales.';
       return;
     }
-
     grid.innerHTML = animals.map(animal => renderAnimal(animal)).join('');
     grid.style.display = 'grid';
     filterAnimals('todos', null);
   } catch(err) {
     document.getElementById('loadingDiv').style.display = 'none';
     document.getElementById('noResults').style.display = 'block';
-    document.getElementById('noResults').textContent = 'No se pudieron cargar los animales. Intenta de nuevo más tarde.';
+    document.getElementById('noResults').textContent = 'No se pudieron cargar los animales.';
     console.error(err);
   }
 }
