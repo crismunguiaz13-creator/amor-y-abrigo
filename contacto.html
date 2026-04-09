@@ -68,7 +68,7 @@
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
   
-    <button class="darkmode-btn" id="darkBtn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIcon">🌙</span></button>
+    <button class="darkmode-btn" id="darkBtn" onclick="toggleDark()" aria-label="Modo oscuro"><span class="dark-icon">🌙</span><span class="dark-label">Oscuro</span></button>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -86,7 +86,7 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
-  <div style="display:flex;justify-content:center;margin-top:.5rem"><button class="darkmode-btn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIconM">🌙</span></button></div>
+  <div style="display:flex;justify-content:center;margin-top:.5rem"><button class="darkmode-btn" onclick="toggleDark()" aria-label="Modo oscuro"><span class="dark-icon">🌙</span><span class="dark-label">Oscuro</span></button></div>
 </div>
 <div class="page-hero">
   <span class="badge" data-es="Hablemos" data-en="Let's talk">Hablemos</span>
@@ -161,7 +161,7 @@
   <h3 data-es="📍 Encuéntranos en San Pedro Sula" data-en="📍 Find us in San Pedro Sula">📍 Encuéntranos en San Pedro Sula</h3>
   <div class="map-wrap">
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.4!2d-88.0069!3d15.5034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMwJzEyLjIiTiA4OMKwMDAnMTQuNiJX!5e0!3m2!1ses!2shn!4v1234567890!5m2!1ses!2shn&q=Col.+Montefresco+San+Pedro+Sula+Honduras"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.52!2d-88.0157!3d15.4747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f665d6f4babaef5%3A0xb78f0aab97e6eaac!2sRefugio%20Amor%20y%20Abrigo!5e0!3m2!1ses!2shn!4v1712620800000!5m2!1ses!2shn"
       allowfullscreen="" loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
       title="Ubicación Amor y Abrigo">
@@ -275,22 +275,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* DARK MODE */
-(function() {
-  if (localStorage.getItem('ayaDark') === '1') {
-    document.body.classList.add('dark-mode');
-    var ic = document.getElementById('darkIcon');
-    if (ic) ic.textContent = '☀️';
-  }
-})();
-window.toggleDark = function() {
-  document.body.classList.toggle('dark-mode');
-  var isDark = document.body.classList.contains('dark-mode');
+function toggleDark() {
+  var isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('ayaDark', isDark ? '1' : '0');
-  var ic = document.getElementById('darkIcon');
-  if (ic) ic.textContent = isDark ? '☀️' : '🌙';
-  var icm = document.getElementById('darkIconM');
-  if (icm) icm.textContent = isDark ? '☀️' : '🌙';
-};
+  document.querySelectorAll('.dark-icon').forEach(function(el) {
+    el.textContent = isDark ? '☀️' : '🌙';
+  });
+  document.querySelectorAll('.dark-label').forEach(function(el) {
+    el.textContent = isDark ? 'Claro' : 'Oscuro';
+  });
+}
+// Apply on load immediately
+if (localStorage.getItem('ayaDark') === '1') {
+  document.body.classList.add('dark-mode');
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var isDark = document.body.classList.contains('dark-mode');
+  document.querySelectorAll('.dark-icon').forEach(function(el) {
+    el.textContent = isDark ? '☀️' : '🌙';
+  });
+  document.querySelectorAll('.dark-label').forEach(function(el) {
+    el.textContent = isDark ? 'Claro' : 'Oscuro';
+  });
+});
 </script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 emailjs.init('qleH3bvpwrYq8QtyQ');
