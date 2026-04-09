@@ -184,8 +184,8 @@ function renderCard(a) {
   var foto = a.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
   var estado = a.estado || 'Disponible';
   var est = estado.toLowerCase();
-  var badgeCls = est.includes('reservado') ? 'badge-reservado' : est.includes('adoptado') ? 'badge-adoptado' : 'badge-disponible';
-  var btnCls = est.includes('reservado') ? 'reservado' : est.includes('adoptado') ? 'adoptado' : '';
+  var badgeCls = est.includes('reservado') ? 'badge-reservado' : est.includes('adoptado') ? 'badge-adoptado' : est.includes('tratamiento') ? 'badge-tratamiento' : 'badge-disponible';
+  var btnCls = est.includes('reservado') ? 'reservado' : est.includes('adoptado') ? 'adoptado' : est.includes('tratamiento') ? 'adoptado' : '';
   var btnTxt = est.includes('adoptado') ? '¡Ya adoptado! 🎉' : est.includes('reservado') ? 'Aplicar como 2ª opción' : 'Quiero adoptar a ' + a.nombre;
   var tags = '';
   if (a.tipo) tags += '<span class="animal-tag">' + a.tipo + '</span>';
@@ -220,7 +220,8 @@ function filter(type, btn) {
       : type === 'perro' ? tipo.includes('perro') || tipo.includes('perra')
       : type === 'gato' ? tipo.includes('gato') || tipo.includes('gata')
       : type === 'disponible' ? est.includes('disponible')
-      : type === 'reservado' ? est.includes('reservado') : false;
+      : type === 'reservado' ? est.includes('reservado')
+      : type === 'tratamiento' ? est.includes('tratamiento') : false;
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
@@ -243,4 +244,256 @@ fetch(API)
     document.getElementById('animalsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales.</div>';
   });
 </script>
+<!-- ====== DENUNCIA FLOTANTE ====== -->
+<style>
+.report-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9000;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E8453C, #c73530);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(232,69,60,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all .3s;
+  animation: fabPulse 2.5s infinite;
+}
+.report-fab:hover {
+  transform: scale(1.12);
+  box-shadow: 0 10px 32px rgba(232,69,60,.55);
+  animation: none;
+}
+@keyframes fabPulse {
+  0%,100% { box-shadow: 0 6px 24px rgba(232,69,60,.45); }
+  50%      { box-shadow: 0 6px 36px rgba(232,69,60,.75), 0 0 0 10px rgba(232,69,60,.08); }
+}
+.report-fab .fab-tooltip {
+  position: absolute;
+  right: 68px;
+  background: var(--dark);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: .45rem .9rem;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.report-fab:hover .fab-tooltip { opacity: 1; }
+
+/* PANEL */
+.report-panel {
+  position: fixed;
+  bottom: 104px;
+  right: 32px;
+  z-index: 8999;
+  width: 340px;
+  background: #1a1a2e;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.1);
+  overflow: hidden;
+  transform: translateY(20px) scale(.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.report-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+.rp-header {
+  background: linear-gradient(135deg, #E8453C, #c73530);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rp-header-left { display: flex; align-items: center; gap: 10px; }
+.rp-header-icon {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.rp-header h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem; font-weight: 700;
+  color: #fff; margin: 0;
+}
+.rp-header p {
+  font-size: .72rem;
+  color: rgba(255,255,255,.8);
+  margin: 0;
+}
+.rp-close {
+  background: rgba(255,255,255,.2);
+  border: none; cursor: pointer;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  color: #fff; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.rp-close:hover { background: rgba(255,255,255,.35); }
+.rp-body { padding: 1.25rem 1.5rem; }
+.rp-intro {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .85rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.6;
+  margin-bottom: 1.1rem;
+}
+.rp-law {
+  background: rgba(255,230,0,.1);
+  border-left: 3px solid #FFE600;
+  border-radius: 0 8px 8px 0;
+  padding: .75rem 1rem;
+  margin-bottom: 1.1rem;
+}
+.rp-law p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .78rem;
+  color: rgba(255,255,255,.7);
+  margin: 0; line-height: 1.5;
+}
+.rp-law strong { color: #FFE600; }
+.rp-channels { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.1rem; }
+.rp-channel {
+  display: flex; align-items: center; gap: .875rem;
+  padding: .875rem 1rem;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all .2s;
+  cursor: pointer;
+}
+.rp-channel:hover {
+  background: rgba(255,255,255,.11);
+  border-color: rgba(255,255,255,.2);
+  transform: translateX(3px);
+}
+.rp-ch-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.rp-ch-icon.red    { background: rgba(232,69,60,.25); }
+.rp-ch-icon.blue   { background: rgba(30,144,255,.25); }
+.rp-ch-icon.green  { background: rgba(37,211,102,.25); }
+.rp-ch-icon.yellow { background: rgba(255,230,0,.2); }
+.rp-ch-text strong {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .82rem; font-weight: 700;
+  color: #fff; margin-bottom: .15rem;
+}
+.rp-ch-text span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .75rem;
+  color: rgba(255,255,255,.55);
+}
+.rp-footer {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: .875rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .72rem;
+  color: rgba(255,255,255,.4);
+  text-align: center;
+  line-height: 1.5;
+}
+@media(max-width:480px){
+  .report-panel { width: calc(100vw - 32px); right: 16px; bottom: 96px; }
+  .report-fab  { right: 16px; bottom: 20px; }
+}
+</style>
+
+<!-- FAB Button -->
+<button class="report-fab" id="reportFab" onclick="toggleReport()" aria-label="Denunciar maltrato animal">
+  🐾
+  <span class="fab-tooltip" data-es="Reportar maltrato animal" data-en="Report animal abuse">Reportar maltrato animal</span>
+</button>
+
+<!-- Slide Panel -->
+<div class="report-panel" id="reportPanel">
+  <div class="rp-header">
+    <div class="rp-header-left">
+      <div class="rp-header-icon">🚨</div>
+      <div>
+        <h4 data-es="Denuncia maltrato animal" data-en="Report animal abuse">Denuncia maltrato animal</h4>
+        <p data-es="Sé su voz. Actúa ahora." data-en="Be their voice. Act now.">Sé su voz. Actúa ahora.</p>
+      </div>
+    </div>
+    <button class="rp-close" onclick="toggleReport()">✕</button>
+  </div>
+  <div class="rp-body">
+    <p class="rp-intro" data-es="¿Presenciaste un caso de maltrato o abandono animal? No te quedes callado. En Honduras el maltrato animal es un delito penal." data-en="Did you witness a case of animal abuse or abandonment? Don't stay silent. In Honduras, animal abuse is a criminal offense.">¿Presenciaste un caso de maltrato o abandono animal? No te quedes callado. En Honduras el maltrato animal es un delito penal.</p>
+    <div class="rp-law">
+      <p data-es="⚖️ <strong>Ley de Protección y Bienestar Animal:</strong> Penas de 2 a 4 años de prisión por muerte de un animal, y 6 meses a 2 años por lesiones." data-en="⚖️ <strong>Animal Protection Law:</strong> Penalties of 2 to 4 years in prison for killing an animal, and 6 months to 2 years for injuries.">⚖️ <strong>Ley de Protección y Bienestar Animal:</strong> Penas de 2 a 4 años de prisión por muerte de un animal, y 6 meses a 2 años por lesiones.</p>
+    </div>
+    <div class="rp-channels">
+      <a class="rp-channel" href="tel:911">
+        <div class="rp-ch-icon red">🚨</div>
+        <div class="rp-ch-text">
+          <strong data-es="911 — Emergencias" data-en="911 — Emergencies">911 — Emergencias</strong>
+          <span data-es="Para casos urgentes en curso" data-en="For urgent ongoing cases">Para casos urgentes en curso</span>
+        </div>
+      </a>
+      <div class="rp-channel">
+        <div class="rp-ch-icon blue">🔍</div>
+        <div class="rp-ch-text">
+          <strong data-es="DPI — Investigaciones" data-en="DPI — Investigations">DPI — Investigaciones</strong>
+          <span data-es="Dirección Policial de Investigaciones" data-en="Police Investigations Unit">Dirección Policial de Investigaciones</span>
+        </div>
+      </div>
+      <div class="rp-channel">
+        <div class="rp-ch-icon yellow">⚖️</div>
+        <div class="rp-ch-text">
+          <strong data-es="Ministerio Público" data-en="Public Ministry">Ministerio Público</strong>
+          <span data-es="Denuncia penal formal" data-en="Formal criminal complaint">Denuncia penal formal</span>
+        </div>
+      </div>
+      <a class="rp-channel" href="https://wa.me/50498248715" target="_blank">
+        <div class="rp-ch-icon green">💬</div>
+        <div class="rp-ch-text">
+          <strong data-es="Amor y Abrigo" data-en="Amor y Abrigo">Amor y Abrigo</strong>
+          <span data-es="Repórtanos el caso por WhatsApp" data-en="Report the case to us via WhatsApp">Repórtanos el caso por WhatsApp</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="rp-footer" data-es="Puedes denunciar de forma anónima ante las autoridades. Cada reporte cuenta." data-en="You can report anonymously to authorities. Every report counts.">Puedes denunciar de forma anónima ante las autoridades. Cada reporte cuenta.</div>
+</div>
+
+<script>
+function toggleReport() {
+  var panel = document.getElementById('reportPanel');
+  var fab   = document.getElementById('reportFab');
+  panel.classList.toggle('open');
+  fab.style.transform = panel.classList.contains('open') ? 'scale(1.08) rotate(20deg)' : '';
+}
+document.addEventListener('click', function(e) {
+  var panel = document.getElementById('reportPanel');
+  var fab   = document.getElementById('reportFab');
+  if (panel && fab && !panel.contains(e.target) && !fab.contains(e.target)) {
+    panel.classList.remove('open');
+    fab.style.transform = '';
+  }
+});
+</script>
+<!-- ====== FIN DENUNCIA ====== -->
+
 </body></html>

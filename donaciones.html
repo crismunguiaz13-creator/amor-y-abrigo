@@ -4,31 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Donaciones — Amor y Abrigo Honduras</title>
-<meta name="description" content="Refugio de rescate y adopción animal en San Pedro Sula, Honduras. Adoptá responsablemente.">
 <link rel="stylesheet" href="styles.css">
 <style>
-.donations-section{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.impact-section{padding:5rem 4rem;background:var(--light);}
-.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
-.impact-card{background:var(--white);border-radius:16px;padding:1.75rem;box-shadow:var(--shadow);text-align:center;}
-.impact-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
-.impact-card h3{font-family:"Fraunces",serif;font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;}
-.impact-card p{font-size:.875rem;color:var(--gray);}
+.don-hero{min-height:60vh;background:linear-gradient(135deg,#1a1a2e 0%,#1E90FF 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;}
+.don-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,230,0,.08),transparent 50%),radial-gradient(circle at 70% 30%,rgba(232,69,60,.1),transparent 50%);}
+.don-hero-content{position:relative;z-index:1;max-width:700px;}
+.don-hero .badge{display:inline-block;background:rgba(255,255,255,.15);color:#fff;padding:.4rem 1.25rem;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.2);}
+.don-hero h1{font-family:"Fraunces",serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1.25rem;}
+.don-hero h1 em{color:var(--yellow);font-style:normal;}
+.don-hero p{color:rgba(255,255,255,.8);font-size:1.1rem;line-height:1.7;max-width:520px;margin:0 auto 2.5rem;}
+.don-stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.don-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:1.25rem 2rem;backdrop-filter:blur(8px);}
+.don-stat strong{display:block;font-family:"Fraunces",serif;font-size:2rem;font-weight:900;color:var(--yellow);}
+.don-stat span{font-size:.85rem;color:rgba(255,255,255,.7);}
+.ways-section{padding:5rem 4rem;background:var(--light);}
+.ways-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.way-card{background:var(--white);border-radius:24px;padding:2rem;box-shadow:var(--shadow);transition:all .35s;position:relative;overflow:hidden;}
+.way-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;}
+.way-card.w-paypal::before{background:#003087;}
+.way-card.w-tigo::before{background:var(--red);}
+.way-card.w-especie::before{background:#25D366;}
+.way-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.12);}
+.way-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.75rem;margin-bottom:1.25rem;}
+.w-paypal .way-icon{background:#e8f0ff;}
+.w-tigo .way-icon{background:#fef2f2;}
+.w-especie .way-icon{background:#dcfce7;}
+.way-card h3{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;}
+.way-card p{font-size:.875rem;color:var(--gray);line-height:1.7;margin-bottom:1.25rem;}
+.way-info{font-size:.8rem;font-weight:600;margin-bottom:1.25rem;}
+.way-btn{display:inline-flex;align-items:center;gap:8px;padding:.75rem 1.5rem;border-radius:12px;font-weight:600;font-size:.875rem;transition:all .25s;text-decoration:none;}
+.way-btn.b-blue{background:#003087;color:#fff;}
+.way-btn.b-blue:hover{background:#002270;}
+.way-btn.b-red{background:var(--red);color:#fff;}
+.way-btn.b-red:hover{background:#c73530;}
+.way-btn.b-green{background:#25D366;color:#fff;}
+.way-btn.b-green:hover{background:#1daf55;}
 .banks-section{padding:5rem 4rem;}
-.banks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:2rem;}
-.bank-card{background:var(--light);border-radius:16px;padding:1.5rem;border-left:4px solid var(--blue);}
-.bank-card h4{font-weight:700;color:var(--dark);margin-bottom:.5rem;}
-.bank-card p{font-size:.875rem;color:var(--gray);line-height:1.7;}
-.paypal-btn{display:inline-flex;align-items:center;gap:10px;background:#003087;color:var(--white);padding:1rem 2rem;border-radius:12px;font-weight:600;font-size:1rem;transition:all .3s;margin-top:1.5rem;}
-.paypal-btn:hover{background:#002270;transform:translateY(-2px);}
-.tigo-card{background:linear-gradient(135deg,#e8453c,#c73530);border-radius:16px;padding:1.5rem;color:var(--white);margin-top:1.25rem;}
-.tigo-card h4{font-weight:700;margin-bottom:.5rem;}
-.tigo-card p{font-size:.875rem;opacity:.85;}
-@media(max-width:1024px){.donations-section{grid-template-columns:1fr;padding:3rem 2rem;gap:3rem;}.impact-section,.banks-section{padding:3rem 2rem;}.impact-grid{grid-template-columns:1fr 1fr;}.banks-grid{grid-template-columns:1fr;}}
-@media(max-width:640px){.impact-grid{grid-template-columns:1fr;}}
+.banks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem;}
+.bank-card{background:var(--white);border-radius:16px;padding:1.5rem;border:1px solid var(--border);transition:all .25s;}
+.bank-card:hover{border-color:var(--blue);box-shadow:0 8px 24px rgba(30,144,255,.1);}
+.bank-card.featured{border-color:var(--blue);background:#f0f7ff;}
+.bank-name{font-weight:700;color:var(--dark);margin-bottom:.75rem;font-size:1rem;display:flex;align-items:center;gap:8px;}
+.bank-name::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;}
+.bank-detail{font-size:.875rem;color:var(--gray);line-height:1.8;}
+.bank-detail strong{color:var(--dark);font-weight:600;}
+.impact-section{padding:5rem 4rem;background:var(--dark);}
+.impact-section .section-badge{color:var(--yellow);}
+.impact-section .section-title{color:#fff;}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.impact-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2rem;text-align:center;transition:all .3s;}
+.impact-card:hover{background:rgba(255,255,255,.1);transform:translateY(-4px);}
+.impact-emoji{font-size:2.5rem;margin-bottom:1rem;display:block;}
+.impact-amount{font-family:"Fraunces",serif;font-size:1.75rem;font-weight:900;color:var(--yellow);display:block;margin-bottom:.5rem;}
+.impact-card h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.impact-card p{font-size:.875rem;color:rgba(255,255,255,.6);line-height:1.6;}
+.don-cta{padding:5rem 4rem;text-align:center;background:linear-gradient(135deg,var(--red),#c73530);}
+.don-cta h2{font-family:"Fraunces",serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:900;color:#fff;margin-bottom:1rem;}
+.don-cta p{color:rgba(255,255,255,.85);font-size:1.05rem;margin-bottom:2rem;}
+.don-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-w-solid{background:#fff;color:var(--red);padding:.875rem 2rem;border-radius:50px;font-weight:700;font-size:.95rem;transition:all .3s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-w-solid:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.2);}
+.btn-w-outline{background:transparent;color:#fff;padding:.875rem 2rem;border-radius:50px;font-weight:700;font-size:.95rem;border:2px solid rgba(255,255,255,.6);transition:all .3s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-w-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px);}
+@media(max-width:1024px){.ways-section,.banks-section,.impact-section,.don-cta{padding:3rem 2rem;}.ways-grid,.impact-grid{grid-template-columns:1fr 1fr;}.banks-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.ways-grid,.banks-grid,.impact-grid{grid-template-columns:1fr;}.don-stat{padding:1rem 1.5rem;}}
 </style>
 </head>
-<body><nav id="mainNav">
+<body>
+<nav id="mainNav">
   <a href="index.html" class="nav-logo">
     <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
     <span>Amor y Abrigo</span>
@@ -63,54 +106,137 @@
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
 </div>
-<div class="page-hero">
-  <span class="badge" data-es="Tu apoyo salva vidas" data-en="Your support saves lives">Tu apoyo salva vidas</span>
-  <h1 data-es="Haz una donación" data-en="Make a donation">Haz una donación</h1>
-  <p data-es="Cada lempira que donas va directamente al cuidado de los animales del refugio." data-en="Every lempira you donate goes directly to the care of the shelter animals.">Cada lempira que donas va directamente al cuidado de los animales del refugio.</p>
-</div>
-
-<section class="donations-section reveal">
-  <div>
-    <span class="section-badge" data-es="Donar en línea" data-en="Donate online">Donar en línea</span>
-    <h2 class="section-title" data-es="La manera más fácil de ayudar" data-en="The easiest way to help">La manera más fácil de ayudar</h2>
-    <p class="section-desc" data-es="Puedes hacer tu donación de forma rápida y segura a través de PayPal o transferencia bancaria. Cada donación, sin importar el monto, marca una diferencia." data-en="You can make your donation quickly and safely through PayPal or bank transfer. Every donation, regardless of the amount, makes a difference.">Puedes hacer tu donación de forma rápida y segura a través de PayPal o transferencia bancaria. Cada donación, sin importar el monto, marca una diferencia.</p>
-    <a href="https://paypal.me/amoryabrigohn" target="_blank" class="paypal-btn">
-      <svg width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg>
-      <span data-es="💙 Donar por PayPal" data-en="💙 Donate via PayPal">💙 Donar por PayPal</span>
-    </a>
-    <div class="tigo-card" style="margin-top:1.25rem;">
-      <h4 data-es="Tigo Money" data-en="Tigo Money">Tigo Money</h4>
-      <p data-es="Número: 9824-8715 | Nombre: Amor y Abrigo" data-en="Number: 9824-8715 | Name: Amor y Abrigo">Número: 9824-8715 | Nombre: Amor y Abrigo</p>
-    </div>
-    <div style="margin-top:1.5rem;padding:1.25rem;background:var(--light);border-radius:12px;">
-      <p style="font-size:.9rem;color:var(--gray);" data-es="¿Tienes artículos, alimentos o medicamentos para donar? Contáctanos directamente por WhatsApp." data-en="Do you have items, food or medicine to donate? Contact us directly via WhatsApp.">¿Tienes artículos, alimentos o medicamentos para donar? Contáctanos directamente por WhatsApp.</p>
-      <a href="https://wa.me/50498248715" target="_blank" class="btn-primary" style="margin-top:1rem;display:inline-flex;" data-es="💬 Coordinar donación" data-en="💬 Coordinate donation">💬 Coordinar donación</a>
+<div class="don-hero">
+  <div class="don-hero-content">
+    <span class="badge" data-es="Tu apoyo salva vidas" data-en="Your support saves lives">Tu apoyo salva vidas</span>
+    <h1 data-es="Cada donacion <em>cambia una vida</em>" data-en="Every donation <em>changes a life</em>">Cada donacion <em>cambia una vida</em></h1>
+    <p data-es="Todo lo que donas va directamente al cuidado, alimentacion y atencion medica de los animales del refugio." data-en="Everything you donate goes directly to the care, food and medical attention of the shelter animals.">Todo lo que donas va directamente al cuidado, alimentacion y atencion medica de los animales del refugio.</p>
+    <div class="don-stats">
+      <div class="don-stat"><strong>13+</strong><span data-es="Anos ayudando" data-en="Years helping">Anos ayudando</span></div>
+      <div class="don-stat"><strong>10K+</strong><span data-es="Animales rescatados" data-en="Animals rescued">Animales rescatados</span></div>
+      <div class="don-stat"><strong>100%</strong><span data-es="Va al refugio" data-en="Goes to shelter">Va al refugio</span></div>
     </div>
   </div>
-  <div>
+</div>
+
+<section class="ways-section reveal">
+  <div style="text-align:center">
+    <span class="section-badge" data-es="Formas de donar" data-en="Ways to donate">Formas de donar</span>
+    <h2 class="section-title" data-es="Elige como apoyar" data-en="Choose how to support">Elige como apoyar</h2>
+    <p class="section-desc" style="max-width:500px;margin:0 auto" data-es="Todas las opciones son seguras y van directamente al refugio." data-en="All options are safe and go directly to the shelter.">Todas las opciones son seguras y van directamente al refugio.</p>
+  </div>
+  <div class="ways-grid">
+    <div class="way-card w-paypal reveal delay-1">
+      <div class="way-icon">&#128153;</div>
+      <h3>PayPal</h3>
+      <p data-es="Dona de forma rapida y segura desde cualquier parte del mundo." data-en="Donate quickly and safely from anywhere in the world.">Dona de forma rapida y segura desde cualquier parte del mundo.</p>
+      <p class="way-info" style="color:#003087">paypal.me/amoryabrigohn</p>
+      <a href="https://paypal.me/amoryabrigohn" target="_blank" class="way-btn b-blue" data-es="Donar por PayPal" data-en="Donate via PayPal">Donar por PayPal</a>
+    </div>
+    <div class="way-card w-tigo reveal delay-2">
+      <div class="way-icon">&#128241;</div>
+      <h3>Tigo Money</h3>
+      <p data-es="Transferencia rapida desde tu celular al numero del refugio." data-en="Quick transfer from your phone to the shelter number.">Transferencia rapida desde tu celular al numero del refugio.</p>
+      <p class="way-info" style="color:var(--red)">9824-8715 | Amor y Abrigo</p>
+      <a href="https://wa.me/50498248715" target="_blank" class="way-btn b-red" data-es="Confirmar por WhatsApp" data-en="Confirm via WhatsApp">Confirmar por WhatsApp</a>
+    </div>
+    <div class="way-card w-especie reveal delay-3">
+      <div class="way-icon">&#127873;</div>
+      <h3 data-es="Donacion en especie" data-en="In-kind donation">Donacion en especie</h3>
+      <p data-es="Alimentos, medicamentos, cobijas o cualquier articulo para los animales." data-en="Food, medicine, blankets or any items for the animals.">Alimentos, medicamentos, cobijas o cualquier articulo para los animales.</p>
+      <p class="way-info" style="color:#25D366" data-es="Coordinamos por WhatsApp" data-en="We coordinate via WhatsApp">Coordinamos por WhatsApp</p>
+      <a href="https://wa.me/50498248715" target="_blank" class="way-btn b-green" data-es="Coordinar donacion" data-en="Coordinate donation">Coordinar donacion</a>
+    </div>
+  </div>
+</section>
+
+<section class="banks-section reveal">
+  <div style="text-align:center">
     <span class="section-badge" data-es="Transferencias bancarias" data-en="Bank transfers">Transferencias bancarias</span>
-    <h2 class="section-title" data-es="Todas las cuentas" data-en="All accounts">Todas las cuentas</h2>
-    <div class="banks-grid">
-      <div class="bank-card"><h4>BAC Honduras</h4><p data-es="Cuenta: #725894521<br>Nombre: Martha Guzman" data-en="Account: #725894521<br>Name: Martha Guzman">Cuenta: #725894521<br>Nombre: Martha Guzman</p></div>
-      <div class="bank-card"><h4>Banco Occidente</h4><p data-es="Cuenta: #212490001366<br>Nombre: Martha Guzman" data-en="Account: #212490001366<br>Name: Martha Guzman">Cuenta: #212490001366<br>Nombre: Martha Guzman</p></div>
-      <div class="bank-card"><h4>Banpaís</h4><p data-es="Cuenta: #210330024388<br>Nombre: Geissel Oseguera" data-en="Account: #210330024388<br>Name: Geissel Oseguera">Cuenta: #210330024388<br>Nombre: Geissel Oseguera</p></div>
-      <div class="bank-card"><h4>Atlántida</h4><p data-es="Cuenta: 014720192047<br>Nombre: Geissel Oseguera" data-en="Account: 014720192047<br>Name: Geissel Oseguera">Cuenta: 014720192047<br>Nombre: Geissel Oseguera</p></div>
-      <div class="bank-card" style="grid-column:1/-1"><h4>Ficohsa</h4><p data-es="Cuenta: 2000-10593777<br>Nombre: Alba Ruby Assaf" data-en="Account: 2000-10593777<br>Name: Alba Ruby Assaf">Cuenta: 2000-10593777<br>Nombre: Alba Ruby Assaf</p></div>
+    <h2 class="section-title" data-es="Cuentas bancarias" data-en="Bank accounts">Cuentas bancarias</h2>
+    <p class="section-desc" data-es="Puedes hacer tu transferencia directamente a cualquiera de estas cuentas." data-en="You can transfer directly to any of these accounts.">Puedes hacer tu transferencia directamente a cualquiera de estas cuentas.</p>
+  </div>
+  <div class="banks-grid">
+    <div class="bank-card">
+      <div class="bank-name">BAC Honduras</div>
+      <div class="bank-detail">
+        <strong data-es="Cuenta:" data-en="Account:">Cuenta:</strong> #725894521<br>
+        <strong data-es="Nombre:" data-en="Name:">Nombre:</strong> Martha Guzman
+      </div>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">Banco Occidente</div>
+      <div class="bank-detail">
+        <strong data-es="Cuenta:" data-en="Account:">Cuenta:</strong> #212490001366<br>
+        <strong data-es="Nombre:" data-en="Name:">Nombre:</strong> Martha Guzman
+      </div>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">Banpais</div>
+      <div class="bank-detail">
+        <strong data-es="Cuenta:" data-en="Account:">Cuenta:</strong> #210330024388<br>
+        <strong data-es="Nombre:" data-en="Name:">Nombre:</strong> Geissel Oseguera
+      </div>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">Atlantida</div>
+      <div class="bank-detail">
+        <strong data-es="Cuenta:" data-en="Account:">Cuenta:</strong> 014720192047<br>
+        <strong data-es="Nombre:" data-en="Name:">Nombre:</strong> Geissel Oseguera
+      </div>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">Ficohsa</div>
+      <div class="bank-detail">
+        <strong data-es="Cuenta:" data-en="Account:">Cuenta:</strong> 2000-10593777<br>
+        <strong data-es="Nombre:" data-en="Name:">Nombre:</strong> Alba Ruby Assaf
+      </div>
+    </div>
+    <div class="bank-card featured">
+      <div class="bank-name">PayPal</div>
+      <div class="bank-detail">
+        paypal.me/amoryabrigohn<br>
+        <a href="https://paypal.me/amoryabrigohn" target="_blank" style="color:var(--blue);font-weight:600;font-size:.875rem;" data-es="Ir a PayPal" data-en="Go to PayPal">Ir a PayPal</a>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="impact-section reveal">
   <div style="text-align:center">
-    <span class="section-badge" data-es="¿A qué va tu donación?" data-en="Where does your donation go?">¿A qué va tu donación?</span>
-    <h2 class="section-title" data-es="El impacto de tu apoyo" data-en="The impact of your support">El impacto de tu apoyo</h2>
+    <span class="section-badge" data-es="El impacto de tu donacion" data-en="The impact of your donation">El impacto de tu donacion</span>
+    <h2 class="section-title" data-es="Con tu ayuda podemos..." data-en="With your help we can...">Con tu ayuda podemos...</h2>
   </div>
   <div class="impact-grid">
-    <div class="impact-card reveal delay-1"><span class="impact-icon">🍖</span><h3 data-es="Alimentación" data-en="Food">Alimentación</h3><p data-es="Alimento nutritivo y balanceado para todos los animales del refugio." data-en="Nutritious and balanced food for all shelter animals.">Alimento nutritivo y balanceado para todos los animales del refugio.</p></div>
-    <div class="impact-card reveal delay-2"><span class="impact-icon">💉</span><h3 data-es="Atención médica" data-en="Medical care">Atención médica</h3><p data-es="Vacunaciones, desparasitaciones y tratamientos veterinarios." data-en="Vaccinations, deworming and veterinary treatments.">Vacunaciones, desparasitaciones y tratamientos veterinarios.</p></div>
-    <div class="impact-card reveal delay-3"><span class="impact-icon">✂️</span><h3 data-es="Esterilizaciones" data-en="Sterilizations">Esterilizaciones</h3><p data-es="Programas de esterilización para controlar la sobrepoblación animal." data-en="Sterilization programs to control animal overpopulation.">Programas de esterilización para controlar la sobrepoblación animal.</p></div>
+    <div class="impact-card reveal delay-1">
+      <span class="impact-emoji">&#127830;</span>
+      <span class="impact-amount">L. 100</span>
+      <h3 data-es="Alimentar a un animal" data-en="Feed an animal">Alimentar a un animal</h3>
+      <p data-es="Cubre el alimento balanceado de un perro o gato por una semana." data-en="Covers balanced food for a dog or cat for one week.">Cubre el alimento balanceado de un perro o gato por una semana.</p>
+    </div>
+    <div class="impact-card reveal delay-2">
+      <span class="impact-emoji">&#128137;</span>
+      <span class="impact-amount">L. 300</span>
+      <h3 data-es="Vacunar a un animal" data-en="Vaccinate an animal">Vacunar a un animal</h3>
+      <p data-es="Cubre el costo de una vacuna esencial para proteger su salud." data-en="Covers the cost of an essential vaccine to protect their health.">Cubre el costo de una vacuna esencial para proteger su salud.</p>
+    </div>
+    <div class="impact-card reveal delay-3">
+      <span class="impact-emoji">&#9986;&#65039;</span>
+      <span class="impact-amount">L. 800</span>
+      <h3 data-es="Esterilizar a un animal" data-en="Sterilize an animal">Esterilizar a un animal</h3>
+      <p data-es="Ayuda a controlar la sobrepoblacion animal en Honduras." data-en="Helps control animal overpopulation in Honduras.">Ayuda a controlar la sobrepoblacion animal en Honduras.</p>
+    </div>
   </div>
 </section>
+
+<div class="don-cta">
+  <h2 data-es="Cada aporte, sin importar el monto, salva vidas" data-en="Every contribution, regardless of amount, saves lives">Cada aporte, sin importar el monto, salva vidas</h2>
+  <p data-es="Gracias por creer en nuestra mision y apoyar a los animales de Honduras." data-en="Thank you for believing in our mission and supporting the animals of Honduras.">Gracias por creer en nuestra mision y apoyar a los animales de Honduras.</p>
+  <div class="don-cta-btns">
+    <a href="https://paypal.me/amoryabrigohn" target="_blank" class="btn-w-solid" data-es="Donar por PayPal" data-en="Donate via PayPal">Donar por PayPal</a>
+    <a href="voluntariado.html" class="btn-w-outline" data-es="Ser voluntario" data-en="Volunteer">Ser voluntario</a>
+  </div>
+</div>
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -213,4 +339,257 @@ document.addEventListener('DOMContentLoaded', function() {
   if (currentLang === 'en') applyLang('en');
 });
 </script>
-</body></html>
+<!-- ====== DENUNCIA FLOTANTE ====== -->
+<style>
+.report-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9000;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E8453C, #c73530);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(232,69,60,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all .3s;
+  animation: fabPulse 2.5s infinite;
+}
+.report-fab:hover {
+  transform: scale(1.12);
+  box-shadow: 0 10px 32px rgba(232,69,60,.55);
+  animation: none;
+}
+@keyframes fabPulse {
+  0%,100% { box-shadow: 0 6px 24px rgba(232,69,60,.45); }
+  50%      { box-shadow: 0 6px 36px rgba(232,69,60,.75), 0 0 0 10px rgba(232,69,60,.08); }
+}
+.report-fab .fab-tooltip {
+  position: absolute;
+  right: 68px;
+  background: var(--dark);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: .45rem .9rem;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.report-fab:hover .fab-tooltip { opacity: 1; }
+
+/* PANEL */
+.report-panel {
+  position: fixed;
+  bottom: 104px;
+  right: 32px;
+  z-index: 8999;
+  width: 340px;
+  background: #1a1a2e;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.1);
+  overflow: hidden;
+  transform: translateY(20px) scale(.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.report-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+.rp-header {
+  background: linear-gradient(135deg, #E8453C, #c73530);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rp-header-left { display: flex; align-items: center; gap: 10px; }
+.rp-header-icon {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+}
+.rp-header h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem; font-weight: 700;
+  color: #fff; margin: 0;
+}
+.rp-header p {
+  font-size: .72rem;
+  color: rgba(255,255,255,.8);
+  margin: 0;
+}
+.rp-close {
+  background: rgba(255,255,255,.2);
+  border: none; cursor: pointer;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  color: #fff; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.rp-close:hover { background: rgba(255,255,255,.35); }
+.rp-body { padding: 1.25rem 1.5rem; }
+.rp-intro {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .85rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.6;
+  margin-bottom: 1.1rem;
+}
+.rp-law {
+  background: rgba(255,230,0,.1);
+  border-left: 3px solid #FFE600;
+  border-radius: 0 8px 8px 0;
+  padding: .75rem 1rem;
+  margin-bottom: 1.1rem;
+}
+.rp-law p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .78rem;
+  color: rgba(255,255,255,.7);
+  margin: 0; line-height: 1.5;
+}
+.rp-law strong { color: #FFE600; }
+.rp-channels { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.1rem; }
+.rp-channel {
+  display: flex; align-items: center; gap: .875rem;
+  padding: .875rem 1rem;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all .2s;
+  cursor: pointer;
+}
+.rp-channel:hover {
+  background: rgba(255,255,255,.11);
+  border-color: rgba(255,255,255,.2);
+  transform: translateX(3px);
+}
+.rp-ch-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.rp-ch-icon.red    { background: rgba(232,69,60,.25); }
+.rp-ch-icon.blue   { background: rgba(30,144,255,.25); }
+.rp-ch-icon.green  { background: rgba(37,211,102,.25); }
+.rp-ch-icon.yellow { background: rgba(255,230,0,.2); }
+.rp-ch-text strong {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .82rem; font-weight: 700;
+  color: #fff; margin-bottom: .15rem;
+}
+.rp-ch-text span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .75rem;
+  color: rgba(255,255,255,.55);
+}
+.rp-footer {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: .875rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .72rem;
+  color: rgba(255,255,255,.4);
+  text-align: center;
+  line-height: 1.5;
+}
+@media(max-width:480px){
+  .report-panel { width: calc(100vw - 32px); right: 16px; bottom: 96px; }
+  .report-fab  { right: 16px; bottom: 20px; }
+}
+</style>
+
+<!-- FAB Button -->
+<button class="report-fab" id="reportFab" onclick="toggleReport()" aria-label="Denunciar maltrato animal">
+  🐾
+  <span class="fab-tooltip" data-es="Reportar maltrato animal" data-en="Report animal abuse">Reportar maltrato animal</span>
+</button>
+
+<!-- Slide Panel -->
+<div class="report-panel" id="reportPanel">
+  <div class="rp-header">
+    <div class="rp-header-left">
+      <div class="rp-header-icon">🚨</div>
+      <div>
+        <h4 data-es="Denuncia maltrato animal" data-en="Report animal abuse">Denuncia maltrato animal</h4>
+        <p data-es="Sé su voz. Actúa ahora." data-en="Be their voice. Act now.">Sé su voz. Actúa ahora.</p>
+      </div>
+    </div>
+    <button class="rp-close" onclick="toggleReport()">✕</button>
+  </div>
+  <div class="rp-body">
+    <p class="rp-intro" data-es="¿Presenciaste un caso de maltrato o abandono animal? No te quedes callado. En Honduras el maltrato animal es un delito penal." data-en="Did you witness a case of animal abuse or abandonment? Don't stay silent. In Honduras, animal abuse is a criminal offense.">¿Presenciaste un caso de maltrato o abandono animal? No te quedes callado. En Honduras el maltrato animal es un delito penal.</p>
+    <div class="rp-law">
+      <p data-es="⚖️ <strong>Ley de Protección y Bienestar Animal:</strong> Penas de 2 a 4 años de prisión por muerte de un animal, y 6 meses a 2 años por lesiones." data-en="⚖️ <strong>Animal Protection Law:</strong> Penalties of 2 to 4 years in prison for killing an animal, and 6 months to 2 years for injuries.">⚖️ <strong>Ley de Protección y Bienestar Animal:</strong> Penas de 2 a 4 años de prisión por muerte de un animal, y 6 meses a 2 años por lesiones.</p>
+    </div>
+    <div class="rp-channels">
+      <a class="rp-channel" href="tel:911">
+        <div class="rp-ch-icon red">🚨</div>
+        <div class="rp-ch-text">
+          <strong data-es="911 — Emergencias" data-en="911 — Emergencies">911 — Emergencias</strong>
+          <span data-es="Para casos urgentes en curso" data-en="For urgent ongoing cases">Para casos urgentes en curso</span>
+        </div>
+      </a>
+      <div class="rp-channel">
+        <div class="rp-ch-icon blue">🔍</div>
+        <div class="rp-ch-text">
+          <strong data-es="DPI — Investigaciones" data-en="DPI — Investigations">DPI — Investigaciones</strong>
+          <span data-es="Dirección Policial de Investigaciones" data-en="Police Investigations Unit">Dirección Policial de Investigaciones</span>
+        </div>
+      </div>
+      <div class="rp-channel">
+        <div class="rp-ch-icon yellow">⚖️</div>
+        <div class="rp-ch-text">
+          <strong data-es="Ministerio Público" data-en="Public Ministry">Ministerio Público</strong>
+          <span data-es="Denuncia penal formal" data-en="Formal criminal complaint">Denuncia penal formal</span>
+        </div>
+      </div>
+      <a class="rp-channel" href="https://wa.me/50498248715" target="_blank">
+        <div class="rp-ch-icon green">💬</div>
+        <div class="rp-ch-text">
+          <strong data-es="Amor y Abrigo" data-en="Amor y Abrigo">Amor y Abrigo</strong>
+          <span data-es="Repórtanos el caso por WhatsApp" data-en="Report the case to us via WhatsApp">Repórtanos el caso por WhatsApp</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="rp-footer" data-es="Puedes denunciar de forma anónima ante las autoridades. Cada reporte cuenta." data-en="You can report anonymously to authorities. Every report counts.">Puedes denunciar de forma anónima ante las autoridades. Cada reporte cuenta.</div>
+</div>
+
+<script>
+function toggleReport() {
+  var panel = document.getElementById('reportPanel');
+  var fab   = document.getElementById('reportFab');
+  panel.classList.toggle('open');
+  fab.style.transform = panel.classList.contains('open') ? 'scale(1.08) rotate(20deg)' : '';
+}
+document.addEventListener('click', function(e) {
+  var panel = document.getElementById('reportPanel');
+  var fab   = document.getElementById('reportFab');
+  if (panel && fab && !panel.contains(e.target) && !fab.contains(e.target)) {
+    panel.classList.remove('open');
+    fab.style.transform = '';
+  }
+});
+</script>
+<!-- ====== FIN DENUNCIA ====== -->
+
+</body>
+</html>
