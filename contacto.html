@@ -252,138 +252,196 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </script>
 
 
+
 <!-- ====== DENUNCIA FLOTANTE ====== -->
 <style>
 .report-fab {
   position: fixed; bottom: 32px; right: 32px; z-index: 9000;
-  width: 58px; height: 58px; border-radius: 50%;
+  width: 56px; height: 56px; border-radius: 50%;
   background: linear-gradient(135deg, #ff6b00, #e8453c);
   border: none; cursor: pointer;
   box-shadow: 0 6px 24px rgba(232,69,60,.45);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; transition: all .3s;
+  transition: box-shadow .3s, background .3s;
   animation: fabPulse 2.5s infinite;
+  padding: 0;
 }
 .report-fab:hover {
-  transform: scale(1.12);
   box-shadow: 0 10px 32px rgba(232,69,60,.6);
   animation: none;
 }
+/* No rotation, no scale on click */
+.report-fab:active { transform: none; }
 @keyframes fabPulse {
   0%,100% { box-shadow: 0 6px 24px rgba(232,69,60,.45); }
   50%      { box-shadow: 0 6px 36px rgba(232,69,60,.75), 0 0 0 12px rgba(232,69,60,.08); }
 }
+/* SVG warning icon inside button */
+.report-fab svg {
+  width: 26px; height: 26px;
+  fill: none; stroke: #fff;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+  display: block;
+}
 .report-fab .fab-tooltip {
-  position: absolute; right: 68px;
+  position: absolute; right: 66px;
   background: #1a1a2e; color: #fff;
   font-family: 'DM Sans', sans-serif;
-  font-size: .78rem; font-weight: 600;
-  white-space: nowrap; padding: .45rem .9rem;
+  font-size: .76rem; font-weight: 600;
+  white-space: nowrap; padding: .4rem .85rem;
   border-radius: 8px; opacity: 0;
   pointer-events: none; transition: opacity .2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
 .report-fab:hover .fab-tooltip { opacity: 1; }
+
+/* PANEL */
 .report-panel {
-  position: fixed; bottom: 104px; right: 32px; z-index: 8999;
-  width: 350px; background: #1a1a2e; border-radius: 20px;
+  position: fixed; right: 32px; z-index: 8999;
+  width: 340px; background: #1a1a2e; border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0,0,0,.4);
   border: 1px solid rgba(255,255,255,.1); overflow: hidden;
-  transform: translateY(20px) scale(.95); opacity: 0;
+  transform: translateY(12px) scale(.96); opacity: 0;
   pointer-events: none;
-  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+  transition: all .28s cubic-bezier(.34,1.4,.64,1);
+  /* Position calculated via JS to avoid going off screen */
+  bottom: 100px;
 }
 .report-panel.open {
   transform: translateY(0) scale(1); opacity: 1; pointer-events: all;
 }
 .rp-header {
   background: linear-gradient(135deg, #ff6b00, #e8453c);
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.25rem;
   display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
 }
 .rp-header-left { display: flex; align-items: center; gap: 10px; }
 .rp-header-icon {
-  width: 40px; height: 40px; background: rgba(255,255,255,.2);
+  width: 36px; height: 36px; background: rgba(255,255,255,.2);
   border-radius: 10px; display: flex; align-items: center;
-  justify-content: center; font-size: 1.3rem;
+  justify-content: center;
+}
+.rp-header-icon svg {
+  width: 18px; height: 18px; fill: none;
+  stroke: #fff; stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
 }
 .rp-header h4 {
-  font-family: 'DM Sans',sans-serif; font-size: .95rem;
+  font-family: 'DM Sans',sans-serif; font-size: .9rem;
   font-weight: 700; color: #fff; margin: 0;
 }
-.rp-header p { font-size: .72rem; color: rgba(255,255,255,.85); margin: 0; }
+.rp-header p { font-size: .7rem; color: rgba(255,255,255,.85); margin: 0; }
 .rp-close {
   background: rgba(255,255,255,.2); border: none; cursor: pointer;
-  width: 28px; height: 28px; border-radius: 8px; color: #fff;
-  font-size: 1rem; display: flex; align-items: center;
-  justify-content: center; transition: background .2s;
+  width: 26px; height: 26px; border-radius: 7px; color: #fff;
+  font-size: .85rem; display: flex; align-items: center;
+  justify-content: center; transition: background .2s; flex-shrink: 0;
 }
 .rp-close:hover { background: rgba(255,255,255,.35); }
-.rp-body { padding: 1.25rem 1.5rem; }
+
+/* Scrollable body on small screens */
+.rp-body {
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
+  max-height: 60vh;
+}
 .rp-intro {
-  font-family: 'DM Sans',sans-serif; font-size: .85rem;
-  color: rgba(255,255,255,.75); line-height: 1.6; margin-bottom: 1rem;
+  font-family: 'DM Sans',sans-serif; font-size: .82rem;
+  color: rgba(255,255,255,.72); line-height: 1.6; margin-bottom: .875rem;
 }
 .rp-law {
   background: rgba(255,230,0,.1); border-left: 3px solid #FFE600;
-  border-radius: 0 8px 8px 0; padding: .75rem 1rem; margin-bottom: 1rem;
+  border-radius: 0 8px 8px 0; padding: .65rem .9rem; margin-bottom: .875rem;
 }
 .rp-law p {
-  font-family: 'DM Sans',sans-serif; font-size: .78rem;
-  color: rgba(255,255,255,.75); margin: 0; line-height: 1.5;
+  font-family: 'DM Sans',sans-serif; font-size: .76rem;
+  color: rgba(255,255,255,.72); margin: 0; line-height: 1.5;
 }
 .rp-law strong { color: #FFE600; }
-.rp-channels { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1rem; }
+.rp-channels { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .875rem; }
+
+/* tel: links only work on mobile — on desktop we disable the href */
 .rp-channel {
-  display: flex; align-items: center; gap: .875rem;
-  padding: .875rem 1rem;
+  display: flex; align-items: center; gap: .75rem;
+  padding: .75rem .9rem;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.1);
-  border-radius: 12px; text-decoration: none; transition: all .2s;
+  border-radius: 11px; text-decoration: none; transition: all .2s;
+  cursor: default;
 }
-.rp-channel:hover {
+/* Only show pointer + hover effect if it's actually a link (mobile) */
+.rp-channel.is-link {
+  cursor: pointer;
+}
+.rp-channel.is-link:hover {
   background: rgba(255,255,255,.12);
   border-color: rgba(255,255,255,.22);
   transform: translateX(3px);
 }
 .rp-ch-icon {
-  width: 38px; height: 38px; border-radius: 10px;
+  width: 34px; height: 34px; border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; flex-shrink: 0;
+  flex-shrink: 0;
 }
 .rp-ch-icon.red    { background: rgba(232,69,60,.3); }
 .rp-ch-icon.blue   { background: rgba(30,144,255,.25); }
 .rp-ch-icon.orange { background: rgba(255,107,0,.25); }
 .rp-ch-icon.teal   { background: rgba(72,184,172,.25); }
 .rp-ch-icon.purple { background: rgba(180,120,220,.25); }
+.rp-ch-icon svg {
+  width: 16px; height: 16px; fill: none;
+  stroke: #fff; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
 .rp-ch-text strong {
   display: block; font-family: 'DM Sans',sans-serif;
-  font-size: .82rem; font-weight: 700; color: #fff; margin-bottom: .15rem;
+  font-size: .8rem; font-weight: 700; color: #fff; margin-bottom: .1rem;
 }
 .rp-ch-text span {
-  font-family: 'DM Sans',sans-serif; font-size: .74rem;
+  font-family: 'DM Sans',sans-serif; font-size: .72rem;
   color: rgba(255,255,255,.5);
 }
 .rp-footer {
   border-top: 1px solid rgba(255,255,255,.08);
-  padding: .875rem 1.5rem; font-family: 'DM Sans',sans-serif;
-  font-size: .72rem; color: rgba(255,255,255,.4);
-  text-align: center; line-height: 1.5;
+  padding: .75rem 1.25rem; font-family: 'DM Sans',sans-serif;
+  font-size: .7rem; color: rgba(255,255,255,.38);
+  text-align: center; line-height: 1.5; flex-shrink: 0;
 }
-@media(max-width:480px){
-  .report-panel { width: calc(100vw - 32px); right: 16px; bottom: 96px; }
-  .report-fab   { right: 16px; bottom: 20px; }
+
+@media(max-width: 480px){
+  .report-panel {
+    width: calc(100vw - 24px);
+    right: 12px;
+    left: 12px;
+  }
+  .rp-body { max-height: 55vh; }
+  .report-fab { right: 16px; bottom: 20px; }
 }
 </style>
 
+<!-- FAB Button — SVG warning triangle, no emoji -->
 <button class="report-fab" id="reportFab" onclick="toggleReport()" aria-label="Denunciar maltrato animal">
-  &#9888;&#65039;
+  <svg viewBox="0 0 24 24">
+    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+    <line x1="12" y1="9" x2="12" y2="13"/>
+    <line x1="12" y1="17" x2="12.01" y2="17"/>
+  </svg>
   <span class="fab-tooltip" data-es="Denunciar maltrato animal" data-en="Report animal abuse">Denunciar maltrato animal</span>
 </button>
 
+<!-- Panel -->
 <div class="report-panel" id="reportPanel">
   <div class="rp-header">
     <div class="rp-header-left">
-      <div class="rp-header-icon">&#128680;</div>
+      <div class="rp-header-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
       <div>
         <h4 data-es="Denuncia maltrato animal" data-en="Report animal abuse">Denuncia maltrato animal</h4>
         <p data-es="Sé su voz. Cada denuncia cuenta." data-en="Be their voice. Every report counts.">Sé su voz. Cada denuncia cuenta.</p>
@@ -394,64 +452,102 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   <div class="rp-body">
     <p class="rp-intro" data-es="¿Presenciaste maltrato o abandono animal? No te quedes callado. En Honduras el maltrato animal es un delito penal. Puedes denunciar de forma anónima." data-en="Did you witness animal abuse or abandonment? Don't stay silent. In Honduras, animal abuse is a criminal offense. You can report anonymously.">¿Presenciaste maltrato o abandono animal? No te quedes callado. En Honduras el maltrato animal es un delito penal. Puedes denunciar de forma anónima.</p>
     <div class="rp-law">
-      <p data-es="&#9878;&#65039; <strong>Ley de Protección Animal:</strong> De 2 a 4 años de prisión por muerte de un animal. De 6 meses a 2 años por lesiones." data-en="&#9878;&#65039; <strong>Animal Protection Law:</strong> 2 to 4 years in prison for killing an animal. 6 months to 2 years for injuries.">&#9878;&#65039; <strong>Ley de Protección Animal:</strong> De 2 a 4 años de prisión por muerte de un animal. De 6 meses a 2 años por lesiones.</p>
+      <p data-es="<strong>Ley de Protección Animal:</strong> De 2 a 4 años de prisión por muerte de un animal. De 6 meses a 2 años por lesiones graves." data-en="<strong>Animal Protection Law:</strong> 2 to 4 years in prison for killing an animal. 6 months to 2 years for serious injuries."><strong>Ley de Protección Animal:</strong> De 2 a 4 años de prisión por muerte de un animal. De 6 meses a 2 años por lesiones graves.</p>
     </div>
-    <div class="rp-channels">
-      <a class="rp-channel" href="tel:911">
-        <div class="rp-ch-icon red">&#128680;</div>
-        <div class="rp-ch-text">
-          <strong>911 — Emergencias</strong>
-          <span data-es="Casos urgentes en curso — Gratuito" data-en="Urgent ongoing cases — Free">Casos urgentes en curso — Gratuito</span>
-        </div>
-      </a>
-      <a class="rp-channel" href="tel:22400400">
-        <div class="rp-ch-icon blue">&#128269;</div>
-        <div class="rp-ch-text">
-          <strong data-es="DPI — 2240-0400" data-en="DPI — 2240-0400">DPI — 2240-0400</strong>
-          <span data-es="Dirección Policial de Investigaciones" data-en="Police Investigations Unit">Dirección Policial de Investigaciones</span>
-        </div>
-      </a>
-      <a class="rp-channel" href="tel:22213099">
-        <div class="rp-ch-icon orange">&#9878;&#65039;</div>
-        <div class="rp-ch-text">
-          <strong data-es="Ministerio Público — 2221-3099" data-en="Public Ministry — 2221-3099">Ministerio Público — 2221-3099</strong>
-          <span data-es="Denuncia penal formal" data-en="Formal criminal complaint">Denuncia penal formal</span>
-        </div>
-      </a>
-      <a class="rp-channel" href="tel:22502141">
-        <div class="rp-ch-icon teal">&#127968;</div>
-        <div class="rp-ch-text">
-          <strong data-es="Alcaldía SPS — 2250-2141 ext. 1380" data-en="SPS Municipality — 2250-2141 ext. 1380">Alcaldía SPS — 2250-2141 ext. 1380</strong>
-          <span data-es="Juzgado Municipal de San Pedro Sula" data-en="San Pedro Sula Municipal Court">Juzgado Municipal de San Pedro Sula</span>
-        </div>
-      </a>
-      <a class="rp-channel" href="tel:22325029">
-        <div class="rp-ch-icon purple">&#127807;</div>
-        <div class="rp-ch-text">
-          <strong data-es="SAG — 2232-5029" data-en="SAG — 2232-5029">SAG — 2232-5029</strong>
-          <span data-es="Secretaría de Agricultura y Ganadería" data-en="Agriculture and Livestock Ministry">Secretaría de Agricultura y Ganadería</span>
-        </div>
-      </a>
+    <div class="rp-channels" id="rpChannels">
+      <!-- Channels rendered by JS to handle mobile/desktop link behavior -->
     </div>
   </div>
-  <div class="rp-footer" data-es="Puedes denunciar de forma anónima. Reúne evidencia: fotos, videos, dirección exacta y hora del incidente." data-en="You can report anonymously. Gather evidence: photos, videos, exact address and time of incident.">Puedes denunciar de forma anónima. Reúne evidencia: fotos, videos, dirección exacta y hora del incidente.</div>
+  <div class="rp-footer" data-es="Puedes denunciar anónimamente. Reúne evidencia: fotos, videos, dirección y hora del incidente." data-en="You can report anonymously. Gather evidence: photos, videos, address and time of incident.">Puedes denunciar anónimamente. Reúne evidencia: fotos, videos, dirección y hora del incidente.</div>
 </div>
 
 <script>
-function toggleReport() {
-  var panel = document.getElementById('reportPanel');
-  var fab   = document.getElementById('reportFab');
-  panel.classList.toggle('open');
-  fab.style.transform = panel.classList.contains('open') ? 'scale(1.08) rotate(15deg)' : '';
-}
-document.addEventListener('click', function(e) {
-  var panel = document.getElementById('reportPanel');
-  var fab   = document.getElementById('reportFab');
-  if (panel && fab && !panel.contains(e.target) && !fab.contains(e.target)) {
-    panel.classList.remove('open');
-    fab.style.transform = '';
+(function() {
+  // Detect if device is mobile/touch
+  var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || ('ontouchstart' in window);
+
+  var channels = [
+    {
+      icon: '<svg viewBox="0 0 24 24"><polygon points="22 16.92 22 19.92 22 20.92 21 20.92 17.92 20.92 16.5 19.5 17.92 18.08 20 18.08 20 16.92 18 13.08 15.5 15.58 14.08 14.16 17 11.26 22 16.92z" fill="white" stroke="none"/><path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94M1 1l22 22M16.72 16.72A10.07 10.07 0 019 17H5a2 2 0 01-2-2v-3.28"/></svg>',
+      iconClass: 'red',
+      title: '911 — Emergencias',
+      sub_es: 'Casos urgentes en curso — Gratuito',
+      sub_en: 'Urgent ongoing cases — Free',
+      tel: '911'
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+      iconClass: 'blue',
+      title: 'DPI — 2240-0400',
+      sub_es: 'Dirección Policial de Investigaciones',
+      sub_en: 'Police Investigations Unit',
+      tel: '22400400'
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
+      iconClass: 'orange',
+      title: 'Ministerio Público — 2221-3099',
+      sub_es: 'Denuncia penal formal',
+      sub_en: 'Formal criminal complaint',
+      tel: '22213099'
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+      iconClass: 'teal',
+      title: 'Alcaldía SPS — 2250-2141 ext. 1380',
+      sub_es: 'Juzgado Municipal de San Pedro Sula',
+      sub_en: 'San Pedro Sula Municipal Court',
+      tel: '22502141'
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg>',
+      iconClass: 'purple',
+      title: 'SAG — 2232-5029',
+      sub_es: 'Secretaría de Agricultura y Ganadería',
+      sub_en: 'Agriculture and Livestock Ministry',
+      tel: '22325029'
+    }
+  ];
+
+  function buildChannels() {
+    var container = document.getElementById('rpChannels');
+    if (!container) return;
+    var lang = localStorage.getItem('ayaLang') || 'es';
+    var html = '';
+    channels.forEach(function(ch) {
+      // On mobile: render as <a href="tel:..."> — on desktop: render as <div>
+      var tag = isMobile ? 'a' : 'div';
+      var href = isMobile ? ' href="tel:' + ch.tel + '"' : '';
+      var linkClass = isMobile ? ' is-link' : '';
+      html += '<' + tag + href + ' class="rp-channel' + linkClass + '">';
+      html += '<div class="rp-ch-icon ' + ch.iconClass + '">' + ch.icon + '</div>';
+      html += '<div class="rp-ch-text">';
+      html += '<strong>' + ch.title + '</strong>';
+      html += '<span data-es="' + ch.sub_es + '" data-en="' + ch.sub_en + '">' + (lang === 'en' ? ch.sub_en : ch.sub_es) + '</span>';
+      html += '</div>';
+      html += '</' + tag + '>';
+    });
+    container.innerHTML = html;
   }
-});
+
+  document.addEventListener('DOMContentLoaded', buildChannels);
+
+  window.toggleReport = function() {
+    var panel = document.getElementById('reportPanel');
+    panel.classList.toggle('open');
+    // Rebuild channels each time in case lang changed
+    buildChannels();
+  };
+
+  // Close when clicking outside
+  document.addEventListener('click', function(e) {
+    var panel = document.getElementById('reportPanel');
+    var fab   = document.getElementById('reportFab');
+    if (panel && fab && !panel.contains(e.target) && !fab.contains(e.target)) {
+      panel.classList.remove('open');
+    }
+  });
+})();
 </script>
 <!-- ====== FIN DENUNCIA ====== -->
 </body></html>
