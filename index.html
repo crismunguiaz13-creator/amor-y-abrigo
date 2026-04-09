@@ -567,54 +567,75 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 <script>
-var API = 'https://script.google.com/macros/s/AKfycbxV2W-VMaI9cQvIWUxW2sgHz8jis8epdbe3Nfqcb6kmECzbTOhpe8Rl0XTZbycTjZPi2A/exec';
+(function() {
+  var API = 'https://script.google.com/macros/s/AKfycbxV2W-VMaI9cQvIWUxW2sgHz8jis8epdbe3Nfqcb6kmECzbTOhpe8Rl0XTZbycTjZPi2A/exec';
 
-function buildCard(a) {
-  var foto = a.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
-  var estado = a.estado || 'Disponible';
-  var est = estado.toLowerCase();
-  var bc = est.indexOf('reservado') > -1 ? 'badge-reservado' : est.indexOf('adoptado') > -1 ? 'badge-adoptado' : est.indexOf('tratamiento') > -1 ? 'badge-tratamiento' : 'badge-disponible';
-  var btnc = est.indexOf('reservado') > -1 ? 'reservado' : est.indexOf('adoptado') > -1 ? 'adoptado' : est.indexOf('tratamiento') > -1 ? 'adoptado' : '';
-  var btnt = est.indexOf('adoptado') > -1 ? 'Ya adoptado!' : est.indexOf('reservado') > -1 ? 'Aplicar como 2a opcion' : est.indexOf('tratamiento') > -1 ? 'En tratamiento medico' : 'Quiero adoptar a ' + a.nombre;
-  var tags = '';
-  if (a.tipo) { tags += '<span class="animal-tag">' + a.tipo + '</span>'; }
-  if (a.edad) { tags += '<span class="animal-tag">' + a.edad + '</span>'; }
-  if (a.sexo) { tags += '<span class="animal-tag">' + a.sexo + '</span>'; }
-  var desc = (a.descripcion || '').substring(0, 100);
-  var card = '<div class="animal-card">';
-  card += '<div class="animal-img"><img src="' + foto + '" alt="' + a.nombre + '"><span class="animal-badge ' + bc + '">' + estado + '</span></div>';
-  card += '<div class="animal-body">';
-  card += '<div class="animal-name">' + a.nombre + '</div>';
-  card += '<div class="animal-tags">' + tags + '</div>';
-  card += '<p class="animal-desc">' + desc + '</p>';
-  card += '<a href="adopcion.html" class="animal-btn ' + btnc + '" onclick="if(!this.classList.contains('reservado') && !this.classList.contains('adoptado')) { burstHearts(this); }">' + btnt + '</a>';
-  card += '</div></div>';
-  return card;
-}
+  function makeCard(a) {
+    var foto = a.foto || 'https://www.amoryabrigohn.org/images/slider2.jpg';
+    var estado = a.estado || 'Disponible';
+    var est = estado.toLowerCase();
+    var bc = est.indexOf('reservado') !== -1 ? 'badge-reservado'
+            : est.indexOf('adoptado') !== -1 ? 'badge-adoptado'
+            : est.indexOf('tratamiento') !== -1 ? 'badge-tratamiento'
+            : 'badge-disponible';
+    var btnc = est.indexOf('reservado') !== -1 ? 'reservado'
+             : est.indexOf('adoptado') !== -1 ? 'adoptado'
+             : est.indexOf('tratamiento') !== -1 ? 'adoptado' : '';
+    var btnt = est.indexOf('adoptado') !== -1 ? 'Ya adoptado!'
+             : est.indexOf('reservado') !== -1 ? 'Aplicar como 2a opcion'
+             : est.indexOf('tratamiento') !== -1 ? 'En tratamiento medico'
+             : 'Quiero adoptar a ' + a.nombre;
+    var tags = '';
+    if (a.tipo) tags += '<span class="animal-tag">' + a.tipo + '</span>';
+    if (a.edad) tags += '<span class="animal-tag">' + a.edad + '</span>';
+    if (a.sexo) tags += '<span class="animal-tag">' + a.sexo + '</span>';
+    var desc = (a.descripcion || '').substring(0, 100);
+    var onclick = btnc ? '' : ' onclick="if(window.burstHearts)burstHearts(this)"';
+    return '<div class="animal-card">'
+      + '<div class="animal-img"><img src="' + foto + '" alt="' + a.nombre + '" loading="lazy">'
+      + '<span class="animal-badge ' + bc + '">' + estado + '</span></div>'
+      + '<div class="animal-body">'
+      + '<div class="animal-name">' + a.nombre + '</div>'
+      + '<div class="animal-tags">' + tags + '</div>'
+      + '<p class="animal-desc">' + desc + '</p>'
+      + '<a href="adopcion.html" class="animal-btn ' + btnc + '"' + onclick + '>' + btnt + '</a>'
+      + '</div></div>';
+  }
 
-fetch(API)
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
+  function loadAnimals() {
     var grid = document.getElementById('homeGrid');
-    var avail = [];
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].nombre && (data[i].estado || '').toLowerCase().indexOf('adoptado') === -1) {
-        avail.push(data[i]);
-      }
-    }
-    var latest = avail.slice(-3).reverse();
-    if (!latest.length) {
-      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">Pronto agregaremos animales disponibles.</div>';
-      return;
-    }
-    var html = '';
-    for (var j = 0; j < latest.length; j++) { html += buildCard(latest[j]); }
-    grid.innerHTML = html;
-  })
-  .catch(function(err) {
-    console.error(err);
-    document.getElementById('homeGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray);">No se pudieron cargar los animales.</div>';
-  });
+    if (!grid) return;
+    fetch(API)
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(data) {
+        var avail = data.filter(function(a) {
+          if (!a.nombre) return false;
+          var est = (a.estado || '').toLowerCase();
+          return est.indexOf('adoptado') === -1 && est.indexOf('tratamiento') === -1;
+        });
+        if (!avail.length) {
+          grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray)">Pronto agregaremos animales disponibles.</div>';
+          return;
+        }
+        var show = avail.slice(-3).reverse();
+        grid.innerHTML = show.map(makeCard).join('');
+      })
+      .catch(function(err) {
+        console.warn('Animals fetch error:', err);
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--gray)">No se pudieron cargar los animales. <a href="animales.html" style="color:var(--blue)">Ver en la pagina de animales</a></div>';
+      });
+  }
+
+  // Load immediately when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadAnimals);
+  } else {
+    loadAnimals();
+  }
+})();
 </script>
 
 
