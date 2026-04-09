@@ -69,6 +69,102 @@
 @media(max-width:1024px){.ways-section,.banks-section,.impact-section,.don-cta{padding:3rem 2rem;}.ways-grid,.impact-grid{grid-template-columns:1fr 1fr;}.banks-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:640px){.ways-grid,.banks-grid,.impact-grid{grid-template-columns:1fr;}.don-stat{padding:1rem 1.5rem;}}
 </style>
+<style>
+.apadrina-section {
+  padding: 5rem 4rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  position: relative; overflow: hidden;
+}
+.apadrina-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(30,144,255,.12), transparent 50%),
+              radial-gradient(circle at 80% 30%, rgba(232,69,60,.08), transparent 50%);
+}
+.apadrina-inner { position: relative; z-index: 1; }
+.apadrina-header { text-align: center; margin-bottom: 3rem; }
+.apadrina-header .section-badge { color: #FFE600; }
+.apadrina-header .section-title { color: #fff; }
+.apadrina-header p { color: rgba(255,255,255,.7); max-width: 580px; margin: 0 auto; line-height: 1.8; }
+.apadrina-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.apadrina-tiers { display: flex; flex-direction: column; gap: .875rem; }
+.tier-card {
+  background: rgba(255,255,255,.07);
+  border: 2px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 1.25rem 1.5rem;
+  display: flex; align-items: center; gap: 1.25rem;
+  cursor: pointer; transition: all .25s;
+}
+.tier-card:hover, .tier-card.selected {
+  background: rgba(30,144,255,.18);
+  border-color: #1E90FF;
+  transform: translateX(5px);
+}
+.tier-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.tier-info { flex: 1; }
+.tier-amount {
+  font-family: 'Fraunces', serif; font-size: 1.4rem;
+  font-weight: 900; color: #FFE600; display: block; margin-bottom: .15rem;
+}
+.tier-label { font-size: .88rem; font-weight: 600; color: #fff; display: block; }
+.tier-desc { font-size: .78rem; color: rgba(255,255,255,.55); }
+.tier-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.25);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all .2s;
+}
+.tier-card.selected .tier-check {
+  background: #1E90FF; border-color: #1E90FF; color: #fff;
+}
+.apadrina-action {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px; padding: 2rem;
+}
+.apadrina-action h4 {
+  font-family: 'Fraunces', serif; font-size: 1.4rem;
+  font-weight: 700; color: #fff; margin-bottom: .5rem;
+}
+.apadrina-action p { font-size: .875rem; color: rgba(255,255,255,.65); line-height: 1.7; margin-bottom: 1.5rem; }
+.apadrina-selected-info {
+  background: rgba(30,144,255,.15); border: 1px solid rgba(30,144,255,.3);
+  border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+}
+.apadrina-selected-info strong { color: #FFE600; font-size: 1.1rem; }
+.apadrina-selected-info span { color: rgba(255,255,255,.7); font-size: .85rem; display: block; margin-top: .25rem; }
+.apadrina-paypal-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 1rem; border-radius: 12px;
+  background: #003087; color: #fff; font-family: 'DM Sans', sans-serif;
+  font-size: 1rem; font-weight: 700; text-decoration: none;
+  transition: all .3s; border: none; cursor: pointer;
+}
+.apadrina-paypal-btn:hover { background: #002270; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,48,135,.4); }
+.apadrina-note {
+  margin-top: 1rem; font-family: 'DM Sans', sans-serif;
+  font-size: .76rem; color: rgba(255,255,255,.4);
+  text-align: center; line-height: 1.5;
+}
+.apadrina-wa {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: .875rem; border-radius: 12px;
+  background: rgba(37,211,102,.15); border: 1px solid rgba(37,211,102,.3);
+  color: #25D366; font-family: 'DM Sans', sans-serif;
+  font-size: .875rem; font-weight: 600; text-decoration: none;
+  transition: all .25s; margin-top: .75rem;
+}
+.apadrina-wa:hover { background: rgba(37,211,102,.25); }
+@media(max-width:1024px){
+  .apadrina-section { padding: 3rem 2rem; }
+  .apadrina-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
 </head>
 <body>
 <nav id="mainNav">
@@ -88,6 +184,8 @@
     <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
+  
+    <button class="darkmode-btn" id="darkBtn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIcon">🌙</span></button>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -105,6 +203,7 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
+  <div style="display:flex;justify-content:center;margin-top:.5rem"><button class="darkmode-btn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIconM">🌙</span></button></div>
 </div>
 <div class="don-hero">
   <div class="don-hero-content">
@@ -202,6 +301,79 @@
   </div>
 </section>
 
+<section class="apadrina-section reveal">
+  <div class="apadrina-inner">
+    <div class="apadrina-header">
+      <span class="section-badge" data-es="Programa especial" data-en="Special program">Programa especial</span>
+      <h2 class="section-title" data-es="🐾 Apadrina un animalito" data-en="🐾 Sponsor an animal">🐾 Apadrina un animalito</h2>
+      <p data-es="Con una pequeña aportación mensual puedes ser el padrino o madrina de un animal en el refugio. Tu apoyo cubre su alimento, medicamentos y cuidados básicos cada mes." data-en="With a small monthly contribution you can be the sponsor of an animal at the shelter. Your support covers their food, medicine and basic care every month.">Con una pequeña aportación mensual puedes ser el padrino o madrina de un animal en el refugio. Tu apoyo cubre su alimento, medicamentos y cuidados básicos cada mes.</p>
+    </div>
+    <div class="apadrina-grid">
+      <div class="apadrina-tiers">
+        <div class="tier-card selected" onclick="selectTier(this, 'L.200 / mes', '200', 'Padrino Básico — cubre alimentación mensual')">
+          <div class="tier-icon">🌱</div>
+          <div class="tier-info">
+            <span class="tier-amount">L. 200 / mes</span>
+            <span class="tier-label" data-es="Padrino Básico" data-en="Basic Sponsor">Padrino Básico</span>
+            <span class="tier-desc" data-es="Cubre la alimentación mensual de un animal" data-en="Covers monthly food for one animal">Cubre la alimentación mensual de un animal</span>
+          </div>
+          <div class="tier-check">✓</div>
+        </div>
+        <div class="tier-card" onclick="selectTier(this, 'L.500 / mes', '500', 'Padrino Plata — alimentación + medicamentos básicos')">
+          <div class="tier-icon">⭐</div>
+          <div class="tier-info">
+            <span class="tier-amount">L. 500 / mes</span>
+            <span class="tier-label" data-es="Padrino Plata" data-en="Silver Sponsor">Padrino Plata</span>
+            <span class="tier-desc" data-es="Alimentación + medicamentos básicos" data-en="Food + basic medications">Alimentación + medicamentos básicos</span>
+          </div>
+          <div class="tier-check">✓</div>
+        </div>
+        <div class="tier-card" onclick="selectTier(this, 'L.1000 / mes', '1000', 'Padrino Oro — cuidado veterinario completo')">
+          <div class="tier-icon">👑</div>
+          <div class="tier-info">
+            <span class="tier-amount">L. 1,000 / mes</span>
+            <span class="tier-label" data-es="Padrino Oro" data-en="Gold Sponsor">Padrino Oro</span>
+            <span class="tier-desc" data-es="Cuidado veterinario completo incluido" data-en="Full veterinary care included">Cuidado veterinario completo incluido</span>
+          </div>
+          <div class="tier-check">✓</div>
+        </div>
+        <div class="tier-card" onclick="selectTier(this, 'Monto personalizado', 'custom', 'Quiero apadrinar con un monto personalizado')">
+          <div class="tier-icon">💛</div>
+          <div class="tier-info">
+            <span class="tier-amount" data-es="Elige tu monto" data-en="Choose your amount">Elige tu monto</span>
+            <span class="tier-label" data-es="Padrino Personalizado" data-en="Custom Sponsor">Padrino Personalizado</span>
+            <span class="tier-desc" data-es="Cualquier monto desde L.50 ayuda" data-en="Any amount from L.50 helps">Cualquier monto desde L.50 ayuda</span>
+          </div>
+          <div class="tier-check">✓</div>
+        </div>
+      </div>
+      <div class="apadrina-action">
+        <h4 data-es="¿Listo para apadrinar?" data-en="Ready to sponsor?">¿Listo para apadrinar?</h4>
+        <p data-es="Elige tu nivel de apadrinamiento y continúa por PayPal para configurar el cobro automático mensual, o coordina tu aportación por transferencia bancaria o Tigo Money." data-en="Choose your sponsorship level and continue via PayPal to set up automatic monthly billing, or coordinate your contribution via bank transfer or Tigo Money.">Elige tu nivel de apadrinamiento y continúa por PayPal para configurar el cobro automático mensual, o coordina tu aportación por transferencia bancaria o Tigo Money.</p>
+        <div class="apadrina-selected-info" id="tierInfo">
+          <strong id="tierAmount">L. 200 / mes</strong>
+          <span id="tierDesc">Padrino Básico — cubre alimentación mensual</span>
+        </div>
+        <a href="https://paypal.me/amoryabrigohn" target="_blank" class="apadrina-paypal-btn" id="paypalBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 00-.607-.541c-.59 3.025-2.566 6.059-8.334 6.059h-2.19c-1.29 0-2.385.936-2.584 2.208l-1.12 7.128-.31 1.97h3.908l.54-3.433a.641.641 0 01.633-.54h1.37c3.924 0 6.997-1.595 7.896-6.205.407-2.105.077-3.757-.961-4.9z"/></svg>
+          <span data-es="Apadrinar por PayPal" data-en="Sponsor via PayPal">Apadrinar por PayPal</span>
+        </a>
+        <a href="https://wa.me/50498248715?text=Hola!%20Quiero%20apadrinar%20un%20animalito%20en%20Amor%20y%20Abrigo." target="_blank" class="apadrina-wa">
+          💬 <span data-es="Apadrinar por transferencia / Tigo Money" data-en="Sponsor via transfer / Tigo Money">Apadrinar por transferencia / Tigo Money</span>
+        </a>
+        <p class="apadrina-note" data-es="💙 PayPal cobra automáticamente cada mes. Puedes cancelar en cualquier momento desde tu cuenta PayPal." data-en="💙 PayPal bills automatically each month. You can cancel at any time from your PayPal account.">💙 PayPal cobra automáticamente cada mes. Puedes cancelar en cualquier momento desde tu cuenta PayPal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+function selectTier(el, amount, value, desc) {
+  document.querySelectorAll('.tier-card').forEach(function(c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('tierAmount').textContent = amount;
+  document.getElementById('tierDesc').textContent = desc;
+}
+</script>
 <section class="impact-section reveal">
   <div style="text-align:center">
     <span class="section-badge" data-es="El impacto de tu donacion" data-en="The impact of your donation">El impacto de tu donacion</span>
@@ -338,6 +510,24 @@ function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 document.addEventListener('DOMContentLoaded', function() {
   if (currentLang === 'en') applyLang('en');
 });
+
+/* DARK MODE */
+(function() {
+  if (localStorage.getItem('ayaDark') === '1') {
+    document.body.classList.add('dark-mode');
+    var ic = document.getElementById('darkIcon');
+    if (ic) ic.textContent = '☀️';
+  }
+})();
+window.toggleDark = function() {
+  document.body.classList.toggle('dark-mode');
+  var isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('ayaDark', isDark ? '1' : '0');
+  var ic = document.getElementById('darkIcon');
+  if (ic) ic.textContent = isDark ? '☀️' : '🌙';
+  var icm = document.getElementById('darkIconM');
+  if (icm) icm.textContent = isDark ? '☀️' : '🌙';
+};
 </script>
 
 

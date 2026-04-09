@@ -16,6 +16,39 @@
 .method-text span{color:var(--gray);font-size:.9rem;}
 @media(max-width:1024px){.contact-section{grid-template-columns:1fr;padding:3rem 2rem;gap:3rem;}}
 </style>
+<style>
+.map-section { padding: 0 4rem 5rem; }
+.map-section h3 {
+  font-family: 'Fraunces', serif; font-size: 1.5rem;
+  font-weight: 700; color: var(--dark); margin-bottom: 1.25rem;
+}
+.map-wrap {
+  border-radius: 20px; overflow: hidden;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+  position: relative;
+}
+.map-wrap iframe { display: block; width: 100%; height: 420px; border: 0; }
+.map-overlay-badge {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--white); border-radius: 12px;
+  padding: .75rem 1.1rem; box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  display: flex; align-items: center; gap: 8px;
+}
+.map-overlay-badge .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--red); animation: mapPulse 1.5s infinite;
+}
+.map-overlay-badge span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .82rem; font-weight: 600; color: var(--dark);
+}
+@keyframes mapPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(232,69,60,.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(232,69,60,0); }
+}
+@media(max-width:1024px){ .map-section { padding: 0 2rem 3rem; } }
+@media(max-width:640px){ .map-wrap iframe { height: 300px; } }
+</style>
 </head>
 <body><nav id="mainNav">
   <a href="index.html" class="nav-logo">
@@ -34,6 +67,8 @@
     <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
+  
+    <button class="darkmode-btn" id="darkBtn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIcon">🌙</span></button>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -51,6 +86,7 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
+  <div style="display:flex;justify-content:center;margin-top:.5rem"><button class="darkmode-btn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIconM">🌙</span></button></div>
 </div>
 <div class="page-hero">
   <span class="badge" data-es="Hablemos" data-en="Let's talk">Hablemos</span>
@@ -119,6 +155,21 @@
       <div class="form-success" id="okCt" data-es="✅ ¡Mensaje enviado! Te responderemos pronto." data-en="✅ Message sent! We will respond soon.">✅ ¡Mensaje enviado! Te responderemos pronto.</div>
       <div class="form-error" id="errCt" data-es="⚠️ Error al enviar. Intenta de nuevo." data-en="⚠️ Error sending. Please try again.">⚠️ Error al enviar. Intenta de nuevo.</div>
     </form>
+  </div>
+</section>
+<section class="map-section reveal">
+  <h3 data-es="📍 Encuéntranos en San Pedro Sula" data-en="📍 Find us in San Pedro Sula">📍 Encuéntranos en San Pedro Sula</h3>
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.4!2d-88.0069!3d15.5034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMwJzEyLjIiTiA4OMKwMDAnMTQuNiJX!5e0!3m2!1ses!2shn!4v1234567890!5m2!1ses!2shn&q=Col.+Montefresco+San+Pedro+Sula+Honduras"
+      allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Ubicación Amor y Abrigo">
+    </iframe>
+    <div class="map-overlay-badge">
+      <div class="dot"></div>
+      <span data-es="Col. Montefresco, SPS" data-en="Col. Montefresco, SPS">Col. Montefresco, SPS</span>
+    </div>
   </div>
 </section>
 <footer>
@@ -222,6 +273,24 @@ function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 document.addEventListener('DOMContentLoaded', function() {
   if (currentLang === 'en') applyLang('en');
 });
+
+/* DARK MODE */
+(function() {
+  if (localStorage.getItem('ayaDark') === '1') {
+    document.body.classList.add('dark-mode');
+    var ic = document.getElementById('darkIcon');
+    if (ic) ic.textContent = '☀️';
+  }
+})();
+window.toggleDark = function() {
+  document.body.classList.toggle('dark-mode');
+  var isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('ayaDark', isDark ? '1' : '0');
+  var ic = document.getElementById('darkIcon');
+  if (ic) ic.textContent = isDark ? '☀️' : '🌙';
+  var icm = document.getElementById('darkIconM');
+  if (icm) icm.textContent = isDark ? '☀️' : '🌙';
+};
 </script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 emailjs.init('qleH3bvpwrYq8QtyQ');

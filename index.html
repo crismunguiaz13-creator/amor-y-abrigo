@@ -58,8 +58,119 @@
 @media(max-width:1024px){.hero{grid-template-columns:1fr;}.hero::before{display:none;}.hero-content{padding:4rem 2rem 2rem;}.hero-img-wrap{padding:2rem;}.mission{grid-template-columns:1fr;padding:4rem 2rem;gap:3rem;}.mission-sub{display:none;}.animals-home,.help{padding:4rem 2rem;}.animals-grid,.help-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:640px){.animals-grid,.help-grid{grid-template-columns:1fr;}.hero-stats{gap:1.5rem;}}
 </style>
+<style>
+#splash {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #1a1a2e;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1.5rem;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+#splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+#splash img {
+  width: 100px; height: 100px; object-fit: contain;
+  animation: splashPulse 1.2s ease-in-out infinite;
+}
+#splash .splash-name {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem; font-weight: 900;
+  color: #fff; letter-spacing: .02em;
+}
+#splash .splash-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; color: rgba(255,255,255,.6);
+}
+#splash .splash-bar-wrap {
+  width: 180px; height: 3px;
+  background: rgba(255,255,255,.15); border-radius: 3px; overflow: hidden;
+}
+#splash .splash-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #1E90FF, #E8453C);
+  border-radius: 3px;
+  animation: splashLoad 1.4s ease forwards;
+}
+@keyframes splashPulse {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+@keyframes splashLoad {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+</style>
+<style>
+.insta-section { padding: 5rem 4rem; }
+.insta-header { text-align: center; margin-bottom: 2.5rem; }
+.insta-handle {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff; padding: .5rem 1.25rem; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 700;
+  text-decoration: none; margin-bottom: 1.25rem; display: inline-flex;
+  transition: all .3s;
+}
+.insta-handle:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(220,39,67,.3); }
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .75rem; margin-bottom: 2rem;
+}
+.insta-tile {
+  aspect-ratio: 1;
+  border-radius: 12px; overflow: hidden;
+  position: relative; background: var(--light);
+  cursor: pointer;
+}
+.insta-tile img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .4s;
+}
+.insta-tile:hover img { transform: scale(1.08); }
+.insta-tile-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(220,39,67,.7), rgba(188,24,136,.7));
+  opacity: 0; transition: opacity .3s;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.5rem;
+}
+.insta-tile:hover .insta-tile-overlay { opacity: 1; }
+.insta-cta { text-align: center; }
+.insta-followers {
+  font-family: 'Fraunces', serif; font-size: 1.1rem;
+  font-weight: 700; color: var(--dark); margin-bottom: .5rem;
+}
+.insta-followers span { color: #dc2743; }
+@media(max-width:1024px){ .insta-section { padding: 3rem 2rem; } .insta-grid { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:640px){ .insta-grid { grid-template-columns: repeat(2,1fr); gap: .5rem; } }
+</style>
 </head>
 <body>
+<div id="splash">
+  <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+  <div class="splash-name">Amor y Abrigo</div>
+  <div class="splash-tag">Refugio Animal · San Pedro Sula, Honduras</div>
+  <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
+</div>
+<script>
+// Only show splash on first visit or if not seen in 24h
+(function() {
+  var last = localStorage.getItem('ayaSplash');
+  var now = Date.now();
+  if (last && (now - parseInt(last)) < 86400000) {
+    document.getElementById('splash').style.display = 'none';
+    return;
+  }
+  setTimeout(function() {
+    var s = document.getElementById('splash');
+    if (s) {
+      s.classList.add('hidden');
+      setTimeout(function() { s.style.display = 'none'; }, 500);
+    }
+    localStorage.setItem('ayaSplash', now.toString());
+  }, 1800);
+})();
+</script>
 <nav id="mainNav">
   <a href="index.html" class="nav-logo">
     <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
@@ -77,6 +188,8 @@
     <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
+  
+    <button class="darkmode-btn" id="darkBtn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIcon">🌙</span></button>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -94,6 +207,7 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
+  <div style="display:flex;justify-content:center;margin-top:.5rem"><button class="darkmode-btn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIconM">🌙</span></button></div>
 </div>
 <section class="hero">
   <div class="hero-content">
@@ -105,9 +219,9 @@
       <a href="adopcion.html" class="btn-secondary" data-es="Como adoptar?" data-en="How to adopt?">Como adoptar?</a>
     </div>
     <div class="hero-stats">
-      <div><span class="stat-num">300+</span><span class="stat-label" data-es="Rescatados" data-en="Rescued">Rescatados</span></div>
-      <div><span class="stat-num">150+</span><span class="stat-label" data-es="Adoptados" data-en="Adopted">Adoptados</span></div>
-      <div><span class="stat-num">13+</span><span class="stat-label" data-es="Anos activos" data-en="Active years">Anos activos</span></div>
+      <div><span class="stat-num counter" data-target="300" data-suffix="+">0+</span><span class="stat-label" data-es="Rescatados" data-en="Rescued">Rescatados</span></div>
+      <div><span class="stat-num counter" data-target="150" data-suffix="+">0+</span><span class="stat-label" data-es="Adoptados" data-en="Adopted">Adoptados</span></div>
+      <div><span class="stat-num counter" data-target="13" data-suffix="+">0+</span><span class="stat-label" data-es="Anos activos" data-en="Active years">Anos activos</span></div>
     </div>
   </div>
   <div class="hero-img-wrap">
@@ -175,6 +289,38 @@
   <div class="see-all"><a href="animales.html" class="btn-primary" data-es="Ver todos los animales" data-en="See all animals">Ver todos los animales</a></div>
 </section>
 
+<section class="insta-section reveal">
+  <div class="insta-header">
+    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-handle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @amoryabrigo
+    </a>
+    <h2 class="section-title" data-es="Síguenos en Instagram" data-en="Follow us on Instagram">Síguenos en Instagram</h2>
+    <p class="section-desc" data-es="Historias reales, rescates, adopciones y mucho amor. ¡Únete a nuestra comunidad!" data-en="Real stories, rescues, adoptions and lots of love. Join our community!">Historias reales, rescates, adopciones y mucho amor. ¡Únete a nuestra comunidad!</p>
+  </div>
+  <div class="insta-grid">
+    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
+      <img src="https://www.amoryabrigohn.org/images/slider2.jpg" alt="Amor y Abrigo Instagram">
+      <div class="insta-tile-overlay">📸</div>
+    </a>
+    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
+      <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Amor y Abrigo Instagram">
+      <div class="insta-tile-overlay">❤️</div>
+    </a>
+    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
+      <img src="https://www.amoryabrigohn.org/images/about.png" alt="Amor y Abrigo Instagram">
+      <div class="insta-tile-overlay">🐾</div>
+    </a>
+    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
+      <img src="https://www.amoryabrigohn.org/images/about2.jpg" alt="Amor y Abrigo Instagram">
+      <div class="insta-tile-overlay">🏠</div>
+    </a>
+  </div>
+  <div class="insta-cta">
+    <p class="insta-followers" data-es="Más de <span>29,000</span> seguidores en Instagram" data-en="More than <span>29,000</span> followers on Instagram">Más de <span>29,000</span> seguidores en Instagram</p>
+    <a href="https://instagram.com/amoryabrigo" target="_blank" class="btn-primary" style="margin:0 auto;width:fit-content" data-es="Ver más en Instagram →" data-en="See more on Instagram →">Ver más en Instagram →</a>
+  </div>
+</section>
 <section class="help reveal">
   <div class="section-header">
     <span class="section-badge" data-es="Unete a la causa" data-en="Join the cause">Unete a la causa</span>
@@ -303,6 +449,57 @@ function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 document.addEventListener('DOMContentLoaded', function() {
   if (currentLang === 'en') applyLang('en');
 });
+
+/* DARK MODE */
+(function() {
+  if (localStorage.getItem('ayaDark') === '1') {
+    document.body.classList.add('dark-mode');
+    var ic = document.getElementById('darkIcon');
+    if (ic) ic.textContent = '☀️';
+  }
+})();
+window.toggleDark = function() {
+  document.body.classList.toggle('dark-mode');
+  var isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('ayaDark', isDark ? '1' : '0');
+  var ic = document.getElementById('darkIcon');
+  if (ic) ic.textContent = isDark ? '☀️' : '🌙';
+  var icm = document.getElementById('darkIconM');
+  if (icm) icm.textContent = isDark ? '☀️' : '🌙';
+};
+</script>
+<script>
+(function() {
+  function animateCounter(el) {
+    var target = parseInt(el.dataset.target);
+    var suffix = el.dataset.suffix || '';
+    var duration = 1800;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      // Ease out
+      var ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var observed = false;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !observed) {
+        observed = true;
+        document.querySelectorAll('.counter').forEach(animateCounter);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.addEventListener('DOMContentLoaded', function() {
+    var statsEl = document.querySelector('.hero-stats');
+    if (statsEl) observer.observe(statsEl);
+  });
+})();
 </script>
 <script>
 var API = 'https://script.google.com/macros/s/AKfycbxV2W-VMaI9cQvIWUxW2sgHz8jis8epdbe3Nfqcb6kmECzbTOhpe8Rl0XTZbycTjZPi2A/exec';

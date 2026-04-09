@@ -402,3 +402,67 @@ footer { background:var(--dark); padding:4rem 4rem 2rem; }
   .footer-bottom { flex-direction:column; gap:.5rem; text-align:center; }
   .form-row { grid-template-columns:1fr; }
 }
+
+/* ============================================================
+   DARK MODE
+============================================================ */
+body.dark-mode {
+  --white:  #0f0f1a;
+  --light:  #1a1a2e;
+  --text:   #e8e8f0;
+  --dark:   #e8e8f0;
+  --border: #2a2a3e;
+  --gray:   #9090aa;
+  --shadow: 0 4px 24px rgba(0,0,0,.3);
+  background: #0f0f1a;
+  color: #e8e8f0;
+}
+body.dark-mode nav {
+  background: rgba(15,15,26,.97);
+  border-bottom-color: #2a2a3e;
+}
+body.dark-mode .nav-links a { color: #e8e8f0; }
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links a.active { background: #1a1a2e; color: var(--blue); }
+body.dark-mode .hero { background: #0f0f1a; }
+body.dark-mode .hero::before { background: #1a1a2e; }
+body.dark-mode .animal-card { background: #1a1a2e; }
+body.dark-mode .animal-tag { background: #252540; }
+body.dark-mode .feature { background: #1a1a2e; border-left-color: var(--blue); }
+body.dark-mode .feature:hover { background: #1e2a40; }
+body.dark-mode .step { background: #1a1a2e; }
+body.dark-mode .step:hover { background: #1e2a40; }
+body.dark-mode .req-card { background: #1a1a2e; }
+body.dark-mode .value-card { background: #1a1a2e; }
+body.dark-mode .mv-card { background: #1a1a2e; }
+body.dark-mode .bank-card { background: #1a1a2e; border-color: #2a2a3e; }
+body.dark-mode .bank-card.featured { background: #1a2035; }
+body.dark-mode .way-card { background: #1a1a2e; }
+body.dark-mode .impact-card { background: rgba(255,255,255,.04); }
+body.dark-mode .event-card { background: #1a1a2e; border-color: #2a2a3e; }
+body.dark-mode .event-top { border-bottom-color: #2a2a3e; }
+body.dark-mode .mobile-menu { background: #0f0f1a; border-bottom-color: #2a2a3e; }
+body.dark-mode .mobile-menu a { color: #e8e8f0; }
+body.dark-mode .section-title { color: #e8e8f0; }
+body.dark-mode .hero h1 { color: #e8e8f0; }
+body.dark-mode .don-stat { background: rgba(255,255,255,.07); }
+
+/* Dark mode toggle button */
+.darkmode-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent; cursor: pointer;
+  transition: all .25s; margin-left: .25rem;
+  color: var(--text); font-size: 1rem;
+  flex-shrink: 0;
+}
+.darkmode-btn:hover {
+  background: var(--light);
+  border-color: var(--blue);
+  transform: rotate(20deg);
+}
+body.dark-mode .darkmode-btn {
+  border-color: #2a2a3e;
+  color: #e8e8f0;
+}

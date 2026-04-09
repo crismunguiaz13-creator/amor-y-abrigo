@@ -47,6 +47,8 @@
     <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button>
+  
+    <button class="darkmode-btn" id="darkBtn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIcon">🌙</span></button>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -64,6 +66,7 @@
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
 </button></div>
+  <div style="display:flex;justify-content:center;margin-top:.5rem"><button class="darkmode-btn" onclick="toggleDark()" aria-label="Modo oscuro"><span id="darkIconM">🌙</span></button></div>
 </div>
 <div class="page-hero">
   <span class="badge" data-es="Actividades del refugio" data-en="Shelter activities">Actividades del refugio</span>
@@ -254,6 +257,24 @@ function toggleLang() { applyLang(currentLang === 'es' ? 'en' : 'es'); }
 document.addEventListener('DOMContentLoaded', function() {
   if (currentLang === 'en') applyLang('en');
 });
+
+/* DARK MODE */
+(function() {
+  if (localStorage.getItem('ayaDark') === '1') {
+    document.body.classList.add('dark-mode');
+    var ic = document.getElementById('darkIcon');
+    if (ic) ic.textContent = '☀️';
+  }
+})();
+window.toggleDark = function() {
+  document.body.classList.toggle('dark-mode');
+  var isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('ayaDark', isDark ? '1' : '0');
+  var ic = document.getElementById('darkIcon');
+  if (ic) ic.textContent = isDark ? '☀️' : '🌙';
+  var icm = document.getElementById('darkIconM');
+  if (icm) icm.textContent = isDark ? '☀️' : '🌙';
+};
 </script>
 
 
