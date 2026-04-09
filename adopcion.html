@@ -24,6 +24,49 @@
 @media(max-width:1024px){.adoption-section{grid-template-columns:1fr;padding:3rem 2rem;gap:3rem;}.req-section{padding:3rem 2rem;}.req-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:640px){.req-grid{grid-template-columns:1fr;}}
 </style>
+<style>
+.faq-section { padding: 5rem 4rem; background: var(--light); }
+.faq-grid { max-width: 760px; margin: 3rem auto 0; display: flex; flex-direction: column; gap: .75rem; }
+.faq-item {
+  background: var(--white); border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden; transition: box-shadow .25s;
+}
+.faq-item:hover { box-shadow: var(--shadow); }
+.faq-item.open { box-shadow: 0 8px 30px rgba(30,144,255,.12); border-color: var(--blue); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 1.5rem; cursor: pointer;
+  font-family: "DM Sans",sans-serif; font-size:.95rem;
+  font-weight: 600; color: var(--dark); gap: 1rem;
+  user-select: none;
+}
+.faq-q:hover { color: var(--blue); }
+.faq-item.open .faq-q { color: var(--blue); }
+.faq-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--light); display: flex;
+  align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: .9rem;
+  transition: all .3s; font-weight: 700; color: var(--gray);
+}
+.faq-item.open .faq-icon { background: var(--blue); color: #fff; transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+  padding: 0 1.5rem;
+  font-family: "DM Sans",sans-serif; font-size:.9rem;
+  color: var(--gray); line-height: 1.75;
+}
+.faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+body.dark-mode .faq-item { background: #1a1a2e; border-color: #2a2a3e; }
+body.dark-mode .faq-q { color: #eeeef8; }
+body.dark-mode .faq-icon { background: #252540; color: #8888aa; }
+body.dark-mode .faq-item.open .faq-q { color: var(--blue); }
+body.dark-mode .faq-item.open .faq-icon { background: var(--blue); color: #fff; }
+body.dark-mode .faq-section { background: #111122; }
+@media(max-width:1024px){ .faq-section { padding: 3rem 2rem; } }
+</style>
 </head>
 <body><nav id="mainNav">
   <a href="index.html" class="nav-logo">
@@ -37,7 +80,7 @@
     <a href="adopcion.html" class="active" data-es="Adopción" data-en="Adoption">Adopción</a>
     <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
     <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
-    <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
+    <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciónes</a>
     <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
     <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
@@ -56,7 +99,7 @@
   <a href="adopcion.html" class="active" data-es="Adopción" data-en="Adoption">Adopción</a>
   <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
   <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
-  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
+  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciónes</a>
   <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
   <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
   <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
@@ -86,7 +129,7 @@
         <div class="step-num">2</div>
         <div class="step-content">
           <strong data-es="Llena el formulario" data-en="Fill out the form">Llena el formulario</strong>
-          <span data-es="Completa tus datos y cuéntanos sobre tu hogar y estilo de vida." data-en="Complete your details and tell us about your home and lifestyle.">Completa tus datos y cuéntanos sobre tu hogar y estilo de vida.</span>
+          <span data-es="Completa tus datos y cuéntanos sobre tu hogar y estilo de vida." data-en="Complete your details and tell us about your home and lifestyle.">Completa tus datos y cuéntaños sobre tu hogar y estilo de vida.</span>
         </div>
       </div>
       <div class="step reveal delay-3">
@@ -185,6 +228,67 @@
     <div class="req-card reveal delay-3"><h4>✅ <span data-es="Sin costo alguno" data-en="No cost at all">Sin costo alguno</span></h4><p data-es="La adopción en Amor y Abrigo es completamente gratuita." data-en="Adoption at Amor y Abrigo is completely free.">La adopción en Amor y Abrigo es completamente gratuita.</p></div>
   </div>
 </section>
+<section class="faq-section reveal">
+  <div style="text-align:center">
+    <span class="section-badge" data-es="Preguntas frecuentes" data-en="Frequently asked questions">Preguntas frecuentes</span>
+    <h2 class="section-title" data-es="Resolvemos tus dudas" data-en="We answer your questions">Resolvemos tus dudas</h2>
+    <p class="section-desc" data-es="Todo lo que necesitas saber antes de adoptar." data-en="Everything you need to know before adopting.">Todo lo que necesitas saber antes de adoptar.</p>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-es="&#191;Cu&#225;nto cuesta adoptar?" data-en="How much does adoption cost?">&#191;Cu&#225;nto cuesta adoptar?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-es="La adopci&#243;n en Amor y Abrigo es completamente gratuita. No cobramos ning&#250;n monto por el proceso. Solo pedimos compromiso y responsabilidad hacia el animal." data-en="Adoption at Amor y Abrigo is completely free. We do not charge any fee for the process. We only ask for commitment and responsibility toward the animal.">La adopci&#243;n en Amor y Abrigo es completamente gratuita. No cobramos ning&#250;n monto por el proceso. Solo pedimos compromiso y responsabilidad hacia el animal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-es="&#191;Puedo adoptar si vivo en apartamento?" data-en="Can I adopt if I live in an apartment?">&#191;Puedo adoptar si vivo en apartamento?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-es="S&#237;, es posible adoptar viviendo en apartamento, especialmente gatos o perros peque&#241;os. Evaluamos cada caso individualmente consider&#225;ndolo el espacio disponible y el estilo de vida del adoptante." data-en="Yes, it is possible to adopt while living in an apartment, especially cats or small dogs. We evaluate each case individually considering the available space and the adopter's lifestyle.">S&#237;, es posible adoptar viviendo en apartamento, especialmente gatos o perros peque&#241;os. Evaluamos cada caso individualmente considerando el espacio disponible y el estilo de vida del adoptante.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-es="&#191;Cu&#225;nto tiempo tarda el proceso?" data-en="How long does the process take?">&#191;Cu&#225;nto tiempo tarda el proceso?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-es="Una vez enviado el formulario, el equipo te contactar&#225; en 24-72 horas para coordinar la entrega. El proceso completo suele tomar entre 3 y 7 d&#237;as dependiendo de la disponibilidad." data-en="Once the form is submitted, the team will contact you within 24-72 hours to coordinate the handover. The complete process usually takes between 3 and 7 days depending on availability.">Una vez enviado el formulario, el equipo te contactar&#225; en 24-72 horas para coordinar la entrega. El proceso completo suele tomar entre 3 y 7 d&#237;as dependiendo de la disponibilidad.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-es="&#191;Los animales vienen vacunados y esterilizados?" data-en="Do the animals come vaccinated and sterilized?">&#191;Los animales vienen vacunados y esterilizados?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-es="La mayor&#237;a de nuestros animales son vacunados y esterilizados antes de la adopci&#243;n. En casos de animales j&#243;venes, se coordina la esterilizaci&#243;n posterior con el adoptante." data-en="Most of our animals are vaccinated and sterilized before adoption. For young animals, post-adoption sterilization is coordinated with the adopter.">La mayor&#237;a de nuestros animales son vacunados y esterilizados antes de la adopci&#243;n. En casos de animales j&#243;venes, se coordina la esterilizaci&#243;n posterior con el adoptante.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-es="&#191;Hacen visitas de seguimiento?" data-en="Do you do follow-up visits?">&#191;Hacen visitas de seguimiento?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-es="S&#237;. Nos reservamos el derecho de realizar visitas o contactos de seguimiento para verificar el bienestar del animal. Esto es parte de nuestro compromiso con la adopci&#243;n responsable." data-en="Yes. We reserve the right to conduct follow-up visits or contacts to verify the animal's wellbeing. This is part of our commitment to responsible adoption.">S&#237;. Nos reservamos el derecho de realizar visitas o contactos de seguimiento para verificar el bienestar del animal. Esto es parte de nuestro compromiso con la adopci&#243;n responsable.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span data-es="&#191;Qu&#233; pasa si no puedo quedarte con el animal?" data-en="What if I can no longer keep the animal?">&#191;Qu&#233; pasa si no puedo quedarme con el animal?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a" data-es="Te pedimos que nos contactes primero. Nunca dejes al animal en la calle. Coordinamos una devoluci&#243;n responsable y buscamos una nueva soluci&#243;n sin juzgarte. El bienestar del animal siempre es lo m&#225;s importante." data-en="We ask that you contact us first. Never leave the animal on the street. We coordinate a responsible return and find a new solution without judgment. The animal's wellbeing is always the most important thing.">Te pedimos que nos contactes primero. Nunca dejes al animal en la calle. Coordinamos una devoluci&#243;n responsable y buscamos una nueva soluci&#243;n sin juzgarte. El bienestar del animal siempre es lo m&#225;s importante.</div>
+    </div>
+  </div>
+</section>
+<script>
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) {
+    el.classList.remove('open');
+  });
+  if (!isOpen) item.classList.add('open');
+}
+</script>
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -204,7 +308,7 @@
         <li><a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a></li>
         <li><a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a></li>
         <li><a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a></li>
-        <li><a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a></li>
+        <li><a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciónes</a></li>
         <li><a href="contacto.html" data-es="Contacto" data-en="Contact">Contacto</a></li>
       </ul>
     </div>
@@ -213,7 +317,7 @@
       <p>📞 +504 9824-8715<br>✉️ amoryabrigo13@gmail.com<br>📍 San Pedro Sula, Honduras</p>
     </div>
     <div class="footer-col">
-      <h4 data-es="Donaciones" data-en="Donations">Donaciones</h4>
+      <h4 data-es="Donaciones" data-en="Donations">Donaciónes</h4>
       <p>PayPal: paypal.me/amoryabrigohn<br>Tigo Money: 9824-8715<br>BAC: #725894521</p>
     </div>
   </div>
@@ -339,6 +443,93 @@ document.getElementById('adoptForm').addEventListener('submit', function(e) {
 
 
 
+
+
+
+<!-- ====== FEATURES: PROGRESS + TRANSITION + HEARTS + SUCCESS ====== -->
+<div id="readProgress"></div>
+<div class="page-transition-overlay" id="pageOverlay"></div>
+
+<script>
+/* READING PROGRESS BAR */
+(function() {
+  var bar = document.getElementById('readProgress');
+  if (!bar) return;
+  function updateBar() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+  updateBar();
+})();
+
+/* PAGE TRANSITION */
+(function() {
+  var overlay = document.getElementById('pageOverlay');
+  if (!overlay) return;
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#') || href.startsWith('http') ||
+        href.startsWith('mailto') || href.startsWith('tel') ||
+        link.target === '_blank') return;
+    e.preventDefault();
+    overlay.classList.add('exit');
+    setTimeout(function() { window.location.href = href; }, 340);
+  });
+  window.addEventListener('pageshow', function() {
+    overlay.classList.remove('exit');
+  });
+})();
+
+/* HEART BURST */
+window.burstHearts = function(el) {
+  var rect = el.getBoundingClientRect();
+  var cx = rect.left + rect.width / 2;
+  var cy = rect.top + rect.height / 2;
+  var emojis = ['&#10084;&#65039;','&#129505;','&#128155;','&#128154;','&#128153;','&#128156;','&#129447;'];
+  for (var i = 0; i < 7; i++) {
+    (function(idx) {
+      setTimeout(function() {
+        var h = document.createElement('div');
+        h.className = 'heart-burst';
+        h.innerHTML = emojis[idx % emojis.length];
+        h.style.left = (cx + (Math.random() - 0.5) * 60) + 'px';
+        h.style.top  = cy + 'px';
+        document.body.appendChild(h);
+        setTimeout(function() { h.remove(); }, 1000);
+      }, idx * 60);
+    })(i);
+  }
+};
+
+/* ANIMATED FORM SUCCESS */
+window.showFormSuccess = function(containerId, message) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  var err = container.querySelector('.form-error');
+  if (err) err.style.display = 'none';
+  var suc = container.querySelector('.form-success');
+  if (!suc) {
+    suc = document.createElement('div');
+    suc.className = 'form-success';
+    container.appendChild(suc);
+  }
+  suc.innerHTML =
+    '<div class="success-checkmark">' +
+      '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>' +
+    '</div>' +
+    '<div class="form-success-text">' + (message || 'Enviado correctamente') + '</div>';
+  suc.classList.remove('show');
+  void suc.offsetWidth;
+  suc.classList.add('show');
+};
+</script>
+<!-- ====== FIN FEATURES ====== -->
 <!-- ====== DENUNCIA FLOTANTE ====== -->
 <style>
 .report-fab {

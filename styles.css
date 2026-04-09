@@ -622,3 +622,89 @@ body.dark-mode div[style*="background:var(--light)"] { background: #111122 !impo
 body.dark-mode .insta-section .section-title { color: #eeeef8; }
 body.dark-mode .insta-section .section-desc  { color: #8888aa; }
 body.dark-mode .insta-section .section-badge { color: var(--red); }
+
+/* ============================================================
+   PAGE TRANSITION (Feature 14)
+============================================================ */
+.page-transition-overlay {
+  position: fixed; inset: 0; z-index: 99998;
+  background: var(--blue);
+  transform: translateY(-100%);
+  transition: transform .35s cubic-bezier(.76,0,.24,1);
+  pointer-events: none;
+}
+.page-transition-overlay.exit {
+  transform: translateY(0);
+}
+body { animation: pageEnter .4s ease both; }
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   READING PROGRESS BAR (Feature 16)
+============================================================ */
+#readProgress {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--red));
+  transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ============================================================
+   HEART BURST ANIMATION (Feature 23)
+============================================================ */
+.heart-burst {
+  position: fixed; pointer-events: none; z-index: 9997;
+  font-size: 1.4rem; animation: heartFly .9s ease forwards;
+}
+@keyframes heartFly {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  60%  { opacity: 1; transform: translateY(-60px) scale(1.3); }
+  100% { opacity: 0; transform: translateY(-110px) scale(.8); }
+}
+
+/* ============================================================
+   ANIMATED FORM SUCCESS (Feature 25)
+============================================================ */
+.form-success {
+  display: none;
+  background: #dcfce7; color: #166534;
+  padding: 1.25rem; border-radius: 14px;
+  text-align: center; font-weight: 600;
+  margin-top: 1rem; flex-direction: column;
+  align-items: center; gap: .75rem;
+  animation: successPop .4s cubic-bezier(.34,1.56,.64,1) both;
+}
+.form-success.show {
+  display: flex;
+}
+@keyframes successPop {
+  from { opacity: 0; transform: scale(.85) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.success-checkmark {
+  width: 52px; height: 52px;
+  background: #166534; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  animation: checkPop .5s cubic-bezier(.34,1.56,.64,1) .15s both;
+}
+@keyframes checkPop {
+  from { transform: scale(0) rotate(-45deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0); opacity: 1; }
+}
+.success-checkmark svg {
+  width: 26px; height: 26px;
+  stroke: #fff; stroke-width: 2.5;
+  stroke-linecap: round; stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawCheck .4s ease .4s forwards;
+}
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+.form-success-text { font-size: .95rem; line-height: 1.5; }

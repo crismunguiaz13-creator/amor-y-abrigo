@@ -530,7 +530,7 @@ function buildCard(a) {
   card += '<div class="animal-name">' + a.nombre + '</div>';
   card += '<div class="animal-tags">' + tags + '</div>';
   card += '<p class="animal-desc">' + desc + '</p>';
-  card += '<a href="adopcion.html" class="animal-btn ' + btnc + '">' + btnt + '</a>';
+  card += '<a href="adopcion.html" class="animal-btn ' + btnc + '" onclick="if(!this.classList.contains('reservado') && !this.classList.contains('adoptado')) { burstHearts(this); }">' + btnt + '</a>';
   card += '</div></div>';
   return card;
 }
@@ -562,6 +562,91 @@ fetch(API)
 
 
 
+
+<!-- ====== FEATURES: PROGRESS + TRANSITION + HEARTS + SUCCESS ====== -->
+<div id="readProgress"></div>
+<div class="page-transition-overlay" id="pageOverlay"></div>
+
+<script>
+/* READING PROGRESS BAR */
+(function() {
+  var bar = document.getElementById('readProgress');
+  if (!bar) return;
+  function updateBar() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+  updateBar();
+})();
+
+/* PAGE TRANSITION */
+(function() {
+  var overlay = document.getElementById('pageOverlay');
+  if (!overlay) return;
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#') || href.startsWith('http') ||
+        href.startsWith('mailto') || href.startsWith('tel') ||
+        link.target === '_blank') return;
+    e.preventDefault();
+    overlay.classList.add('exit');
+    setTimeout(function() { window.location.href = href; }, 340);
+  });
+  window.addEventListener('pageshow', function() {
+    overlay.classList.remove('exit');
+  });
+})();
+
+/* HEART BURST */
+window.burstHearts = function(el) {
+  var rect = el.getBoundingClientRect();
+  var cx = rect.left + rect.width / 2;
+  var cy = rect.top + rect.height / 2;
+  var emojis = ['&#10084;&#65039;','&#129505;','&#128155;','&#128154;','&#128153;','&#128156;','&#129447;'];
+  for (var i = 0; i < 7; i++) {
+    (function(idx) {
+      setTimeout(function() {
+        var h = document.createElement('div');
+        h.className = 'heart-burst';
+        h.innerHTML = emojis[idx % emojis.length];
+        h.style.left = (cx + (Math.random() - 0.5) * 60) + 'px';
+        h.style.top  = cy + 'px';
+        document.body.appendChild(h);
+        setTimeout(function() { h.remove(); }, 1000);
+      }, idx * 60);
+    })(i);
+  }
+};
+
+/* ANIMATED FORM SUCCESS */
+window.showFormSuccess = function(containerId, message) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  var err = container.querySelector('.form-error');
+  if (err) err.style.display = 'none';
+  var suc = container.querySelector('.form-success');
+  if (!suc) {
+    suc = document.createElement('div');
+    suc.className = 'form-success';
+    container.appendChild(suc);
+  }
+  suc.innerHTML =
+    '<div class="success-checkmark">' +
+      '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>' +
+    '</div>' +
+    '<div class="form-success-text">' + (message || 'Enviado correctamente') + '</div>';
+  suc.classList.remove('show');
+  void suc.offsetWidth;
+  suc.classList.add('show');
+};
+</script>
+<!-- ====== FIN FEATURES ====== -->
 <!-- ====== DENUNCIA FLOTANTE ====== -->
 <style>
 .report-fab {
