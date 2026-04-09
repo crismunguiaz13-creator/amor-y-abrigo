@@ -99,52 +99,7 @@
   100% { width: 100%; }
 }
 </style>
-<style>
-.insta-section { padding: 5rem 4rem; }
-.insta-header { text-align: center; margin-bottom: 2.5rem; }
-.insta-handle {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  color: #fff; padding: .5rem 1.25rem; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 700;
-  text-decoration: none; margin-bottom: 1.25rem; display: inline-flex;
-  transition: all .3s;
-}
-.insta-handle:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(220,39,67,.3); }
-.insta-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: .75rem; margin-bottom: 2rem;
-}
-.insta-tile {
-  aspect-ratio: 1;
-  border-radius: 12px; overflow: hidden;
-  position: relative; background: var(--light);
-  cursor: pointer;
-}
-.insta-tile img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform .4s;
-  background: var(--light);
-}
-.insta-tile:hover img { transform: scale(1.08); }
-.insta-tile-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(220,39,67,.7), rgba(188,24,136,.7));
-  opacity: 0; transition: opacity .3s;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 1.5rem;
-}
-.insta-tile:hover .insta-tile-overlay { opacity: 1; }
-.insta-cta { text-align: center; }
-.insta-followers {
-  font-family: 'Fraunces', serif; font-size: 1.1rem;
-  font-weight: 700; color: var(--dark); margin-bottom: .5rem;
-}
-.insta-followers span { color: #dc2743; }
-@media(max-width:1024px){ .insta-section { padding: 3rem 2rem; } .insta-grid { grid-template-columns: repeat(3,1fr); } }
-@media(max-width:640px){ .insta-grid { grid-template-columns: repeat(2,1fr); gap: .5rem; } }
-</style>
+
 </head>
 <body>
 <div id="splash">
@@ -290,36 +245,138 @@
   <div class="see-all"><a href="animales.html" class="btn-primary" data-es="Ver todos los animales" data-en="See all animals">Ver todos los animales</a></div>
 </section>
 
-<section class="insta-section reveal">
-  <div class="insta-header">
-    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-handle">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      @amoryabrigo
-    </a>
-    <h2 class="section-title" data-es="Síguenos en Instagram" data-en="Follow us on Instagram">Síguenos en Instagram</h2>
-    <p class="section-desc" data-es="Historias reales, rescates, adopciones y mucho amor. ¡Únete a nuestra comunidad!" data-en="Real stories, rescues, adoptions and lots of love. Join our community!">Historias reales, rescates, adopciones y mucho amor. ¡Únete a nuestra comunidad!</p>
-  </div>
-  <div class="insta-grid">
-    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
-      <img src="https://www.amoryabrigohn.org/images/slider2.jpg" alt="Amor y Abrigo en Instagram" loading="lazy" onerror="this.parentElement.style.background='#1E90FF20'">
-      <div class="insta-tile-overlay">📸</div>
-    </a>
-    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
-      <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Amor y Abrigo en Instagram" loading="lazy" onerror="this.parentElement.style.background='#E8453C20'">
-      <div class="insta-tile-overlay">❤️</div>
-    </a>
-    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
-      <img src="https://www.amoryabrigohn.org/images/about.png" alt="Amor y Abrigo en Instagram" loading="lazy" onerror="this.parentElement.style.background='#FFE60020'">
-      <div class="insta-tile-overlay">🐾</div>
-    </a>
-    <a href="https://instagram.com/amoryabrigo" target="_blank" class="insta-tile">
-      <img src="https://www.amoryabrigohn.org/images/about2.jpg" alt="Amor y Abrigo en Instagram" loading="lazy" onerror="this.parentElement.style.background='#1E90FF20'">
-      <div class="insta-tile-overlay">🏠</div>
-    </a>
-  </div>
-  <div class="insta-cta">
-    <p class="insta-followers" data-es="Más de <span>29,000</span> seguidores en Instagram" data-en="More than <span>29,000</span> followers on Instagram">Más de <span>29,000</span> seguidores en Instagram</p>
-    <a href="https://instagram.com/amoryabrigo" target="_blank" class="btn-primary" style="margin:0 auto;width:fit-content" data-es="Ver más en Instagram →" data-en="See more on Instagram →">Ver más en Instagram →</a>
+
+<style>
+.why-section {
+  padding: 6rem 5rem;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.why-section::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,144,255,.06), transparent 70%);
+  pointer-events: none;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; align-items: center;
+  position: relative; z-index: 1;
+}
+.why-left .section-badge { display: block; margin-bottom: 1rem; }
+.why-left .section-title { margin-bottom: 1.25rem; }
+.why-left .section-desc { margin-bottom: 2rem; }
+.why-left blockquote {
+  border-left: 4px solid var(--red);
+  padding: 1rem 1.5rem;
+  background: var(--light);
+  border-radius: 0 12px 12px 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.6;
+}
+.why-cards {
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+.why-card {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.5rem; border-radius: 20px;
+  background: var(--light);
+  border: 2px solid transparent;
+  transition: all .3s; cursor: default;
+  position: relative; overflow: hidden;
+}
+.why-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 4px; border-radius: 4px 0 0 4px;
+  transition: width .3s;
+}
+.why-card.c1::before { background: var(--red); }
+.why-card.c2::before { background: var(--blue); }
+.why-card.c3::before { background: #25D366; }
+.why-card:hover { transform: translateX(6px); border-color: var(--border); }
+.why-card:hover::before { width: 6px; }
+.why-card-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.why-card.c1 .why-card-icon { background: rgba(232,69,60,.12); }
+.why-card.c2 .why-card-icon { background: rgba(30,144,255,.12); }
+.why-card.c3 .why-card-icon { background: rgba(37,211,102,.12); }
+.why-card-body h4 {
+  font-family: "Fraunces", serif;
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--dark); margin-bottom: .5rem;
+}
+.why-card-body p {
+  font-size: .875rem; color: var(--gray); line-height: 1.7;
+}
+.why-card-body .why-tag {
+  display: inline-block; margin-top: .5rem;
+  padding: .2rem .7rem; border-radius: 50px;
+  font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.why-card.c1 .why-tag { background: rgba(232,69,60,.12); color: var(--red); }
+.why-card.c2 .why-tag { background: rgba(30,144,255,.12); color: var(--blue); }
+.why-card.c3 .why-tag { background: rgba(37,211,102,.12); color: #166534; }
+
+/* Dark mode */
+body.dark-mode .why-section { background: #0f0f1a; }
+body.dark-mode .why-card { background: #1a1a2e; }
+body.dark-mode .why-card:hover { border-color: #2a2a3e; }
+body.dark-mode .why-card-body h4 { color: #eeeef8; }
+body.dark-mode .why-left blockquote { background: #1a1a2e; color: #eeeef8; }
+
+@media(max-width:1024px){
+  .why-section { padding: 4rem 2rem; }
+  .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+</style>
+<section class="why-section reveal">
+  <div class="why-grid">
+    <div class="why-left">
+      <span class="section-badge" data-es="Reflexión importante" data-en="Important reflection">Reflexión importante</span>
+      <h2 class="section-title" data-es="¿Por qué adoptar y no comprar?" data-en="Why adopt and not buy?">¿Por qué adoptar y no comprar?</h2>
+      <p class="section-desc" data-es="Cada animal que compras en una tienda o criadero deja un espacio vacío que un refugio llena con otro animal. Adoptar rompe ese ciclo." data-en="Every animal you buy from a store or breeder leaves a space that a shelter fills with another animal. Adopting breaks that cycle.">Cada animal que compras en una tienda o criadero deja un espacio vacío que un refugio llena con otro animal. Adoptar rompe ese ciclo.</p>
+      <blockquote data-es="&ldquo;Adoptar no es solo darle un hogar a un animal — es quitarle espacio al abandono.&rdquo;" data-en="&ldquo;Adopting is not just giving an animal a home — it is taking space away from abandonment.&rdquo;">&ldquo;Adoptar no es solo darle un hogar a un animal — es quitarle espacio al abandono.&rdquo;</blockquote>
+      <br>
+      <a href="animales.html" class="btn-primary" style="width:fit-content;margin-top:.5rem" data-es="Ver animales en adopción →" data-en="See animals for adoption →">Ver animales en adopción →</a>
+    </div>
+    <div class="why-cards">
+      <div class="why-card c1 reveal delay-1">
+        <div class="why-card-icon">❤️</div>
+        <div class="why-card-body">
+          <h4 data-es="Salvas una vida real" data-en="You save a real life">Salvas una vida real</h4>
+          <p data-es="Los animales en refugios esperan una segunda oportunidad. Al adoptar, literalmente cambias el destino de un ser vivo que ha sufrido abandono o maltrato." data-en="Animals in shelters are waiting for a second chance. By adopting, you literally change the fate of a living being that has suffered abandonment or abuse.">Los animales en refugios esperan una segunda oportunidad. Al adoptar, literalmente cambias el destino de un ser vivo que ha sufrido abandono o maltrato.</p>
+          <span class="why-tag" data-es="Impacto directo" data-en="Direct impact">Impacto directo</span>
+        </div>
+      </div>
+      <div class="why-card c2 reveal delay-2">
+        <div class="why-card-icon">🏠</div>
+        <div class="why-card-body">
+          <h4 data-es="Combates la sobrepoblación" data-en="You combat overpopulation">Combates la sobrepoblación</h4>
+          <p data-es="Honduras tiene miles de animales en situación de calle. Adoptar en lugar de comprar reduce la demanda de criaderos y ayuda a controlar la superpoblación animal." data-en="Honduras has thousands of stray animals. Adopting instead of buying reduces demand from breeders and helps control animal overpopulation.">Honduras tiene miles de animales en situación de calle. Adoptar en lugar de comprar reduce la demanda de criaderos y ayuda a controlar la superpoblación animal.</p>
+          <span class="why-tag" data-es="Causa mayor" data-en="Greater cause">Causa mayor</span>
+        </div>
+      </div>
+      <div class="why-card c3 reveal delay-3">
+        <div class="why-card-icon">🐾</div>
+        <div class="why-card-body">
+          <h4 data-es="Recibes amor incondicional" data-en="You receive unconditional love">Recibes amor incondicional</h4>
+          <p data-es="Los animales adoptados saben que los rescataste. Su gratitud y lealtad no tienen comparación. Muchos adoptantes aseguran que sus mascotas rescatadas son las más cariñosas que han tenido." data-en="Adopted animals know you rescued them. Their gratitude and loyalty are unmatched. Many adopters say their rescued pets are the most affectionate they have ever had.">Los animales adoptados saben que los rescataste. Su gratitud y lealtad no tienen comparación. Muchos adoptantes aseguran que sus mascotas rescatadas son las más cariñosas que han tenido.</p>
+          <span class="why-tag" data-es="Amor garantizado" data-en="Guaranteed love">Amor garantizado</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <section class="help reveal">
@@ -565,7 +622,11 @@ fetch(API)
 
 <!-- ====== FEATURES: PROGRESS + TRANSITION + HEARTS + SUCCESS ====== -->
 <div id="readProgress"></div>
-<div class="page-transition-overlay" id="pageOverlay"></div>
+<div class="page-transition-overlay" id="pageOverlay">
+  <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" class="pt-logo" onerror="this.style.display='none'">
+  <span class="pt-name">Amor y Abrigo</span>
+  <div class="pt-bar-wrap"><div class="pt-bar"></div></div>
+</div>
 
 <script>
 /* READING PROGRESS BAR */
