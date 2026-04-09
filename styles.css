@@ -511,3 +511,114 @@ body.dark-mode .cta-section   { background: var(--blue); }
 .darkmode-btn:hover { background: var(--dark); color: var(--white); border-color: var(--dark); }
 body.dark-mode .darkmode-btn { border-color: #2a2a3e; background: #1a1a2e; color: #d8d8e8; }
 body.dark-mode .darkmode-btn:hover { background: #252540; border-color: #3a3a5e; }
+
+/* ── ADDITIONAL DARK MODE FIXES ── */
+
+/* Help cards (index — Adoptar, Donar, Voluntario) */
+body.dark-mode .help-card h3    { color: #fff; }
+body.dark-mode .help-card p     { color: rgba(255,255,255,.6); }
+
+/* Page heroes — keep white text (they already have blue bg, but titles may override) */
+body.dark-mode .page-hero h1    { color: #fff; }
+body.dark-mode .page-hero p     { color: rgba(255,255,255,.85); }
+body.dark-mode .page-hero .badge { color: #fff; }
+
+/* Form wrap titles and text */
+body.dark-mode .form-wrap h3    { color: #fff; }
+body.dark-mode .form-wrap > p   { color: rgba(255,255,255,.6); }
+
+/* Event card dates */
+body.dark-mode .event-day       { color: #eeeef8; }
+body.dark-mode .event-month     { color: var(--red); }
+
+/* Adoption steps */
+body.dark-mode .step-num        { background: var(--blue); color: #fff; }
+
+/* Requirements section (adopcion) */
+body.dark-mode .req-section     { background: #111122; }
+
+/* Contact methods */
+body.dark-mode .method-text span { color: #8888aa; }
+
+/* Mission section (nosotros) */
+body.dark-mode .mission-main    { filter: brightness(.85); }
+
+/* Stats boxes on dark bg (nosotros) */
+body.dark-mode .stat-box .num   { color: var(--red); }
+body.dark-mode .stat-box .lbl   { color: rgba(255,255,255,.6); }
+
+/* Footer brand text */
+body.dark-mode .footer-brand p  { color: rgba(255,255,255,.5); }
+body.dark-mode .footer-col p    { color: rgba(255,255,255,.5); }
+body.dark-mode .footer-col ul li a { color: rgba(255,255,255,.5); }
+body.dark-mode .footer-bottom p { color: rgba(255,255,255,.4); }
+
+/* Hero stats */
+body.dark-mode .stat-num        { color: var(--red); }
+body.dark-mode .stat-label      { color: #8888aa; }
+
+/* Hero sub text */
+body.dark-mode .hero-sub        { color: #8888aa; }
+
+/* Mission section text */
+body.dark-mode .mission > div .section-desc { color: #8888aa; }
+body.dark-mode .mission > div .section-badge { color: var(--red); }
+
+/* About section (nosotros) */
+body.dark-mode .about-section .section-badge { color: var(--red); }
+body.dark-mode .about-section .section-desc  { color: #8888aa; }
+
+/* Values section (nosotros) */
+body.dark-mode .values-section  { background: #111122; }
+body.dark-mode .value-card p    { color: #8888aa; }
+
+/* Mission/Vision (nosotros) */
+body.dark-mode .mv-section      { background: #0f0f1a; }
+body.dark-mode .mv-card p       { color: #8888aa; }
+
+/* Collaborators section (nosotros) */
+body.dark-mode .collabs-section { background: #111122; }
+body.dark-mode .collabs-section .section-desc { color: #8888aa; }
+
+/* CTA section (nosotros) */
+body.dark-mode .cta-section p   { color: rgba(255,255,255,.85); }
+
+/* Adoption section */
+body.dark-mode .adoption-section { background: #0f0f1a; }
+body.dark-mode .tab-info p      { color: #8888aa; }
+
+/* Requirements grid */
+body.dark-mode .req-grid        { background: transparent; }
+
+/* Voluntariado */
+body.dark-mode .vol-section     { background: #0f0f1a; }
+
+/* Eventos */
+body.dark-mode .events-section  { background: #0f0f1a; }
+body.dark-mode .event-card .event-btn { color: #fff; }
+
+/* Donaciones */
+body.dark-mode .banks-section   { background: #0f0f1a; }
+body.dark-mode .banks-header .section-title { color: #eeeef8; }
+body.dark-mode .banks-header .section-desc  { color: #8888aa; }
+
+/* Contact */
+body.dark-mode .contact-section { background: #0f0f1a; }
+body.dark-mode .contact-section .section-title { color: #eeeef8; }
+body.dark-mode .contact-section .section-desc  { color: #8888aa; }
+
+/* Impact section (donaciones) stays dark — no override needed */
+
+/* Apadrina section text */
+body.dark-mode .tier-label      { color: #eeeef8; }
+body.dark-mode .tier-desc       { color: #8888aa; }
+body.dark-mode .apadrina-action p { color: rgba(255,255,255,.65); }
+body.dark-mode .apadrina-note   { color: rgba(255,255,255,.4); }
+
+/* Quick donate bar */
+body.dark-mode div[style*="background:var(--light)"] { background: #111122 !important; border-color: #2a2a3e !important; }
+
+/* Instagram section */
+body.dark-mode .insta-section .section-title { color: #eeeef8; }
+body.dark-mode .insta-section .section-desc  { color: #8888aa; }
+body.dark-mode .insta-section .section-badge { color: var(--red); }
