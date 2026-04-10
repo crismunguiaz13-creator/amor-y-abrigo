@@ -775,3 +775,382 @@ body.dark-mode .form-group select {
   background-position: right 1rem center;
   background-color: rgba(255,255,255,.08);
 }
+
+
+/* FAQ */
+.faq-section { padding: 5rem 4rem; background: var(--light); }
+.faq-grid { max-width: 760px; margin: 3rem auto 0; display: flex; flex-direction: column; gap: .75rem; }
+.faq-item {
+  background: var(--white); border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden; transition: box-shadow .25s;
+}
+.faq-item:hover { box-shadow: var(--shadow); }
+.faq-item.open { box-shadow: 0 8px 30px rgba(30,144,255,.12); border-color: var(--blue); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 1.5rem; cursor: pointer;
+  font-family: "DM Sans",sans-serif; font-size:.95rem;
+  font-weight: 600; color: var(--dark); gap: 1rem;
+  user-select: none;
+}
+.faq-q:hover { color: var(--blue); }
+.faq-item.open .faq-q { color: var(--blue); }
+.faq-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--light); display: flex;
+  align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: .9rem;
+  transition: all .3s; font-weight: 700; color: var(--gray);
+}
+.faq-item.open .faq-icon { background: var(--blue); color: #fff; transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+  padding: 0 1.5rem;
+  font-family: "DM Sans",sans-serif; font-size:.9rem;
+  color: var(--gray); line-height: 1.75;
+}
+.faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+body.dark-mode .faq-item { background: #1a1a2e; border-color: #2a2a3e; }
+body.dark-mode .faq-q { color: #eeeef8; }
+body.dark-mode .faq-icon { background: #252540; color: #8888aa; }
+body.dark-mode .faq-item.open .faq-q { color: var(--blue); }
+body.dark-mode .faq-item.open .faq-icon { background: var(--blue); color: #fff; }
+body.dark-mode .faq-section { background: #111122; }
+@media(max-width:1024px){ .faq-section { padding: 3rem 2rem; } }
+
+/* WHY ADOPT */
+.hero{min-height:100vh;padding-top:70px;display:grid;grid-template-columns:1fr 1fr;align-items:center;background:var(--white);position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;right:0;top:0;width:50%;height:100%;background:var(--light);z-index:0;}
+.hero-content{padding:4rem 3rem 4rem 5rem;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#fff3cd;color:#856404;padding:.4rem 1rem;border-radius:50px;font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero-badge::before{content:"";color:var(--yellow);font-size:.6rem;}
+.hero h1{font-family:"Fraunces",serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1.1;color:var(--dark);margin-bottom:1rem;}
+.hero h1 em{font-style:italic;color:var(--red);}
+.hero-sub{font-size:1.05rem;color:var(--gray);line-height:1.7;margin-bottom:2.5rem;max-width:480px;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;}
+.hero-stats{display:flex;gap:2.5rem;padding-top:2rem;border-top:1px solid var(--border);}
+.stat-num{font-family:"Fraunces",serif;font-size:2rem;font-weight:900;color:var(--red);display:block;}
+.stat-label{font-size:.8rem;color:var(--gray);font-weight:500;}
+.hero-img-wrap{position:relative;z-index:1;padding:4rem 4rem 4rem 2rem;display:flex;align-items:center;justify-content:center;}
+.hero-img-inner{position:relative;width:100%;max-width:500px;}
+.hero-img-inner img{width:100%;height:500px;object-fit:cover;border-radius:24px 24px 80px 24px;box-shadow:0 24px 60px rgba(0,0,0,.15);}
+.hero-tag{position:absolute;bottom:-20px;left:-20px;background:var(--white);border-radius:16px;padding:1rem 1.5rem;box-shadow:0 8px 30px rgba(0,0,0,.12);display:flex;align-items:center;gap:12px;}
+.hero-tag-icon{width:44px;height:44px;background:var(--red);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.hero-tag-text strong{display:block;font-size:1.1rem;font-weight:700;color:var(--dark);}
+.hero-tag-text span{font-size:.8rem;color:var(--gray);}
+.mission{padding:6rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.mission-imgs{position:relative;}
+.mission-main{width:100%;height:420px;object-fit:cover;border-radius:24px;box-shadow:0 20px 50px rgba(0,0,0,.12);}
+.mission-sub{position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;object-fit:cover;border-radius:16px;border:6px solid var(--white);box-shadow:0 12px 30px rgba(0,0,0,.15);}
+.mission-badge{position:absolute;top:20px;left:-20px;background:var(--yellow);border-radius:16px;padding:1.25rem;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.1);}
+.mission-badge strong{display:block;font-family:"Fraunces",serif;font-size:2.5rem;font-weight:900;color:var(--dark);line-height:1;}
+.mission-badge span{font-size:.75rem;font-weight:600;color:#5a4500;text-transform:uppercase;letter-spacing:.05em;}
+.features{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;}
+.feature{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:var(--light);border-radius:16px;border-left:4px solid var(--blue);transition:all .25s;}
+.feature:hover{background:#e8f4ff;transform:translateX(4px);}
+.feature-icon{width:40px;height:40px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.feature-text strong{display:block;font-weight:600;color:var(--dark);margin-bottom:.25rem;}
+.feature-text span{font-size:.875rem;color:var(--gray);}
+.animals-home{padding:6rem 5rem;background:var(--light);}
+.section-header{text-align:center;margin-bottom:3rem;}
+.animals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2.5rem;}
+.see-all{text-align:center;}
+.help{padding:6rem 5rem;background:var(--dark);}
+.help .section-badge{color:var(--yellow);}
+.help .section-title{color:var(--white);}
+.help-sub{color:rgba(255,255,255,.6);text-align:center;margin-top:.5rem;}
+.help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.help-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2rem;transition:all .3s;}
+.help-card:hover{background:rgba(255,255,255,.11);transform:translateY(-5px);}
+.help-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
+.help-card h3{font-family:"Fraunces",serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:.75rem;}
+.help-card p{color:rgba(255,255,255,.6);line-height:1.7;font-size:.9rem;margin-bottom:1.5rem;}
+.help-link{color:var(--yellow);font-weight:600;text-decoration:none;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;}
+.help-link:hover{gap:10px;}
+@media(max-width:1024px){.hero{grid-template-columns:1fr;}.hero::before{display:none;}.hero-content{padding:4rem 2rem 2rem;}.hero-img-wrap{padding:2rem;}.mission{grid-template-columns:1fr;padding:4rem 2rem;gap:3rem;}.mission-sub{display:none;}.animals-home,.help{padding:4rem 2rem;}.animals-grid,.help-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.animals-grid,.help-grid{grid-template-columns:1fr;}.hero-stats{gap:1.5rem;}}
+</style>
+<style>
+#splash {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #1a1a2e;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1.5rem;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+#splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+#splash img {
+  width: 100px; height: 100px; object-fit: contain;
+  animation: splashPulse 1.2s ease-in-out infinite;
+}
+#splash .splash-name {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem; font-weight: 900;
+  color: #fff; letter-spacing: .02em;
+}
+#splash .splash-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; color: rgba(255,255,255,.6);
+}
+#splash .splash-bar-wrap {
+  width: 180px; height: 3px;
+  background: rgba(255,255,255,.15); border-radius: 3px; overflow: hidden;
+}
+#splash .splash-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #1E90FF, #E8453C);
+  border-radius: 3px;
+  animation: splashLoad 1.4s ease forwards;
+}
+@keyframes splashPulse {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+@keyframes splashLoad {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+</style>
+
+</head>
+<body>
+<div id="splash">
+  <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+  <div class="splash-name">Amor y Abrigo</div>
+  <div class="splash-tag">Refugio Animal · San Pedro Sula, Honduras</div>
+  <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
+</div>
+<script>
+// Only show splash on first visit or if not seen in 24h
+(function() {
+  var last = localStorage.getItem('ayaSplash');
+  var now = Date.now();
+  if (last && (now - parseInt(last)) < 86400000) {
+    document.getElementById('splash').style.display = 'none';
+    return;
+  }
+  setTimeout(function() {
+    var s = document.getElementById('splash');
+    if (s) {
+      s.classList.add('hidden');
+      setTimeout(function() { s.style.display = 'none'; }, 500);
+    }
+    localStorage.setItem('ayaSplash', now.toString());
+  }, 1800);
+})();
+</script>
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.amoryabrigohn.org/images/Logo.png" alt="Amor y Abrigo" onerror="this.style.display='none'">
+    <span>Amor y Abrigo</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="nosotros.html" data-es="Nosotros" data-en="About Us">Nosotros</a>
+    <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
+    <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
+    <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
+    <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
+    <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
+    <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn" aria-label="Cambiar idioma">
+  <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
+</button>
+  
+    <button class="darkmode-btn" id="darkBtn" onclick="toggleDark()" aria-label="Modo oscuro"><span class="dark-icon">🌙</span></button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" class="active" data-es="Inicio" data-en="Home">Inicio</a>
+  <a href="nosotros.html" data-es="Nosotros" data-en="About Us">Nosotros</a>
+  <a href="animales.html" data-es="Animales" data-en="Animals">Animales</a>
+  <a href="adopcion.html" data-es="Adopción" data-en="Adoption">Adopción</a>
+  <a href="voluntariado.html" data-es="Voluntariado" data-en="Volunteering">Voluntariado</a>
+  <a href="eventos.html" data-es="Eventos" data-en="Events">Eventos</a>
+  <a href="donaciones.html" data-es="Donaciones" data-en="Donations">Donaciones</a>
+  <a href="contacto.html" class="nav-cta" data-es="Contacto" data-en="Contact">Contacto</a>
+  <div class="mobile-lang"><button class="lang-btn" onclick="toggleLang()" id="langBtnM" aria-label="Cambiar idioma">
+  <span class="lang-flag">🇺🇸</span><span class="lang-text">EN</span>
+</button></div>
+  <div style="display:flex;justify-content:center;margin-top:.5rem"><button class="darkmode-btn" onclick="toggleDark()" aria-label="Modo oscuro"><span class="dark-icon">🌙</span></button></div>
+</div>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge" data-es="Refugio Animal — San Pedro Sula, Honduras" data-en="Animal Shelter — San Pedro Sula, Honduras">Refugio Animal — San Pedro Sula, Honduras</div>
+    <h1 data-es="Ellos no tienen voz.<br><em>Nosotros si.</em>" data-en="They have no voice.<br><em>We do.</em>">Ellos no tienen voz.<br><em>Nosotros si.</em></h1>
+    <p class="hero-sub" data-es="Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono. Con tu ayuda, seguimos escribiendo finales felices." data-en="We rescue, care for and find homes for dogs and cats in situations of abandonment. With your help, we keep writing happy endings.">Rescatamos, cuidamos y encontramos hogares para perros y gatos en situación de abandono. Con tu ayuda, seguimos escribiendo finales felices.</p>
+    <div class="hero-btns">
+      <a href="animales.html" class="btn-primary" data-es="Ver animales en adopción" data-en="See animals for adoption">Ver animales en adopción</a>
+      <a href="adopcion.html" class="btn-secondary" data-es="¿Cómo adoptar?" data-en="How to adopt?">¿Cómo adoptar?</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num counter" data-target="300" data-suffix="+">300+</span><span class="stat-label" data-es="Rescatados" data-en="Rescued">Rescatados</span></div>
+      <div><span class="stat-num counter" data-target="150" data-suffix="+">150+</span><span class="stat-label" data-es="Adoptados" data-en="Adopted">Adoptados</span></div>
+      <div><span class="stat-num counter" data-target="13" data-suffix="+">13+</span><span class="stat-label" data-es="Anos activos" data-en="Active years">Anos activos</span></div>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <div class="hero-img-inner">
+      <img src="https://www.amoryabrigohn.org/images/slider2.jpg" alt="Perros en el refugio">
+      <div class="hero-tag">
+        <div class="hero-tag-icon">&#10084;&#65039;</div>
+        <div class="hero-tag-text">
+          <strong data-es="Adopcion gratuita" data-en="Free adoption">Adopcion gratuita</strong>
+          <span data-es="Proceso responsable" data-en="Responsible process">Proceso responsable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission reveal">
+  <div class="mission-imgs">
+    <img src="https://www.amoryabrigohn.org/images/aboutus2.png" alt="Refugio" class="mission-main">
+    <img src="https://www.amoryabrigohn.org/images/about2.jpg" alt="Animal" class="mission-sub">
+    <div class="mission-badge"><strong>13+</strong><span data-es="Anos de labor" data-en="Years of work">Anos de labor</span></div>
+  </div>
+  <div>
+    <span class="section-badge" data-es="Nuestra mision" data-en="Our mission">Nuestra mision</span>
+    <h2 class="section-title" data-es="Somos el hogar de los que no tienen voz" data-en="We are the home of those who have no voice">Somos el hogar de los que no tienen voz</h2>
+    <p class="section-desc" data-es="En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras." data-en="At Amor y Abrigo we work with heart to give a second chance to animals living on the streets or abandoned in Honduras.">En Amor y Abrigo trabajamos con el corazón para brindar una segunda oportunidad a animales en situación de calle, abandono o maltrato en Honduras.</p>
+    <div class="features">
+      <div class="feature reveal delay-1">
+        <div class="feature-icon">&#127973;&#65039;</div>
+        <div class="feature-text">
+          <strong data-es="Rescate y atención médica" data-en="Rescue and medical care">Rescate y atención médica</strong>
+          <span data-es="Vacunaciones, esterilizaciones y cuidado veterinario integral." data-en="Vaccinations, sterilizations and comprehensive veterinary care.">Vacunaciones, esterilizaciones y cuidado veterinario integral.</span>
+        </div>
+      </div>
+      <div class="feature reveal delay-2">
+        <div class="feature-icon">&#127968;</div>
+        <div class="feature-text">
+          <strong data-es="Adopcion responsable" data-en="Responsible adoption">Adopcion responsable</strong>
+          <span data-es="Proceso completamente gratuito que garantiza el bienestar del animal." data-en="Completely free process that guarantees the animal wellbeing.">Proceso completamente gratuito que garantiza el bienestar del animal.</span>
+        </div>
+      </div>
+      <div class="feature reveal delay-3">
+        <div class="feature-icon">&#129309;</div>
+        <div class="feature-text">
+          <strong data-es="Comunidad de voluntarios" data-en="Volunteer community">Comunidad de voluntarios</strong>
+          <span data-es="Un equipo comprometido que trabaja cada día por los animales." data-en="A committed team that works every day for the animals.">Un equipo comprometido que trabaja cada día por los animales.</span>
+        </div>
+      </div>
+    </div>
+    <br><a href="nosotros.html" class="btn-secondary" style="width:fit-content;margin-top:.5rem" data-es="Conocer más" data-en="Learn more">Conocer más</a>
+  </div>
+</section>
+
+<section class="animals-home reveal">
+  <div class="section-header">
+    <span class="section-badge" data-es="Encuentra tu companero" data-en="Find your companion">Encuentra tu companero</span>
+    <h2 class="section-title" data-es="Animales en adopcion" data-en="Animals for adoption">Animales en adopcion</h2>
+  </div>
+  <div class="animals-grid" id="homeGrid">
+    <div style="grid-column:1/-1" class="spinner-wrap">
+      <div class="spinner"></div>
+      <p data-es="Cargando animales..." data-en="Loading animals...">Cargando animales...</p>
+    </div>
+  </div>
+  <div class="see-all"><a href="animales.html" class="btn-primary" data-es="Ver todos los animales" data-en="See all animals">Ver todos los animales</a></div>
+</section>
+
+
+<style>
+.why-section {
+  padding: 6rem 5rem;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.why-section::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,144,255,.06), transparent 70%);
+  pointer-events: none;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; align-items: center;
+  position: relative; z-index: 1;
+}
+.why-left .section-badge { display: block; margin-bottom: 1rem; }
+.why-left .section-title { margin-bottom: 1.25rem; }
+.why-left .section-desc { margin-bottom: 2rem; }
+.why-left blockquote {
+  border-left: 4px solid var(--red);
+  padding: 1rem 1.5rem;
+  background: var(--light);
+  border-radius: 0 12px 12px 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.6;
+}
+.why-cards {
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+.why-card {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.5rem; border-radius: 20px;
+  background: var(--light);
+  border: 2px solid transparent;
+  transition: all .3s; cursor: default;
+  position: relative; overflow: hidden;
+}
+.why-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 4px; border-radius: 4px 0 0 4px;
+  transition: width .3s;
+}
+.why-card.c1::before { background: var(--red); }
+.why-card.c2::before { background: var(--blue); }
+.why-card.c3::before { background: #25D366; }
+.why-card:hover { transform: translateX(6px); border-color: var(--border); }
+.why-card:hover::before { width: 6px; }
+.why-card-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.why-card.c1 .why-card-icon { background: rgba(232,69,60,.12); }
+.why-card.c2 .why-card-icon { background: rgba(30,144,255,.12); }
+.why-card.c3 .why-card-icon { background: rgba(37,211,102,.12); }
+.why-card-body h4 {
+  font-family: "Fraunces", serif;
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--dark); margin-bottom: .5rem;
+}
+.why-card-body p {
+  font-size: .875rem; color: var(--gray); line-height: 1.7;
+}
+.why-card-body .why-tag {
+  display: inline-block; margin-top: .5rem;
+  padding: .2rem .7rem; border-radius: 50px;
+  font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.why-card.c1 .why-tag { background: rgba(232,69,60,.12); color: var(--red); }
+.why-card.c2 .why-tag { background: rgba(30,144,255,.12); color: var(--blue); }
+.why-card.c3 .why-tag { background: rgba(37,211,102,.12); color: #166534; }
+
+/* Dark mode */
+body.dark-mode .why-section { background: #0f0f1a; }
+body.dark-mode .why-card { background: #1a1a2e; }
+body.dark-mode .why-card:hover { border-color: #2a2a3e; }
+body.dark-mode .why-card-body h4 { color: #eeeef8; }
+body.dark-mode .why-left blockquote { background: #1a1a2e; color: #eeeef8; }
+
+@media(max-width:1024px){
+  .why-section { padding: 4rem 2rem; }
+  .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
