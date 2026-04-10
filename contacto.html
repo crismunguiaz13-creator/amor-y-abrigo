@@ -310,31 +310,41 @@ document.addEventListener('DOMContentLoaded', function() {
     el.textContent = isDark ? 'Claro' : 'Oscuro';
   });
 });
-</script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-emailjs.init('qleH3bvpwrYq8QtyQ');
+</script><script>
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var btn = document.getElementById('btnCt');
-  btn.disabled = true; btn.textContent = '...';
-  var params = {
-    tipo: 'Contacto',
-    nombre: document.getElementById('ct-nombre').value,
-    correo: document.getElementById('ct-email').value,
-    teléfono: 'N/A',
-    area: document.getElementById('ct-asunto').value,
-    disponibilidad: 'N/A',
-    mensaje: document.getElementById('ct-msg').value
-  };
-  emailjs.send('service_e724k6b', 'template_gxm222s', params)
-    .then(function() {
-      document.getElementById('okCt').style.display = 'block';
-      document.getElementById('errCt').style.display = 'none';
-      btn.textContent = '✅ Enviado';
+  btn.disabled = true;
+  var origText = btn.textContent;
+  btn.textContent = 'Enviando...';
+
+  var body = new FormData();
+  body.append('tipo', 'Contacto');
+  body.append('nombre', document.getElementById('ct-nombre').value);
+  body.append('correo', document.getElementById('ct-email').value);
+  body.append('telefono', 'N/A');
+  body.append('area', document.getElementById('ct-asunto').value);
+  body.append('disponibilidad', 'N/A');
+  body.append('mensaje', document.getElementById('ct-msg').value);
+
+  fetch('enviar.php', { method: 'POST', body: body })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.ok) {
+        if (window.showFormSuccess) {
+          showFormSuccess('contactForm', '¡Mensaje enviado! Te responderemos pronto.');
+        }
+        btn.textContent = 'Enviado ✓';
+        document.getElementById('contactForm').reset();
+      } else {
+        throw new Error(data.error || 'Error');
+      }
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.error(err);
       document.getElementById('errCt').style.display = 'block';
-      btn.disabled = false; btn.textContent = 'Enviar mensaje';
+      btn.disabled = false;
+      btn.textContent = origText;
     });
 });
 </script>

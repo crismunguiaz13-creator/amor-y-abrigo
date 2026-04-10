@@ -356,44 +356,78 @@ document.addEventListener('DOMContentLoaded', function() {
     el.textContent = isDark ? 'Claro' : 'Oscuro';
   });
 });
-</script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-emailjs.init('qleH3bvpwrYq8QtyQ');
-var SVC = 'service_e724k6b', TPL = 'template_gxm222s';
-
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.querySelectorAll('.tab-pane').forEach(function(p) { p.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('tab-' + id).classList.add('active');
-}
-
-function sendEmail(params, btnId, okId, errId) {
+</script><script>
+function sendForm(formId, params, btnId, successMsg) {
   var btn = document.getElementById(btnId);
-  btn.disabled = true; btn.textContent = '...';
-  emailjs.send(SVC, TPL, params)
-    .then(function() {
-      document.getElementById(okId).style.display = 'block';
-      document.getElementById(errId).style.display = 'none';
-      btn.textContent = '✅ Enviado';
+  if (!btn) return;
+  btn.disabled = true;
+  var origText = btn.textContent;
+  btn.textContent = 'Enviando...';
+
+  var body = new FormData();
+  for (var key in params) {
+    body.append(key, params[key]);
+  }
+
+  fetch('enviar.php', { method: 'POST', body: body })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.ok) {
+        if (window.showFormSuccess) {
+          showFormSuccess(formId, successMsg);
+        }
+        btn.textContent = 'Enviado ✓';
+        document.getElementById(formId).reset();
+      } else {
+        throw new Error(data.error || 'Error desconocido');
+      }
     })
-    .catch(function() {
-      document.getElementById(errId).style.display = 'block';
-      btn.disabled = false; btn.textContent = 'Enviar solicitud';
+    .catch(function(err) {
+      console.error(err);
+      var errEl = document.querySelector('#' + formId + ' .form-error');
+      if (errEl) errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = origText;
     });
 }
 
 document.getElementById('formVol').addEventListener('submit', function(e) {
   e.preventDefault();
-  sendEmail({ tipo:'Voluntariado', nombre:document.getElementById('v-nombre').value, correo:document.getElementById('v-correo').value, teléfono:document.getElementById('v-tel').value, area:document.getElementById('v-area').value, disponibilidad:document.getElementById('v-disp').value, mensaje:'Edad: '+document.getElementById('v-edad').value+'\n\n'+document.getElementById('v-msg').value }, 'btnVol','okVol','errVol');
+  sendForm('formVol', {
+    tipo: 'Voluntariado',
+    nombre: document.getElementById('v-nombre').value,
+    correo: document.getElementById('v-correo').value,
+    telefono: document.getElementById('v-tel').value,
+    area: document.getElementById('v-area').value,
+    disponibilidad: document.getElementById('v-disp').value,
+    mensaje: 'Edad: ' + document.getElementById('v-edad').value + '\n\n' + document.getElementById('v-msg').value
+  }, 'btnVol', '¡Solicitud enviada! Te contactaremos pronto.');
 });
+
 document.getElementById('formSpon').addEventListener('submit', function(e) {
   e.preventDefault();
-  sendEmail({ tipo:'Sponsor', nombre:document.getElementById('s-nombre').value+' — '+document.getElementById('s-empresa').value, correo:document.getElementById('s-correo').value, teléfono:document.getElementById('s-tel').value, area:document.getElementById('s-tipo').value, disponibilidad:document.getElementById('s-cargo').value, mensaje:document.getElementById('s-msg').value||'Sin mensaje adicional' }, 'btnSpon','okSpon','errSpon');
+  sendForm('formSpon', {
+    tipo: 'Sponsor',
+    nombre: document.getElementById('s-nombre').value + ' — ' + document.getElementById('s-empresa').value,
+    correo: document.getElementById('s-correo').value,
+    telefono: document.getElementById('s-tel').value,
+    area: document.getElementById('s-tipo').value,
+    disponibilidad: document.getElementById('s-cargo').value,
+    mensaje: document.getElementById('s-msg').value || 'Sin mensaje adicional'
+  }, 'btnSpon', '¡Solicitud enviada! Te contactaremos pronto.');
 });
+
 document.getElementById('formConv').addEventListener('submit', function(e) {
   e.preventDefault();
-  sendEmail({ tipo:'Convenio', nombre:document.getElementById('c-nombre').value+' — '+document.getElementById('c-org').value, correo:document.getElementById('c-correo').value, teléfono:document.getElementById('c-tel').value, area:document.getElementById('c-tipo').value, disponibilidad:document.getElementById('c-cargo').value, mensaje:document.getElementById('c-msg').value }, 'btnConv','okConv','errConv');
+  sendForm('formConv', {
+    tipo: 'Convenio',
+    nombre: document.getElementById('c-nombre').value + ' — ' + document.getElementById('c-org').value,
+    correo: document.getElementById('c-correo').value,
+    telefono: document.getElementById('c-tel').value,
+    area: document.getElementById('c-tipo').value,
+    disponibilidad: document.getElementById('c-cargo').value,
+    mensaje: document.getElementById('c-msg').value
+  }, 'btnConv', '¡Propuesta enviada! Te contactaremos pronto.');
 });
 </script>
 
