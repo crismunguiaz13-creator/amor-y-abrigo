@@ -6,29 +6,7 @@
 <title>Eventos — Amor y Abrigo Honduras</title>
 <meta name="description" content="Refugio de rescate y adopción animal en San Pedro Sula, Honduras. Adoptá responsablemente.">
 <link rel="stylesheet" href="styles.css">
-<style>
-.events-section{padding:5rem 4rem;}
-.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.event-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all .3s;}
-.event-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,.1);}
-.event-top{padding:1.5rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border);}
-.event-date{min-width:60px;text-align:center;}
-.event-day{font-family:"Fraunces",serif;font-size:2.5rem;font-weight:900;line-height:1;color:var(--dark);}
-.event-month{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);}
-.event-type{padding:.3rem .75rem;border-radius:50px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
-.type-adopción{background:#dbeafe;color:var(--blue);}
-.type-recaudación{background:#fce7f3;color:#9d174d;}
-.type-voluntariado{background:#dcfce7;color:#166534;}
-.type-salud{background:#fef9c3;color:#854d0e;}
-.event-body{padding:1.5rem;}
-.event-title{font-family:"Fraunces",serif;font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:.75rem;}
-.event-desc{font-size:.875rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;}
-.event-meta{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--gray);margin-bottom:.4rem;}
-.event-btn{display:block;text-align:center;padding:.75rem;background:var(--blue);color:var(--white);border-radius:12px;font-weight:600;font-size:.875rem;margin-top:1rem;transition:all .2s;}
-.event-btn:hover{background:#1a7de0;}
-@media(max-width:1024px){.events-section{padding:3rem 2rem;}.events-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:640px){.events-grid{grid-template-columns:1fr;}}
-</style>
+
 <link rel="icon" type="image/png" href="https://www.amoryabrigohn.org/images/Logo.png">
 <link rel="apple-touch-icon" href="https://www.amoryabrigohn.org/images/Logo.png">
 <meta name="theme-color" content="#1E90FF">
@@ -41,6 +19,36 @@
 <meta name="author" content="Amor y Abrigo Honduras">
 <meta name="geo.region" content="HN-CR">
 <meta name="geo.placename" content="San Pedro Sula">
+<style>
+.events-section{padding:5rem 4rem;}
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.event-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all .3s;}
+.event-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,.1);}
+.event-top{padding:1.5rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border);}
+.event-date{min-width:60px;text-align:center;}
+.event-day{font-family:"Fraunces",serif;font-size:2.5rem;font-weight:900;line-height:1;color:var(--dark);}
+.event-month{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);}
+.event-type{padding:.3rem .75rem;border-radius:50px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+.type-adopcion{background:#dbeafe;color:var(--blue);}
+.type-recaudacion{background:#fce7f3;color:#9d174d;}
+.type-voluntariado{background:#dcfce7;color:#166534;}
+.type-salud{background:#fef9c3;color:#854d0e;}
+.type-otro{background:#f3f4f6;color:#374151;}
+.event-body{padding:1.5rem;}
+.event-title{font-family:"Fraunces",serif;font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:.75rem;}
+.event-desc{font-size:.875rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;}
+.event-meta{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--gray);margin-bottom:.4rem;}
+.event-btn{display:block;text-align:center;padding:.75rem;background:var(--blue);color:var(--white);border-radius:12px;font-weight:600;font-size:.875rem;margin-top:1rem;transition:all .2s;text-decoration:none;}
+.event-btn:hover{background:#1a7de0;}
+.no-events{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--gray);}
+.no-events p{font-size:1.05rem;margin-bottom:1rem;}
+body.dark-mode .event-card{background:#1a1a2e;border-color:#2a2a3e;}
+body.dark-mode .event-top{border-bottom-color:#2a2a3e;}
+body.dark-mode .event-day{color:#eeeef8;}
+body.dark-mode .event-title{color:#eeeef8;}
+@media(max-width:1024px){.events-section{padding:3rem 2rem;}.events-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.events-grid{grid-template-columns:1fr;}}
+</style>
 </head>
 <body><nav id="mainNav">
   <a href="index.html" class="nav-logo">
@@ -87,84 +95,10 @@
 </div>
 
 <section class="events-section">
-  <div class="events-grid">
-    <div class="event-card reveal">
-      <div class="event-top">
-        <div class="event-date"><div class="event-day">15</div><div class="event-month" data-es="Abr" data-en="Apr">Abr</div></div>
-        <span class="event-type type-adopcion" data-es="Feria de adopción" data-en="Adoption fair">Feria de adopción</span>
-      </div>
-      <div class="event-body">
-        <div class="event-title" data-es="Gran Feria de Adopción — Abril" data-en="Grand Adoption Fair — April">Gran Feria de Adopción — Abril</div>
-        <p class="event-desc" data-es="Trae a tu familia y conoce a los animales en persona. Habrá actividades, comida y mucho amor." data-en="Bring your family and meet the animals in person. There will be activities, food and lots of love.">Trae a tu familia y conoce a los animales en persona. Habrá actividades, comida y mucho amor.</p>
-        <div class="event-meta">📍 <span data-es="Parque Central, SPS" data-en="Central Park, SPS">Parque Central, SPS</span></div>
-        <div class="event-meta">🕐 10:00 AM — 4:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Más información" data-en="More info">Más información</a>
-      </div>
-    </div>
-    <div class="event-card reveal delay-1">
-      <div class="event-top">
-        <div class="event-date"><div class="event-day">22</div><div class="event-month" data-es="Abr" data-en="Apr">Abr</div></div>
-        <span class="event-type type-recaudacion" data-es="Recaudación" data-en="Fundraiser">Recaudación</span>
-      </div>
-      <div class="event-body">
-        <div class="event-title" data-es="Bingo Benéfico a favor del refugio" data-en="Charity Bingo for the shelter">Bingo Benéfico a favor del refugio</div>
-        <p class="event-desc" data-es="Participa en nuestro bingo solidario. Todos los fondos van directamente al cuidado de los animales." data-en="Participate in our charity bingo. All funds go directly to the care of the animals.">Participa en nuestro bingo solidario. Todos los fondos van directamente al cuidado de los animales.</p>
-        <div class="event-meta">📍 <span data-es="Sede del refugio" data-en="Shelter headquarters">Sede del refugio</span></div>
-        <div class="event-meta">🕐 3:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Más información" data-en="More info">Más información</a>
-      </div>
-    </div>
-    <div class="event-card reveal delay-2">
-      <div class="event-top">
-        <div class="event-date"><div class="event-day">05</div><div class="event-month" data-es="May" data-en="May">May</div></div>
-        <span class="event-type type-voluntariado" data-es="Voluntariado" data-en="Volunteering">Voluntariado</span>
-      </div>
-      <div class="event-body">
-        <div class="event-title" data-es="Día de limpieza y cuidado del refugio" data-en="Shelter cleaning and care day">Día de limpieza y cuidado del refugio</div>
-        <p class="event-desc" data-es="Únete a nuestros voluntarios para ayudar con la limpieza y cuidado de los animales." data-en="Join our volunteers to help with cleaning and animal care.">Únete a nuestros voluntarios para ayudar con la limpieza y cuidado de los animales.</p>
-        <div class="event-meta">📍 <span data-es="Refugio Amor y Abrigo" data-en="Amor y Abrigo Shelter">Refugio Amor y Abrigo</span></div>
-        <div class="event-meta">🕐 8:00 AM — 12:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Participar" data-en="Participate">Participar</a>
-      </div>
-    </div>
-    <div class="event-card reveal delay-1">
-      <div class="event-top">
-        <div class="event-date"><div class="event-day">18</div><div class="event-month" data-es="May" data-en="May">May</div></div>
-        <span class="event-type type-salud" data-es="Salud animal" data-en="Animal health">Salud animal</span>
-      </div>
-      <div class="event-body">
-        <div class="event-title" data-es="Jornada de vacunación gratuita" data-en="Free vaccination day">Jornada de vacunación gratuita</div>
-        <p class="event-desc" data-es="Vacunación y desparasitación gratuita para mascotas del sector." data-en="Free vaccination and deworming for pets in the area.">Vacunación y desparasitación gratuita para mascotas del sector.</p>
-        <div class="event-meta">📍 <span data-es="Col. Montefresco, SPS" data-en="Col. Montefresco, SPS">Col. Montefresco, SPS</span></div>
-        <div class="event-meta">🕐 9:00 AM — 1:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Más información" data-en="More info">Más información</a>
-      </div>
-    </div>
-    <div class="event-card reveal delay-2">
-      <div class="event-top">
-        <div class="event-date"><div class="event-day">01</div><div class="event-month" data-es="Jun" data-en="Jun">Jun</div></div>
-        <span class="event-type type-recaudacion" data-es="Recaudación" data-en="Fundraiser">Recaudación</span>
-      </div>
-      <div class="event-body">
-        <div class="event-title" data-es="Venta de comida a beneficio del refugio" data-en="Food sale to benefit the shelter">Venta de comida a beneficio del refugio</div>
-        <p class="event-desc" data-es="Disfruta de deliciosa comida y apoya al mismo tiempo a los animales del refugio." data-en="Enjoy delicious food and support the shelter animals at the same time.">Disfruta de deliciosa comida y apoya al mismo tiempo a los animales del refugio.</p>
-        <div class="event-meta">📍 <span data-es="Por confirmar" data-en="To be confirmed">Por confirmar</span></div>
-        <div class="event-meta">🕐 11:00 AM — 3:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Más información" data-en="More info">Más información</a>
-      </div>
-    </div>
-    <div class="event-card reveal delay-3">
-      <div class="event-top">
-        <div class="event-date"><div class="event-day">15</div><div class="event-month" data-es="Jun" data-en="Jun">Jun</div></div>
-        <span class="event-type type-adopcion" data-es="Feria de adopción" data-en="Adoption fair">Feria de adopción</span>
-      </div>
-      <div class="event-body">
-        <div class="event-title" data-es="Feria de adopción — Junio" data-en="Adoption Fair — June">Feria de adopción — Junio</div>
-        <p class="event-desc" data-es="Nuestra feria mensual de adopción. Ven y conoce a los animales disponibles." data-en="Our monthly adoption fair. Come and meet the available animals.">Nuestra feria mensual de adopción. Ven y conoce a los animales disponibles.</p>
-        <div class="event-meta">📍 <span data-es="Mall Multiplaza, SPS" data-en="Mall Multiplaza, SPS">Mall Multiplaza, SPS</span></div>
-        <div class="event-meta">🕐 10:00 AM — 4:00 PM</div>
-        <a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Más información" data-en="More info">Más información</a>
-      </div>
+  <div id="eventsGrid" class="events-grid">
+    <div class="spinner-wrap" style="grid-column:1/-1">
+      <div class="spinner"></div>
+      <p data-es="Cargando eventos..." data-en="Loading events...">Cargando eventos...</p>
     </div>
   </div>
 </section>
@@ -299,6 +233,80 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+<script>
+(function() {
+  var API = 'https://script.google.com/macros/s/AKfycbxV2W-VMaI9cQvIWUxW2sgHz8jis8epdbe3Nfqcb6kmECzbTOhpe8Rl0XTZbycTjZPi2A/exec?tipo=eventos';
+
+  var TYPE_CLASSES = {
+    'feria de adopcion': 'type-adopcion',
+    'feria de adopción': 'type-adopcion',
+    'recaudacion': 'type-recaudacion',
+    'recaudación': 'type-recaudacion',
+    'voluntariado': 'type-voluntariado',
+    'salud animal': 'type-salud',
+  };
+
+  function getTypeClass(tipo) {
+    var key = (tipo || '').toLowerCase().trim();
+    return TYPE_CLASSES[key] || 'type-otro';
+  }
+
+  function makeCard(ev) {
+    var dia = ev.fecha_dia || '';
+    var mes = ev.fecha_mes || '';
+    var typeClass = getTypeClass(ev.tipo);
+    var card = '<div class="event-card">';
+    card += '<div class="event-top">';
+    card += '<div class="event-date">';
+    card += '<div class="event-day">' + dia + '</div>';
+    card += '<div class="event-month">' + mes + '</div>';
+    card += '</div>';
+    card += '<span class="event-type ' + typeClass + '">' + (ev.tipo || '') + '</span>';
+    card += '</div>';
+    card += '<div class="event-body">';
+    card += '<div class="event-title">' + (ev.titulo || '') + '</div>';
+    card += '<p class="event-desc">' + (ev.descripcion || '') + '</p>';
+    if (ev.lugar) card += '<div class="event-meta">📍 ' + ev.lugar + '</div>';
+    if (ev.hora)  card += '<div class="event-meta">🕐 ' + ev.hora + '</div>';
+    card += '<a href="https://wa.me/50498248715" target="_blank" class="event-btn" data-es="Más información" data-en="More info">Más información</a>';
+    card += '</div></div>';
+    return card;
+  }
+
+  function loadEvents() {
+    var grid = document.getElementById('eventsGrid');
+    if (!grid) return;
+
+    fetch(API)
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(data) {
+        if (!data.length) {
+          grid.innerHTML = '<div class="no-events"><p data-es="No hay eventos programados por el momento." data-en="No events scheduled at the moment.">No hay eventos programados por el momento.</p><p style="font-size:.85rem">Síguenos en Instagram <strong>@amoryabrigo</strong> para estar al tanto.</p></div>';
+          return;
+        }
+        grid.innerHTML = data.map(makeCard).join('');
+        // Re-apply language if needed
+        if (typeof applyLang === 'function') {
+          applyLang(localStorage.getItem('ayaLang') || 'es');
+        }
+      })
+      .catch(function(err) {
+        console.warn('Events fetch error:', err);
+        grid.innerHTML = '<div class="no-events"><p data-es="No se pudieron cargar los eventos." data-en="Could not load events.">No se pudieron cargar los eventos.</p><a href="https://wa.me/50498248715" target="_blank" class="btn-primary" style="margin:0 auto;width:fit-content">Contactar al refugio</a></div>';
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadEvents);
+  } else {
+    loadEvents();
+  }
+})();
+</script>
 <!-- ====== FEATURES: PROGRESS + TRANSITION + HEARTS + SUCCESS ====== -->
 <div id="readProgress"></div>
 <div class="page-transition-overlay" id="pageOverlay">
